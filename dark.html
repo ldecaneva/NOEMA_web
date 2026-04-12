@@ -1,3 +1,5 @@
+Here is the HTML document with the spacing tightened between the specified sections and the "Live signal feed" moved to the requested location.
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,375 +12,220 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  /* Dark mode: off-black backgrounds, never pure black */
-  --white:#0B0B0B;
-  --off:#111111;
-  --off2:#181818;
-  --ink:#EAEAEA;        /* off-white, never pure white */
-  --ink2:#D0CCCA;
-  --mid:#B8B4AF;        /* was #9a9690 — bumped for readability */
-  --dim:#888480;        /* was #5a5754 — bumped significantly */
-  --rule:#2a2a28;
-  --rule2:#333330;
-  --mono:'IBM Plex Mono',monospace;
-  --sans:'IBM Plex Sans',sans-serif;
+  --white:#0B0B0B;--off:#111111;--off2:#181818;--ink:#EAEAEA;--ink2:#D0CCCA;
+  --mid:#B8B4AF;--dim:#888480;--rule:#2a2a28;--rule2:#333330;
+  --mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{
-  background:var(--white);
-  color:var(--ink);
-  font-family:var(--sans);
-  font-size:19px;line-height:1.85;  /* slightly larger base + more breathing room */
-  font-weight:400;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
+body{background:var(--white);color:var(--ink);font-family:var(--sans);font-size:19px;line-height:1.85;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:500;
-  display:grid;grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  padding:1rem 3.5rem;
-  background:rgba(11,11,11,0.97);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--rule);
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0.75rem 3.5rem;background:rgba(11,11,11,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;justify-self:start}
-.nav-name{font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:0.18em;color:var(--ink);text-transform:uppercase}
+.nav-logo-text{font-family:var(--mono);font-size:18px;font-weight:600;color:var(--ink);letter-spacing:0.12em}
 .nav-links{display:flex;align-items:center;gap:2.5rem;justify-self:center}
-.nav-links a{font-family:var(--mono);font-size:13px;letter-spacing:0.14em;color:var(--mid);text-decoration:none;text-transform:uppercase;transition:color .15s}  /* was 11px */
+.nav-links a{font-family:var(--mono);font-size:13px;letter-spacing:0.14em;color:var(--mid);text-decoration:none;text-transform:uppercase;transition:color .15s}
 .nav-links a:hover{color:var(--ink)}
-.nav-cta{
-  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:0.14em;
-  color:#0a0a0a;text-decoration:none;text-transform:uppercase;
-  background:var(--ink);padding:11px 26px;transition:background .15s;
-  justify-self:end;
-}
+.nav-cta{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:0.14em;color:#0a0a0a;text-decoration:none;text-transform:uppercase;background:var(--ink);padding:11px 26px;transition:background .15s;justify-self:end;}
 .nav-cta:hover{background:var(--ink2)}
 
-/* HERO */
-.hero{
-  position:relative;min-height:100vh;
-  display:grid;grid-template-columns:1fr 1fr;
-  overflow:hidden;background:var(--white);
-}
-#signal-canvas{
-  position:absolute;inset:0;width:100%;height:100%;
-  z-index:1;pointer-events:none;opacity:0.5;
-}
-.hero-left{
-  position:relative;z-index:10;
-  display:flex;flex-direction:column;justify-content:space-between;
-  padding:10rem 3.5rem 7rem;
-  border-right:1px solid var(--rule);
-}
-.hero-top{display:flex;flex-direction:column}
-.hero-eyebrow{
-  font-family:var(--mono);font-size:11px;letter-spacing:0.3em;  /* was 9px */
-  color:var(--dim);text-transform:uppercase;
-  display:flex;align-items:center;gap:10px;margin-bottom:2.5rem;
-}
-.e-dot{
-  width:5px;height:5px;border-radius:50%;
-  background:var(--ink);flex-shrink:0;
-  animation:blink 2.5s ease-in-out infinite;
-}
+/* HERO - reduced top padding to bring closer to nav */
+.hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;background:var(--white);}
+#signal-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0.5;}
+.hero-left{position:relative;z-index:10;display:flex;flex-direction:column;justify-content:space-between;padding:8rem 3.5rem 7rem;border-right:1px solid var(--rule);}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.3em;color:var(--dim);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:2.5rem;}
+.e-dot{width:5px;height:5px;border-radius:50%;background:var(--ink);flex-shrink:0;animation:blink 2.5s ease-in-out infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
 .hero-bottom{display:flex;flex-direction:column}
-.hero-h1{
-  font-family:var(--mono);
-  font-size:clamp(2.8rem,5.5vw,6rem);
-  font-weight:600;line-height:1.0;letter-spacing:-0.025em;
-  color:var(--ink);margin-bottom:1.25rem;
-  max-width:620px;
-}
-.hero-sub{
-  font-family:var(--sans);font-size:1.2rem;font-weight:400;  /* was 300, bumped weight */
-  color:var(--mid);line-height:1.9;max-width:480px;margin-bottom:2.5rem;
-}
-
-/* MINI PIPELINE IN HERO */
-.hero-pipeline{
-  display:flex;align-items:center;gap:8px;
-  flex-wrap:nowrap;margin-bottom:1rem;
-  overflow-x:auto;
-}
-.hp-node{
-  font-family:var(--mono);font-size:12px;letter-spacing:0.1em;  /* was 10px */
-  padding:8px 14px;border:1px solid var(--rule2);
-  color:var(--mid);text-transform:uppercase;background:var(--off);
-  white-space:nowrap;flex-shrink:0;
-}
-.hp-node.on{
-  background:var(--ink);color:#0B0B0B;border-color:var(--ink);
-}
+.hero-h1{font-family:var(--mono);font-size:clamp(2.8rem,5.5vw,6rem);font-weight:600;line-height:1.0;letter-spacing:-0.025em;color:var(--ink);margin-bottom:1.25rem;max-width:620px;}
+.hero-sub{font-family:var(--sans);font-size:1.2rem;font-weight:400;color:var(--mid);line-height:1.9;max-width:480px;margin-bottom:2.5rem;}
+.hero-pipeline{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;margin-bottom:1rem;overflow-x:auto;}
+.hp-node{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;padding:8px 14px;border:1px solid var(--rule2);color:var(--mid);text-transform:uppercase;background:var(--off);white-space:nowrap;flex-shrink:0;}
+.hp-node.on{background:var(--ink);color:#0B0B0B;border-color:var(--ink)}
 .hp-arr{font-size:14px;color:var(--dim);font-family:var(--mono);flex-shrink:0}
-.hero-reco{
-  font-family:var(--mono);font-size:12px;font-weight:500;  /* was 10px */
-  letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--ink);margin-bottom:2rem;
-  display:flex;align-items:center;gap:8px;
-}
+.hero-reco{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink);margin-bottom:2rem;display:flex;align-items:center;gap:8px;}
 .hero-reco::before{content:'';display:inline-block;width:20px;height:1.5px;background:var(--ink)}
-
-.hero-stat-row{
-  display:flex;gap:0;
-  border-top:1px solid var(--rule);padding-top:1.75rem;margin-bottom:2.5rem;
-}
-.h-stat{
-  display:flex;flex-direction:column;gap:4px;
-  padding-right:1.75rem;border-right:1px solid var(--rule);
-}
+.hero-stat-row{display:flex;gap:0;border-top:1px solid var(--rule);padding-top:1.75rem;margin-bottom:2.5rem;}
+.h-stat{display:flex;flex-direction:column;gap:4px;padding-right:1.75rem;border-right:1px solid var(--rule);}
 .h-stat:last-child{border-right:none;padding-right:0;padding-left:1.75rem}
 .h-stat:nth-child(2){padding-left:1.75rem}
-.h-stat-num{
-  font-family:var(--mono);font-size:28px;font-weight:600;  /* was 26px */
-  color:var(--ink);letter-spacing:-0.02em;
-}
-.h-stat-label{
-  font-family:var(--sans);font-size:14px;font-weight:400;  /* was 13px/400 */
-  color:var(--mid);line-height:1.4;
-}
+.h-stat-num{font-family:var(--mono);font-size:28px;font-weight:600;color:var(--ink);letter-spacing:-0.02em}
+.h-stat-label{font-family:var(--sans);font-size:14px;font-weight:400;color:var(--mid);line-height:1.4}
 .ratio-bar-wrap{margin-top:6px;height:1px;width:100%;background:var(--rule)}
 .ratio-bar-fill{height:100%;background:var(--ink);transition:width .9s ease;width:0%}
-.hero-actions{display:flex;align-items:center;gap:1.5rem}
-.btn-primary{
-  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
-  color:#0B0B0B;background:var(--ink);border:none;
-  padding:16px 36px;cursor:pointer;transition:background .15s;
-}
+.btn-primary{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#0B0B0B;background:var(--ink);border:none;padding:16px 36px;cursor:pointer;transition:background .15s;}
 .btn-primary:hover{background:var(--ink2)}
-
-/* HERO RIGHT */
-.hero-right{
-  position:relative;z-index:10;
-  display:flex;flex-direction:column;
-  justify-content:space-between;
-  padding:7rem 3.5rem 5.5rem;
-}
-.hero-telemetry{
-  align-self:flex-end;
-  display:flex;flex-direction:column;gap:6px;text-align:right;
-}
-.telem-line{
-  font-family:var(--mono);font-size:11px;letter-spacing:0.26em;  /* was 9px */
-  color:var(--dim);text-transform:uppercase;
-}
+.hero-right{position:relative;z-index:10;display:flex;flex-direction:column;justify-content:space-between;padding:7rem 3.5rem 5.5rem;}
+.hero-telemetry{align-self:flex-end;display:flex;flex-direction:column;gap:6px;text-align:right;}
+.telem-line{font-family:var(--mono);font-size:11px;letter-spacing:0.26em;color:var(--dim);text-transform:uppercase}
 .telem-line span{color:var(--ink);font-weight:500}
-
-/* BIG COMPRESSION RATIO STAT */
-.hero-stat-block{
-  align-self:flex-end;
-  text-align:right;
-}
-.stat-num{
-  font-family:var(--mono);
-  font-size:clamp(5rem,9vw,9.5rem);
-  font-weight:600;line-height:1;
-  color:var(--ink);letter-spacing:-0.03em;
-}
-/* the 'x' suffix sits inline, same font/weight, slightly smaller */
-.stat-num-x{
-  font-family:var(--mono);
-  font-size:clamp(2.5rem,4.5vw,5rem);
-  font-weight:600;
-  color:var(--ink);letter-spacing:-0.02em;
-  vertical-align:baseline;
-}
-.stat-unit{
-  font-family:var(--mono);font-size:0.75rem;letter-spacing:0.22em;  /* was 0.65rem */
-  color:var(--mid);margin-top:0.5rem;text-transform:uppercase;
-}
-.stat-sub{
-  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.22em;  /* was 0.6rem */
-  color:var(--dim);text-transform:uppercase;margin-top:0.25rem;
-}
-
-.hero-bar{
-  position:absolute;bottom:0;left:0;right:0;z-index:20;
-  border-top:1px solid var(--rule);
-  display:grid;grid-template-columns:repeat(4,1fr);
-  background:rgba(11,11,11,0.97);backdrop-filter:blur(8px);
-}
-.bar-item{
-  padding:1rem 1.75rem;font-family:var(--mono);font-size:11px;  /* was 9px */
-  letter-spacing:0.14em;color:var(--mid);text-transform:uppercase;
-  border-right:1px solid var(--rule);display:flex;align-items:center;gap:8px;
-}
+.hero-stat-block{align-self:flex-end;text-align:right}
+.stat-num{font-family:var(--mono);font-size:clamp(5rem,9vw,9.5rem);font-weight:600;line-height:1;color:var(--ink);letter-spacing:-0.03em;}
+.stat-num-x{font-family:var(--mono);font-size:clamp(2.5rem,4.5vw,5rem);font-weight:600;color:var(--ink);letter-spacing:-0.02em;vertical-align:baseline;}
+.stat-unit{font-family:var(--mono);font-size:0.75rem;letter-spacing:0.22em;color:var(--mid);margin-top:0.5rem;text-transform:uppercase}
+.stat-sub{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.22em;color:var(--dim);text-transform:uppercase;margin-top:0.25rem}
+.hero-bar{position:absolute;bottom:0;left:0;right:0;z-index:20;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(11,11,11,0.97);backdrop-filter:blur(8px);}
+.bar-item{padding:1rem 1.75rem;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;color:var(--mid);text-transform:uppercase;border-right:1px solid var(--rule);display:flex;align-items:center;gap:8px;}
 .bar-item:last-child{border-right:none}
 .bdot{width:5px;height:5px;border-radius:50%;background:var(--rule2);flex-shrink:0}
 .bdot.live{background:var(--ink);animation:blink 2.5s ease-in-out infinite}
 
-/* SECTION BASE */
+/* WAVEFORM STRIP - now placed inline, but keep styles */
+.waveform-strip{border-top:1px solid var(--rule);background:var(--off2);overflow:hidden;height:72px;position:relative}
+.waveform-strip canvas{width:100%;height:72px;display:block}
+.waveform-strip-label{position:absolute;left:1.5rem;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:10px;letter-spacing:0.22em;color:var(--dim);text-transform:uppercase;z-index:2}
+
 section{border-top:1px solid var(--rule)}
 .sec-label{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:0.26em;color:var(--dim);text-transform:uppercase}
 .sec-header{display:grid;grid-template-columns:220px 1fr;gap:5rem;align-items:start;margin-bottom:4rem}
 .sec-h2{font-family:var(--mono);font-size:clamp(1.8rem,3vw,2.7rem);font-weight:600;line-height:1.1;letter-spacing:-0.02em;color:var(--ink)}
 .sec-sub{font-family:var(--sans);font-size:1.1rem;font-weight:400;color:var(--mid);line-height:1.9;margin-top:0.75rem}
 
-.statement{
-  padding:7rem 3.5rem;background:#121212;
-  display:grid;grid-template-columns:220px 1fr;gap:6rem;align-items:start;
-}
+/* FIRST PRINCIPLES */
+.statement{padding:7rem 3.5rem;background:#121212;display:grid;grid-template-columns:220px 1fr;gap:6rem;align-items:start;border-top:1px solid var(--rule);}
 .stmt-label{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:0.26em;color:var(--dim);text-transform:uppercase;padding-top:0.4rem}
-.stmt-body{
-  font-family:var(--mono);
-  font-size:clamp(1.05rem,1.7vw,1.3rem);
-  font-weight:400;line-height:1.95;color:var(--mid);letter-spacing:0.01em;
-}
-.stmt-body em{font-style:normal;color:var(--ink);font-weight:500}
-.stmt-list{
-  margin-top:2rem;
-  display:flex;flex-direction:column;gap:12px;
-  border-top:1px solid rgba(234,234,234,0.1);
-  padding-top:1.75rem;
-}
-.stmt-list-item{
-  font-family:var(--mono);font-size:1rem;font-weight:400;  /* was 0.9rem/300 */
-  color:var(--mid);letter-spacing:0.02em;
-  display:flex;align-items:baseline;gap:12px;
-}
-.stmt-list-item::before{content:'—';color:var(--dim);flex-shrink:0;font-weight:400}
-.stmt-closer{
-  margin-top:2.5rem;
-  font-family:var(--mono);
-  font-size:clamp(1.15rem,1.9vw,1.5rem);
-  font-weight:500;line-height:1.55;
-  color:var(--ink);letter-spacing:-0.01em;
-  border-top:1px solid rgba(234,234,234,0.12);
-  padding-top:2rem;
-}
+.stmt-body{font-family:var(--mono);font-size:clamp(1.05rem,1.7vw,1.3rem);font-weight:400;line-height:1.95;color:var(--mid);}
+.stmt-list{margin-top:2rem;display:flex;flex-direction:column;gap:12px;border-top:1px solid rgba(234,234,234,0.1);padding-top:1.75rem;}
+.stmt-list-item{font-family:var(--mono);font-size:1rem;color:var(--mid);display:flex;align-items:baseline;gap:12px;}
+.stmt-list-item::before{content:'';display:inline-block;width:5px;height:1.5px;background:var(--dim);flex-shrink:0;margin-top:0.6em}
+.stmt-closer{margin-top:2.5rem;font-family:var(--mono);font-size:clamp(1.15rem,1.9vw,1.5rem);font-weight:500;line-height:1.55;color:var(--ink);border-top:1px solid rgba(234,234,234,0.12);padding-top:2rem;}
 
 /* WHAT NOEMA IS */
 .what-section{border-top:1px solid var(--rule);background:var(--white)}
 .what-inner{padding:7rem 3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
 .what-h2{font-family:var(--mono);font-size:clamp(1.8rem,2.8vw,2.5rem);font-weight:600;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1.5rem}
-.what-body{font-family:var(--sans);font-size:1.1rem;font-weight:400;color:var(--mid);line-height:1.9;margin-bottom:1rem}
-.what-body strong{color:var(--ink);font-weight:500}
-
-/* PIPELINE DIAGRAM */
+.what-body{font-family:var(--sans);font-size:1.1rem;color:var(--mid);line-height:1.9;margin-bottom:1rem}
 .what-pipeline{border:1px solid var(--rule2);background:var(--off)}
-.wp-row{
-  display:flex;align-items:center;
-  padding:1.3rem 1.6rem;border-bottom:1px solid var(--rule);gap:12px;
-}
+.wp-row{display:flex;align-items:center;padding:1.3rem 1.6rem;border-bottom:1px solid var(--rule);gap:12px}
 .wp-row:last-child{border-bottom:none}
-.wp-arrow{
-  font-family:var(--mono);font-size:16px;
-  flex-shrink:0;
-  color:var(--ink);
-  opacity:0.08;
-  animation:arrow-pulse 3.6s ease-in-out infinite;
-  display:inline-block;
-}
+.wp-arrow{font-family:var(--mono);font-size:16px;flex-shrink:0;color:var(--ink);opacity:0.08;animation:arrow-pulse 3.6s ease-in-out infinite;display:inline-block}
 .wp-row:nth-child(1) .wp-arrow{animation-delay:0s}
 .wp-row:nth-child(2) .wp-arrow{animation-delay:0.7s}
 .wp-row:nth-child(3) .wp-arrow{animation-delay:1.4s}
 .wp-row:nth-child(4) .wp-arrow{animation-delay:2.1s}
-@keyframes arrow-pulse{
-  0%   {opacity:0.08;text-shadow:none}
-  20%  {opacity:1;text-shadow:0 -4px 14px rgba(234,234,234,0.9),0 -2px 7px rgba(234,234,234,0.6)}
-  45%  {opacity:0.55;text-shadow:0 -2px 8px rgba(234,234,234,0.35)}
-  70%  {opacity:0.12;text-shadow:none}
-  100% {opacity:0.08;text-shadow:none}
-}
+@keyframes arrow-pulse{0%{opacity:0.08}20%{opacity:1;text-shadow:0 -4px 14px rgba(234,234,234,0.9)}45%{opacity:0.55}70%{opacity:0.12}100%{opacity:0.08}}
 .wp-label{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;flex:1;color:var(--ink)}
-.wp-label.highlight{color:var(--ink);font-weight:600}
-.wp-val{
-  font-family:var(--mono);font-size:12px;font-weight:600;
-  letter-spacing:0.06em;color:var(--ink);text-transform:uppercase;
-  white-space:nowrap;background:var(--off2);padding:4px 10px;
-  border:1px solid var(--rule);
-}
+.wp-label.hi{font-weight:600}
+.wp-val{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;background:var(--off2);padding:4px 10px;border:1px solid var(--rule)}
 .wp-val.dim{color:var(--mid);background:var(--white);font-weight:500}
-.wp-saved{
-  font-family:var(--mono);font-size:10px;font-weight:400;
-  letter-spacing:0.06em;color:var(--dim);text-transform:uppercase;
-  white-space:nowrap;margin-left:4px;
-}
-.wp-stage{
-  font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:0.18em;
-  color:var(--dim);text-transform:uppercase;white-space:nowrap;
-  border-left:1px solid var(--rule);padding-left:10px;margin-left:4px;
-}
-.what-reco{
-  padding:1rem 1.6rem;border-top:1px solid var(--rule2);background:var(--off2);
-  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.14em;color:var(--mid);text-transform:uppercase;
-}
+.wp-saved{font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;white-space:nowrap;margin-left:4px}
+.wp-stage{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:0.18em;color:var(--dim);text-transform:uppercase;white-space:nowrap;border-left:1px solid var(--rule);padding-left:10px;margin-left:4px}
+.what-reco{padding:1rem 1.6rem;border-top:1px solid var(--rule2);background:var(--off2);font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.14em;color:var(--mid);text-transform:uppercase}
+
+/* COMPRESSION BAR CHART */
+.compression-visual{margin-top:2.5rem;border:1px solid var(--rule2);background:var(--off);padding:1.8rem}
+.cv-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.22em;color:var(--dim);text-transform:uppercase;margin-bottom:1.4rem}
+.cv-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.cv-bar-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:var(--mid);text-transform:uppercase;width:82px;flex-shrink:0;text-align:right}
+.cv-bar-track{flex:1;height:10px;background:var(--rule);overflow:hidden}
+.cv-bar-fill{height:100%;transition:width 1.4s cubic-bezier(0.25,0,0.35,1)}
+.cv-bar-val{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--ink);width:56px;flex-shrink:0}
+
+/* RAW vs NOEMA waveform */
+.rn-wrap{border:1px solid var(--rule2);background:var(--off2);padding:1.2rem;overflow:hidden;margin-top:1.4rem}
+.rn-label-row{display:flex;justify-content:space-between;margin-bottom:0.75rem}
+.rn-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase}
+
+/* WHERE IT SITS */
+.where-section{border-top:1px solid var(--rule);background:var(--off)}
+.where-inner{padding:7rem 3.5rem}
+.where-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule2);border:1px solid var(--rule2);margin-top:4rem}
+.where-cell{background:var(--white);padding:2.4rem 2rem;transition:background .2s}
+.where-cell:hover{background:var(--off)}
+.where-icon{margin-bottom:1.3rem;opacity:0.65}
+.where-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.22em;color:var(--dim);text-transform:uppercase;margin-bottom:1rem}
+.where-title{font-family:var(--mono);font-size:0.95rem;font-weight:600;color:var(--ink);margin-bottom:0.75rem;line-height:1.25}
+.where-body{font-family:var(--sans);font-size:0.88rem;color:var(--mid);line-height:1.8}
 
 /* HOW IT WORKS */
-.how-section{padding:7rem 3.5rem;background:var(--off);border-top:1px solid var(--rule)}
+.how-section{padding:7rem 3.5rem;background:var(--white);border-top:1px solid var(--rule)}
 .how-steps{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule2);margin-top:4rem;position:relative;overflow:hidden}
 .how-steps::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--rule);z-index:1}
 .how-beam-h{position:absolute;top:0;left:-200px;width:200px;height:2px;background:linear-gradient(90deg,transparent,var(--ink) 40%,rgba(234,234,234,0.4) 75%,transparent);z-index:2;pointer-events:none;animation:beam-h 7s cubic-bezier(0.25,0,0.75,1) infinite}
 @keyframes beam-h{0%{left:-200px;opacity:0}6%{opacity:1}90%{opacity:1}100%{left:calc(100% + 200px);opacity:0}}
-.how-step{padding:2.75rem 2.25rem;border-right:1px solid var(--rule2);background:var(--white);transition:background .2s;position:relative}
+.how-step{padding:2.75rem 2.25rem;border-right:1px solid var(--rule2);background:var(--off);transition:background .2s}
 .how-step:last-child{border-right:none}
-.how-step:hover{background:var(--off)}
-.how-step-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.26em;color:var(--dim);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:8px}
+.how-step:hover{background:var(--off2)}
+.how-step-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.26em;color:var(--dim);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:8px;}
 .how-step-num::after{content:'';flex:1;height:1px;background:var(--rule)}
-.how-step-title{font-family:var(--mono);font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:0.9rem;line-height:1.2;letter-spacing:-0.01em}
-.how-step-body{font-family:var(--sans);font-size:1rem;font-weight:400;color:var(--mid);line-height:1.85;margin-bottom:1.5rem}
+.how-step-title{font-family:var(--mono);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:0.9rem;line-height:1.2}
+.how-step-body{font-family:var(--sans);font-size:1rem;color:var(--mid);line-height:1.85;margin-bottom:1.5rem}
 .how-step-spec{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.12em;color:var(--mid);text-transform:uppercase;display:flex;flex-direction:column;gap:7px;border-top:1px solid var(--rule);padding-top:1.25rem}
-.how-step-spec span{display:flex;align-items:center;gap:8px;line-height:1.5}
+.how-step-spec span{display:flex;align-items:center;gap:8px}
 .how-step-spec span::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ink);flex-shrink:0}
 
 /* METRICS */
-.metrics-band{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule);background:var(--white)}
-.m-card{padding:3.5rem 2.75rem;border-right:1px solid var(--rule);transition:background .2s}
+.metrics-band{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule);background:var(--off);margin-bottom:0}
+.m-card{padding:3.5rem 2.75rem;border-right:1px solid var(--rule);transition:background .2s;position:relative;overflow:hidden}
 .m-card:last-child{border-right:none}
-.m-card:hover{background:var(--off)}
+.m-card:hover{background:var(--off2)}
 .m-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.22em;color:var(--dim);text-transform:uppercase;margin-bottom:1.4rem}
 .m-num{font-family:var(--mono);font-size:clamp(2.5rem,3.6vw,4rem);font-weight:600;line-height:1;color:var(--ink);letter-spacing:-0.03em;margin-bottom:0.8rem}
 .m-accent{color:var(--mid)}
-.m-desc{font-family:var(--sans);font-size:1rem;font-weight:400;color:var(--mid);line-height:1.8}
+.m-desc{font-family:var(--sans);font-size:1rem;color:var(--mid);line-height:1.8}
+.m-icon{position:absolute;bottom:2rem;right:2rem;opacity:0.06}
 
-/* WHO IT IS FOR */
-.who-section{padding:7rem 3.5rem;background:var(--off);border-top:1px solid var(--rule)}
-.who-benefits{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule2);margin-bottom:3.5rem;background:var(--white)}
-.who-benefit{display:flex;align-items:center;gap:14px;padding:1.25rem 1.6rem;border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);line-height:1.55}
-.who-benefit:last-child{border-bottom:none}
-.who-benefit::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ink);flex-shrink:0}
-.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule2);border:1px solid var(--rule2)}
-.who-cell{background:var(--white);padding:2.75rem 2.25rem;transition:background .2s}
-.who-cell:hover{background:var(--off)}
-.who-tag{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.22em;color:var(--dim);text-transform:uppercase;margin-bottom:1.25rem}
-.who-title{font-family:var(--mono);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:0.9rem;line-height:1.2;letter-spacing:-0.01em}
-.who-body{font-family:var(--sans);font-size:1rem;font-weight:400;color:var(--mid);line-height:1.85}
+/* WHO SECTION - reduced padding between rows and with status */
+.who-section{padding:5rem 3.5rem 2rem 3.5rem;background:var(--white);border-top:1px solid var(--rule);margin-top:0}
+.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule2);border:1px solid var(--rule2);margin-top:3rem}
+.who-cell{background:var(--off);padding:2rem 2rem;transition:background .2s}
+.who-cell:hover{background:var(--off2)}
+.who-tag{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.22em;color:var(--dim);text-transform:uppercase;margin-bottom:1rem}
+.who-icon{margin-bottom:1.2rem;opacity:0.65}
+.who-title{font-family:var(--mono);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:0.75rem;line-height:1.25}
+.who-body{font-family:var(--sans);font-size:0.95rem;color:var(--mid);line-height:1.75}
+
+/* STATUS BAND - tightly coupled to who section */
+.status-band{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule);background:#121212;margin-top:0}
+.status-cell{padding:2.5rem 3.5rem;border-right:1px solid var(--rule)}
+.status-cell:last-child{border-right:none}
+.status-eyebrow{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.28em;color:var(--dim);text-transform:uppercase;margin-bottom:0.85rem;display:flex;align-items:center;gap:8px;}
+.status-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ink);animation:blink 2.5s ease-in-out infinite;flex-shrink:0}
+.status-body{font-family:var(--sans);font-size:1rem;color:var(--mid);line-height:1.75}
+.status-body strong{color:var(--ink);font-weight:500}
+
+/* COMBINED SECTION (empty) */
+.combined-section{border-top:1px solid var(--rule);background:#121212}
+.combined-inner{padding:0}
 
 /* PILOT */
-.pilot-section{padding:7rem 3.5rem;background:var(--white);border-top:1px solid var(--rule)}
+.pilot-section{padding:7rem 3.5rem;background:var(--off);border-top:1px solid var(--rule)}
 .shadow-badge{display:inline-flex;align-items:center;gap:10px;background:var(--off2);color:var(--ink);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;padding:12px 22px;margin-bottom:3rem;border:1px solid var(--rule2)}
-.shadow-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ink);animation:blink 2.5s ease-in-out infinite;flex-shrink:0;opacity:0.8}
-.pilot-meta{display:flex;gap:2rem;margin-top:1rem}
-.pilot-badge{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.12em;color:var(--mid);text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.shadow-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ink);animation:blink 2.5s ease-in-out infinite;flex-shrink:0}
+.pilot-meta{display:flex;gap:2rem;margin-top:1rem;flex-wrap:wrap}
+.pilot-badge{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.12em;color:var(--mid);text-transform:uppercase;display:flex;align-items:center;gap:7px;}
 .pilot-badge::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ink)}
 .pilot-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule2);border:1px solid var(--rule2);margin-top:4rem}
-.p-step{background:var(--white);padding:2.75rem 2.25rem;transition:background .2s;border-right:1px solid var(--rule2)}
+.p-step{background:var(--white);padding:2.5rem 2rem;transition:background .2s;border-right:1px solid var(--rule2)}
 .p-step:last-child{border-right:none}
 .p-step:hover{background:var(--off)}
-.step-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.22em;color:var(--dim);text-transform:uppercase;margin-bottom:1.6rem}
-.step-title{font-family:var(--mono);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:0.8rem;line-height:1.2;letter-spacing:-0.01em}
-.step-body{font-family:var(--sans);font-size:1rem;font-weight:400;color:var(--mid);line-height:1.82}
+.step-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0.22em;color:var(--dim);text-transform:uppercase;margin-bottom:1.4rem}
+.step-title{font-family:var(--mono);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:0.75rem;line-height:1.2}
+.step-body{font-family:var(--sans);font-size:0.9rem;color:var(--mid);line-height:1.82}
+
+/* DEPLOYMENT NAMES STRIP */
+.deploy-names{border-top:1px solid var(--rule);background:var(--white);padding:1.75rem 3.5rem;margin-top:0}
+.deploy-names-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.28em;color:var(--dim);text-transform:uppercase;margin-bottom:0.85rem}
+.deploy-names-inner{display:flex;align-items:stretch;gap:0;border:1px solid var(--rule2);flex-wrap:wrap}
+.dn-item{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);padding:1rem 1.8rem;border-right:1px solid var(--rule2);white-space:nowrap;display:flex;align-items:center;gap:8px;flex:1;justify-content:center;}
+.dn-item:last-child{border-right:none}
+.dn-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--ink);flex-shrink:0}
 
 /* ACCESS */
 .access{padding:9rem 3.5rem;background:var(--off);border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start}
 .acc-eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:0.26em;color:var(--dim);text-transform:uppercase;margin-bottom:2rem}
 .acc-h2{font-family:var(--mono);font-size:clamp(1.9rem,3.1vw,2.9rem);font-weight:600;line-height:1.08;color:var(--ink);letter-spacing:-0.02em;margin-bottom:2rem}
 .acc-poem{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--rule2);padding-left:1.5rem;margin-bottom:1.5rem}
-.acc-poem-line{font-family:var(--sans);font-size:1.05rem;font-weight:400;color:var(--mid);line-height:2.1}
+.acc-poem-line{font-family:var(--sans);font-size:1.05rem;color:var(--mid);line-height:2.1}
 .acc-poem-line.strong{color:var(--ink);font-weight:500}
 .acc-poem-line.accent{color:var(--ink);font-weight:600}
-
 .acc-form{display:flex;flex-direction:column;gap:10px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .f-label{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);margin-bottom:5px;display:block}
 .f-group{display:flex;flex-direction:column}
-.fi{background:var(--off2);border:1px solid var(--rule2);color:var(--ink);font-family:var(--sans);font-size:16px;font-weight:400;padding:14px 16px;outline:none;width:100%;transition:border-color .15s;border-radius:0}
+.fi{background:var(--off2);border:1px solid var(--rule2);color:var(--ink);font-family:var(--sans);font-size:16px;padding:14px 16px;outline:none;width:100%;transition:border-color .15s;border-radius:0}
 .fi::placeholder{color:var(--dim)}
 .fi:focus{border-color:var(--mid)}
-.fs{background:var(--off2);border:1px solid var(--rule2);color:var(--mid);font-family:var(--sans);font-size:16px;font-weight:400;padding:14px 16px;outline:none;width:100%;-webkit-appearance:none;cursor:pointer;border-radius:0;transition:border-color .15s}
+.fs{background:var(--off2);border:1px solid var(--rule2);color:var(--mid);font-family:var(--sans);font-size:16px;padding:14px 16px;outline:none;width:100%;-webkit-appearance:none;cursor:pointer;border-radius:0;transition:border-color .15s}
 .fs:focus{border-color:var(--mid)}
 .fs option{background:var(--off2);color:var(--ink)}
 .fsub{background:var(--ink);color:#0B0B0B;border:none;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;padding:17px;cursor:pointer;transition:background .15s;width:100%;border-radius:0;margin-top:4px}
@@ -388,42 +235,49 @@ section{border-top:1px solid var(--rule)}
 .fsuccess p{font-family:var(--mono);font-size:1.1rem;font-weight:600;color:var(--ink)}
 .fsuccess small{display:block;margin-top:0.75rem;font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:var(--mid);text-transform:uppercase}
 
-/* FOOTER */
 footer{padding:1.75rem 3.5rem;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--off)}
 .fl,.fr{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;color:var(--dim);text-transform:uppercase}
 .fr a{color:var(--dim);text-decoration:none;transition:color .2s}
 .fr a:hover{color:var(--mid)}
 
-/* REVEAL */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 
-/* RESPONSIVE */
+@media(max-width:1100px){
+  .where-grid{grid-template-columns:repeat(3,1fr)}
+}
 @media(max-width:1024px){
-  nav{padding:1rem 1.5rem}
-  .hero{grid-template-columns:1fr}
-  .hero-right{display:none}
-  .hero-left{padding:8rem 1.5rem 5rem;border-right:none}
-  .hero-bar{display:none}
+  nav{padding:0.75rem 1.5rem}
+  .hero-left{padding:6rem 1.5rem 5rem}
   .statement{grid-template-columns:1fr;gap:2rem;padding:5rem 1.5rem}
   .what-inner{grid-template-columns:1fr;gap:3rem;padding:5rem 1.5rem}
+  .where-inner{padding:5rem 1.5rem}
+  .where-grid{grid-template-columns:1fr 1fr}
   .how-section,.who-section,.pilot-section{padding:5rem 1.5rem}
+  .who-section{padding:3rem 1.5rem 1.5rem 1.5rem}
+  .status-cell{padding:2rem 1.5rem}
   .sec-header{grid-template-columns:1fr;gap:1.5rem}
   .how-steps,.pilot-steps{grid-template-columns:1fr 1fr}
   .who-grid{grid-template-columns:1fr 1fr}
   .metrics-band{grid-template-columns:1fr 1fr}
   .m-card:nth-child(2){border-right:none}
   .m-card:nth-child(3){border-top:1px solid var(--rule)}
+  .combined-inner{padding:0}
+  .status-band{grid-template-columns:1fr}
+  .status-cell{border-right:none;border-bottom:1px solid var(--rule)}
   .access{grid-template-columns:1fr;padding:5rem 1.5rem;gap:4rem}
+  .deploy-names{padding:1.5rem 1.5rem}
   footer{padding:1.5rem;flex-direction:column;text-align:center}
 }
 @media(max-width:600px){
-  .how-steps,.who-grid,.pilot-steps{grid-template-columns:1fr}
+  .how-steps,.who-grid,.pilot-steps,.where-grid{grid-template-columns:1fr}
   .metrics-band{grid-template-columns:1fr}
   .m-card{border-right:none;border-bottom:1px solid var(--rule)}
   .hero-pipeline{flex-wrap:wrap}
+  .impact-strip{grid-template-columns:1fr}
   .h-stat{padding-right:1rem}
   .h-stat:nth-child(2){padding-left:1rem}
+  .dn-item{border-right:none;border-bottom:1px solid var(--rule2);width:100%}
 }
 </style>
 </head>
@@ -431,8 +285,8 @@ footer{padding:1.75rem 3.5rem;border-top:1px solid var(--rule);display:flex;alig
 
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img src="images/logo_white.png" alt="NOEMA" style="height: 56px; width: auto;">
-  </a>
+  <img src="images/logo_white.png" alt="NOEMA" style="height: 56px; width: auto;">
+</a>
   <div class="nav-links">
     <a href="#how">How it works</a>
     <a href="#who">For whom</a>
@@ -445,15 +299,11 @@ footer{padding:1.75rem 3.5rem;border-top:1px solid var(--rule);display:flex;alig
 <!-- HERO -->
 <section class="hero">
   <canvas id="signal-canvas"></canvas>
-
   <div class="hero-left">
-    <div class="hero-top">
-      <div class="hero-eyebrow"><span class="e-dot"></span>Signal compression</div>
-    </div>
+    <div class="hero-eyebrow"><span class="e-dot"></span>Signal compression</div>
     <div class="hero-bottom">
       <h1 class="hero-h1">The memory layer<br>for raw signal data.</h1>
-      <p class="hero-sub">Raw data. Smaller. Never lost. Compress, store, and transmit without losing a single bit.</p>
-
+      <p class="hero-sub">Lossless compression for complex I/Q streams, RF captures, and radar telemetry. Smaller to store, faster to transmit, bit-exact on reconstruction.</p>
       <div class="hero-pipeline">
         <span class="hp-node">Signal source</span>
         <span class="hp-arr">→</span>
@@ -463,31 +313,19 @@ footer{padding:1.75rem 3.5rem;border-top:1px solid var(--rule);display:flex;alig
         <span class="hp-arr">→</span>
         <span class="hp-node">AI / Archive</span>
       </div>
-      <div class="hero-reco">Reconstruct anytime · 100% bit-exact</div>
-
+      <div class="hero-reco">Reconstruct anytime · Bit-exact fidelity verified</div>
       <div class="hero-stat-row">
         <div class="h-stat">
           <span class="h-stat-num" id="live-ratio-small">7.5x</span>
           <span class="h-stat-label">smaller to store</span>
           <div class="ratio-bar-wrap"><div class="ratio-bar-fill" id="ratio-bar"></div></div>
         </div>
-        <div class="h-stat">
-          <span class="h-stat-num">8x</span>
-          <span class="h-stat-label">less bandwidth</span>
-        </div>
-        <div class="h-stat">
-          <span class="h-stat-num">100%</span>
-          <span class="h-stat-label">fidelity</span>
-        </div>
+        <div class="h-stat"><span class="h-stat-num">8x</span><span class="h-stat-label">less bandwidth</span></div>
+        <div class="h-stat"><span class="h-stat-num">100%</span><span class="h-stat-label">fidelity verified</span></div>
       </div>
-
-      <div class="hero-actions">
-        <button class="btn-primary" onclick="document.getElementById('access').scrollIntoView({behavior:'smooth'})">Request early access →</button>
-      </div>
+      <button class="btn-primary" onclick="document.getElementById('access').scrollIntoView({behavior:'smooth'})">Request early access →</button>
     </div>
   </div>
-
-  <!-- RIGHT COLUMN — big ratio with inline 'x' -->
   <div class="hero-right">
     <div class="hero-telemetry">
       <div class="telem-line" id="live-coords">—</div>
@@ -495,227 +333,357 @@ footer{padding:1.75rem 3.5rem;border-top:1px solid var(--rule);display:flex;alig
       <div class="telem-line">Status <span>Active</span></div>
     </div>
     <div class="hero-stat-block">
-      <div>
-        <span class="stat-num" id="live-ratio-big">7.5</span><span class="stat-num-x">x</span>
-      </div>
+      <div><span class="stat-num" id="live-ratio-big">7.5</span><span class="stat-num-x">x</span></div>
       <div class="stat-unit">compression ratio</div>
       <div class="stat-sub">Adaptive · reversible · live</div>
     </div>
   </div>
-
   <div class="hero-bar">
     <div class="bar-item"><span class="bdot live"></span>Codec active</div>
     <div class="bar-item"><span class="bdot"></span>Level-0 IQ preserved</div>
-    <div class="bar-item"><span class="bdot"></span>Bit-exact reconstruction</div>
-    <div class="bar-item"><span class="bdot"></span>On-premises · air-gapped</div>
+    <div class="bar-item"><span class="bdot"></span>Bit-exact verified</div>
+    <div class="bar-item"><span class="bdot"></span>On-premises · air-gapped · cloud</div>
   </div>
 </section>
 
 <!-- FIRST PRINCIPLES -->
-<section class="statement">
+<div class="statement">
   <div class="stmt-label reveal">First principles</div>
   <div class="reveal">
-    <div class="stmt-body">Every signal you are forced to discard today is a capability you cannot recover tomorrow.</div>
+    <div class="stmt-body">Every signal you discard is information you cannot recover.</div>
     <div class="stmt-list">
-      <div class="stmt-list-item">You cannot retrain on lost signals</div>
-      <div class="stmt-list-item">You cannot reproduce past experiments</div>
-      <div class="stmt-list-item">You cannot recover what was never stored</div>
+      <div class="stmt-list-item">You cannot retrain models on data you did not keep</div>
+      <div class="stmt-list-item">You cannot reproduce experiments without the original signal</div>
+      <div class="stmt-list-item">You cannot audit decisions without a complete record</div>
     </div>
-    <div class="stmt-closer">The data you keep becomes the capability you unlock later.</div>
+    <div class="stmt-closer">What you retain defines what you are capable of later.</div>
   </div>
-</section>
+</div>
 
 <!-- WHAT NOEMA IS -->
 <div class="what-section">
   <div class="what-inner">
-    <div class="what-left">
+    <div>
       <p class="sec-label reveal" style="margin-bottom:1.5rem">What NOEMA is</p>
-      <h2 class="what-h2 reveal">A memory layer for raw data.</h2>
-      <p class="what-body reveal">NOEMA sits between your data source and your storage or transmission layer. It makes raw data <strong>smaller without changing it.</strong> Reconstruct and re-expand it with 100% fidelity at any time.</p>
-      <p class="what-body reveal">No format changes. No pipeline disruption. No loss. Built for raw signal data, including complex I/Q streams.</p>
-    </div>
-    <div class="what-right reveal">
-      <div class="what-pipeline">
-        <div class="wp-row">
-          <span class="wp-arrow">↓</span>
-          <span class="wp-label">Signal source</span>
-          <span class="wp-val">800 MB</span>
-          <span class="wp-stage">Intake</span>
+      <h2 class="what-h2 reveal">A lossless compression layer for raw signal data.</h2>
+      <p class="what-body reveal">Sits between your signal source and your storage or transmission layer. Data enters, is compressed, and can be reconstructed to bit-exact fidelity at any point. No format changes. No pipeline disruption.</p>
+
+      <div class="compression-visual reveal" id="compressionChart">
+        <div class="cv-label">Storage footprint comparison</div>
+        <div class="cv-bar-row">
+          <span class="cv-bar-label">Raw I/Q</span>
+          <div class="cv-bar-track"><div class="cv-bar-fill" style="width:100%;background:#333330"></div></div>
+          <span class="cv-bar-val" style="color:var(--mid)">800 MB</span>
         </div>
-        <div class="wp-row">
-          <span class="wp-arrow">↓</span>
-          <span class="wp-label highlight">NOEMA</span>
-          <span class="wp-val">7.6×</span>
-          <span class="wp-stage">Compression</span>
+        <div class="cv-bar-row">
+          <span class="cv-bar-label">NOEMA</span>
+          <div class="cv-bar-track"><div class="cv-bar-fill" style="width:0%;background:#EAEAEA" id="cv-noema"></div></div>
+          <span class="cv-bar-val">~104 MB</span>
         </div>
-        <div class="wp-row">
-          <span class="wp-arrow">↓</span>
-          <span class="wp-label">Transmit / Store</span>
-          <span class="wp-val dim">104 MB</span>
-          <span class="wp-saved">(87% saved)</span>
-        </div>
-        <div class="wp-row">
-          <span class="wp-arrow">↓</span>
-          <span class="wp-label">AI / Archive</span>
-          <span class="wp-val dim">104 MB</span>
-          <span class="wp-saved">(87% saved)</span>
+        <div class="cv-bar-row">
+          <span class="cv-bar-label">Generic ZIP</span>
+          <div class="cv-bar-track"><div class="cv-bar-fill" style="width:0%;background:#444442" id="cv-zip"></div></div>
+          <span class="cv-bar-val" style="color:var(--mid)">~760 MB</span>
         </div>
       </div>
-      <div class="what-reco">Reconstruct any signal, anytime · 100% bit-exact fidelity</div>
+    </div>
+
+    <div class="reveal">
+      <div class="what-pipeline">
+        <div class="wp-row"><span class="wp-arrow">↓</span><span class="wp-label">Signal source</span><span class="wp-val">800 MB</span><span class="wp-stage">Intake</span></div>
+        <div class="wp-row"><span class="wp-arrow">↓</span><span class="wp-label hi">NOEMA</span><span class="wp-val">7.6×</span><span class="wp-stage">Compression</span></div>
+        <div class="wp-row"><span class="wp-arrow">↓</span><span class="wp-label">Transmit / Store</span><span class="wp-val dim">104 MB</span><span class="wp-saved">(87% saved)</span></div>
+        <div class="wp-row"><span class="wp-arrow">↓</span><span class="wp-label">AI / Archive</span><span class="wp-val dim">104 MB</span><span class="wp-saved">(87% saved)</span></div>
+      </div>
+      <div class="what-reco">Bit-exact reconstruction verified · any signal · any time</div>
+      <div class="rn-wrap">
+        <div class="rn-label-row">
+          <span class="rn-label" style="color:#444442">RAW · complex</span>
+          <span class="rn-label" style="color:#EAEAEA;opacity:0.55">NOEMA · compressed</span>
+        </div>
+        <canvas id="raw-noema-a" style="width:100%;height:60px;display:block"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHERE IT SITS -->
+<div class="where-section">
+  <div class="where-inner">
+    <div class="sec-header">
+      <div class="sec-label reveal">Where it sits</div>
+      <div>
+        <h2 class="sec-h2 reveal">Deployable at any point in the pipeline.</h2>
+        <p class="sec-sub reveal">On-premises, air-gapped, or cloud. No changes to existing architecture.</p>
+      </div>
+    </div>
+    <div class="where-grid">
+      <div class="where-cell reveal">
+        <div class="where-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="12" y="12" width="8" height="8" stroke="#EAEAEA" stroke-width="1.2"/><line x1="16" y1="12" x2="16" y2="4" stroke="#EAEAEA" stroke-width="1"/><line x1="16" y1="20" x2="16" y2="28" stroke="#EAEAEA" stroke-width="1"/><line x1="12" y1="16" x2="4" y2="16" stroke="#EAEAEA" stroke-width="1"/><line x1="20" y1="16" x2="28" y2="16" stroke="#EAEAEA" stroke-width="1"/><line x1="12" y1="12" x2="6" y2="6" stroke="#EAEAEA" stroke-width="1" opacity="0.4"/><line x1="20" y1="20" x2="26" y2="26" stroke="#EAEAEA" stroke-width="1" opacity="0.4"/></svg></div>
+        <div class="where-tag">01 · Onboard / Edge</div>
+        <div class="where-title">Compress before downlink.</div>
+        <div class="where-body">Raw I/Q compressed onboard before transmission. ARM-compatible for payload and edge deployment.</div>
+      </div>
+      <div class="where-cell reveal">
+        <div class="where-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 26L16 18" stroke="#EAEAEA" stroke-width="1.2"/><path d="M10 30L22 30" stroke="#EAEAEA" stroke-width="1.2"/><path d="M6 19Q16 7 26 19" stroke="#EAEAEA" stroke-width="1.2" fill="none"/><path d="M10 15Q16 9 22 15" stroke="#EAEAEA" stroke-width="1" fill="none" opacity="0.5"/><circle cx="16" cy="18" r="2" fill="#EAEAEA" opacity="0.6"/></svg></div>
+        <div class="where-tag">02 · Ground Station</div>
+        <div class="where-title">Compress at point of receipt.</div>
+        <div class="where-body">Real-time compression of incoming streams before storage or forwarding. No upstream changes.</div>
+      </div>
+      <div class="where-cell reveal">
+        <div class="where-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="12" width="8" height="8" stroke="#EAEAEA" stroke-width="1.2" opacity="0.5"/><rect x="12" y="12" width="8" height="8" stroke="#EAEAEA" stroke-width="1.4"/><rect x="22" y="12" width="8" height="8" stroke="#EAEAEA" stroke-width="1.2" opacity="0.5"/><line x1="10" y1="16" x2="12" y2="16" stroke="#EAEAEA" stroke-width="1"/><line x1="20" y1="16" x2="22" y2="16" stroke="#EAEAEA" stroke-width="1"/></svg></div>
+        <div class="where-tag">03 · Pipeline Middleware</div>
+        <div class="where-title">Run between ingest and processing.</div>
+        <div class="where-body">Codec layer between ingestion and downstream systems without format or workflow changes.</div>
+      </div>
+      <div class="where-cell reveal">
+        <div class="where-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="7" width="24" height="5" stroke="#EAEAEA" stroke-width="1.2" opacity="0.35"/><rect x="4" y="14" width="24" height="5" stroke="#EAEAEA" stroke-width="1.2" opacity="0.65"/><rect x="4" y="21" width="24" height="5" stroke="#EAEAEA" stroke-width="1.4"/><circle cx="25" cy="23.5" r="1.5" fill="#EAEAEA"/></svg></div>
+        <div class="where-tag">04 · Archive Layer</div>
+        <div class="where-title">Reduce historical footprint.</div>
+        <div class="where-body">Compress existing datasets with full bit-exact recoverability. Replayable at any future point.</div>
+      </div>
+      <div class="where-cell reveal">
+        <div class="where-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 22Q8 13 16 13Q13 7 21 9Q27 9 26 16Q30 17 29 22Z" stroke="#EAEAEA" stroke-width="1.2" fill="none" opacity="0.8"/><line x1="12" y1="26" x2="12" y2="22" stroke="#EAEAEA" stroke-width="1" opacity="0.5"/><line x1="16" y1="28" x2="16" y2="22" stroke="#EAEAEA" stroke-width="1"/><line x1="20" y1="26" x2="20" y2="22" stroke="#EAEAEA" stroke-width="1" opacity="0.5"/></svg></div>
+        <div class="where-tag">05 · Cloud</div>
+        <div class="where-title">Runs in your cloud environment.</div>
+        <div class="where-body">Compatible with AWS, GCP, and Azure pipelines. Same codec, same fidelity guarantees, no vendor lock-in.</div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- HOW IT WORKS -->
 <section class="how-section" id="how">
-  <div class="sec-header"><div class="sec-label reveal">How it works</div><div><h2 class="sec-h2 reveal">Four operations. One system. No loss at any stage.</h2></div></div>
+  <div class="sec-header">
+    <div class="sec-label reveal">How it works</div>
+    <div><h2 class="sec-h2 reveal">Four operations. One system. No loss at any stage.</h2></div>
+  </div>
   <div class="how-steps"><div class="how-beam-h"></div>
-    <div class="how-step reveal"><div class="how-step-num">01 Intake</div><div class="how-step-title">Raw signal data enters NOEMA.</div><div class="how-step-body">No preprocessing. No configuration. Point NOEMA at your data source and it begins immediately, auto-adapting to whatever signal profile it encounters.</div><div class="how-step-spec"><span>Any signal type</span><span>Zero configuration</span><span>Works from first run</span></div></div>
-    <div class="how-step reveal"><div class="how-step-num">02 Compress</div><div class="how-step-title">Adaptive lossless compression.</div><div class="how-step-body">7.5x to 10x reduction. The codec self-tunes to your signal's statistical profile. Real-time or batch. Nothing is approximated. Everything is preserved.</div><div class="how-step-spec"><span>7.5x to 10x reduction</span><span>Self-adapting codec</span><span>Real-time or batch mode</span></div></div>
-    <div class="how-step reveal"><div class="how-step-num">03 Transmit / Store</div><div class="how-step-title">More through the same infrastructure.</div><div class="how-step-body">Send more through the same bandwidth. Store more on the same infrastructure. No hardware changes required. Satellite downlinks, cloud transfers, ground archives all carry more per session.</div><div class="how-step-spec"><span>Satellite to ground</span><span>Ground to cloud or archive</span><span>No hardware changes</span></div></div>
-    <div class="how-step reveal"><div class="how-step-num">04 Reconstruct</div><div class="how-step-title">Recover the exact original signal.</div><div class="how-step-body">Any time. Any file. 100% bit-exact fidelity guaranteed. Replay experiments. Retrain models. Run audits on signals from years ago. Nothing was lost.</div><div class="how-step-spec"><span>100% bit-exact guaranteed</span><span>Verified reconstruction</span><span>Any file, any time</span></div></div>
+    <div class="how-step reveal">
+      <div class="how-step-num">01 Intake</div>
+      <div class="how-step-title">Raw signal data enters NOEMA.</div>
+      <div class="how-step-body">No preprocessing. No configuration. Auto-adapts to the statistical profile of whatever it receives.</div>
+      <div class="how-step-spec"><span>Any signal type</span><span>Zero configuration</span><span>Works from first run</span></div>
+    </div>
+    <div class="how-step reveal">
+      <div class="how-step-num">02 Compress</div>
+      <div class="how-step-title">Adaptive lossless compression.</div>
+      <div class="how-step-body">7.5× to 10× reduction across I/Q, RF, and radar workloads. Self-tunes to your signal profile. Nothing is approximated.</div>
+      <div class="how-step-spec"><span>7.5× to 10× reduction</span><span>Self-adapting codec</span><span>Real-time or batch</span></div>
+    </div>
+    <div class="how-step reveal">
+      <div class="how-step-num">03 Transmit / Store</div>
+      <div class="how-step-title">More through the same infrastructure.</div>
+      <div class="how-step-body">Same bandwidth carries more. Same storage holds more. On-premises, air-gapped, or cloud. No hardware changes.</div>
+      <div class="how-step-spec"><span>Satellite to ground</span><span>Ground to cloud or archive</span><span>No hardware changes</span></div>
+    </div>
+    <div class="how-step reveal">
+      <div class="how-step-num">04 Reconstruct</div>
+      <div class="how-step-title">Recover the exact original signal.</div>
+      <div class="how-step-body">Any time. Any file. Bit-exact reconstruction verified. Replay experiments. Retrain models. Nothing was lost.</div>
+      <div class="how-step-spec"><span>Bit-exact verified</span><span>Confirmed fidelity on output</span><span>Any file, any time</span></div>
+    </div>
   </div>
 </section>
 
-<!-- METRICS -->
+<!-- METRICS BAND -->
 <div class="metrics-band">
-  <div class="m-card reveal"><div class="m-tag">Compression</div><div class="m-num">7.5<span class="m-accent">–</span>10×</div><div class="m-desc">Reduction in data volume across transmission and storage on raw Level-0 IQ data</div></div>
-  <div class="m-card reveal"><div class="m-tag">Fidelity</div><div class="m-num">100<span class="m-accent">%</span></div><div class="m-desc">Bit-exact reconstruction guaranteed at any point in time, on any archive</div></div>
-  <div class="m-card reveal"><div class="m-tag">Time to first result</div><div class="m-num"><span class="m-accent">&lt;</span>15 min</div><div class="m-desc">Setup wizard. Four questions. Results in your environment the same day</div></div>
-  <div class="m-card reveal"><div class="m-tag">Integration cost</div><div class="m-num"><span class="m-accent">Zero</span></div><div class="m-desc">Pipeline modifications required at any stage</div></div>
+  <div class="m-card reveal">
+    <div class="m-tag">Compression</div>
+    <div class="m-num">7.5<span class="m-accent">–</span>10×</div>
+    <div class="m-desc">Across raw I/Q, RF, and radar signal workloads</div>
+    <div class="m-icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><polyline points="2,32 12,12 22,52 32,8 42,56 52,20 62,32" stroke="#EAEAEA" stroke-width="3" fill="none"/></svg></div>
+  </div>
+  <div class="m-card reveal">
+    <div class="m-tag">Fidelity</div>
+    <div class="m-num">100<span class="m-accent">%</span></div>
+    <div class="m-desc">Bit-exact reconstruction verified on output. No approximation at any stage.</div>
+    <div class="m-icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" stroke="#EAEAEA" stroke-width="3"/><polyline points="18,32 28,42 46,22" stroke="#EAEAEA" stroke-width="3" fill="none" stroke-linecap="round"/></svg></div>
+  </div>
+  <div class="m-card reveal">
+    <div class="m-tag">Time to first result</div>
+    <div class="m-num"><span class="m-accent">&lt;</span>15 min</div>
+    <div class="m-desc">Setup wizard. Four questions. Results the same day.</div>
+    <div class="m-icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="26" stroke="#EAEAEA" stroke-width="3"/><line x1="32" y1="16" x2="32" y2="32" stroke="#EAEAEA" stroke-width="2.5" stroke-linecap="round"/><line x1="32" y1="32" x2="44" y2="38" stroke="#EAEAEA" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+  </div>
+  <div class="m-card reveal">
+    <div class="m-tag">Integration cost</div>
+    <div class="m-num"><span class="m-accent">Zero</span></div>
+    <div class="m-desc">No pipeline modifications required at any stage.</div>
+    <div class="m-icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none"><rect x="8" y="20" width="20" height="24" stroke="#EAEAEA" stroke-width="2.5"/><rect x="36" y="20" width="20" height="24" stroke="#EAEAEA" stroke-width="2.5"/><line x1="28" y1="32" x2="36" y2="32" stroke="#EAEAEA" stroke-width="2.5"/></svg></div>
+  </div>
 </div>
 
-<!-- WHO IT IS FOR -->
+<!-- LIVE SIGNAL FEED - MOVED TO BETWEEN METRICS AND WHO SECTION -->
+<div class="waveform-strip">
+  <span class="waveform-strip-label">Live signal feed</span>
+  <canvas id="waveform-mini"></canvas>
+</div>
+
+<!-- WHO SECTION -->
 <section class="who-section" id="who">
-  <div class="sec-header"><div class="sec-label reveal">Who it is for</div><h2 class="sec-h2 reveal">Built for teams that cannot afford to lose the past.</h2></div>
-  <div class="who-benefits reveal">
-    <div class="who-benefit">Train AI models on full-resolution raw data</div>
-    <div class="who-benefit">Send more data through existing bandwidth constraints</div>
-    <div class="who-benefit">Store complete datasets instead of sampling or discarding</div>
-    <div class="who-benefit">Replay experiments exactly as they happened</div>
-    <div class="who-benefit">Preserve data for future use cases you cannot predict today</div>
+  <div class="sec-header">
+    <div class="sec-label reveal">Who it is for</div>
+    <h2 class="sec-h2 reveal">Built for teams that cannot afford to lose the past.</h2>
   </div>
   <div class="who-grid">
-    <div class="who-cell reveal"><div class="who-tag">01 Transmit</div><div class="who-title">Teams that transmit, store, and learn from raw data.</div><div class="who-body">Send more through the same window. The same bandwidth carries more. No hardware changes. No upstream configuration.</div></div>
-    <div class="who-cell reveal"><div class="who-tag">02 Retain</div><div class="who-title">Systems where data feeds models, decisions, or products.</div><div class="who-body">Stop choosing which captures to discard. Keep everything. The signals you do not yet know you need are already in your data.</div></div>
-    <div class="who-cell reveal"><div class="who-tag">03 Experiment</div><div class="who-title">Workflows where today's signals power tomorrow's AI.</div><div class="who-body">Reproduce any experiment. Retrain any model. Every compressed file is a bit-exact record of the original signal, accessible forever.</div></div>
+    <div class="who-cell reveal">
+      <div class="who-icon"><svg width="38" height="32" viewBox="0 0 38 32" fill="none"><rect x="2" y="8" width="14" height="16" stroke="#EAEAEA" stroke-width="1.2" opacity="0.6"/><rect x="22" y="8" width="14" height="16" stroke="#EAEAEA" stroke-width="1.2" opacity="0.6"/><line x1="16" y1="16" x2="22" y2="16" stroke="#EAEAEA" stroke-width="1.4"/><polyline points="18,13 22,16 18,19" stroke="#EAEAEA" stroke-width="1.2" fill="none"/></svg></div>
+      <div class="who-tag">01 Transmit</div>
+      <div class="who-title">Send more through the same window.</div>
+      <div class="who-body">The same bandwidth carries more. No hardware changes. No upstream configuration.</div>
+    </div>
+    <div class="who-cell reveal">
+      <div class="who-icon"><svg width="38" height="32" viewBox="0 0 38 32" fill="none"><rect x="2" y="4" width="34" height="24" stroke="#EAEAEA" stroke-width="1.2" opacity="0.5"/><rect x="8" y="16" width="8" height="6" fill="#EAEAEA" opacity="0.15" stroke="#EAEAEA" stroke-width="0.8"/><rect x="20" y="16" width="8" height="6" fill="#EAEAEA" opacity="0.3" stroke="#EAEAEA" stroke-width="0.8"/></svg></div>
+      <div class="who-tag">02 Retain</div>
+      <div class="who-title">Stop choosing which captures to discard.</div>
+      <div class="who-body">Keep everything. The signals you do not yet know you need are already in your data.</div>
+    </div>
+    <div class="who-cell reveal">
+      <div class="who-icon"><svg width="38" height="32" viewBox="0 0 38 32" fill="none"><circle cx="19" cy="16" r="12" stroke="#EAEAEA" stroke-width="1.2" opacity="0.4"/><polyline points="10,16 14,10 18,22 22,8 26,20 30,16" stroke="#EAEAEA" stroke-width="1.4" fill="none"/></svg></div>
+      <div class="who-tag">03 Replay</div>
+      <div class="who-title">Every file is a replayable record.</div>
+      <div class="who-body">Reproduce any experiment. Retrain any model. Bit-exact fidelity on every reconstruction, years later.</div>
+    </div>
   </div>
 </section>
+
+<!-- STATUS BAND - directly follows WHO with no gap -->
+<div class="status-band">
+  <div class="status-cell">
+    <div class="status-eyebrow">Current status</div>
+    <div class="status-body">Pilot deployments in progress. Available for early access evaluation across signal processing and data-intensive operational workflows.</div>
+  </div>
+  <div class="status-cell">
+    <div class="status-eyebrow">Evaluation model</div>
+    <div class="status-body"><strong>No data leaves your environment.</strong> Runs on-premises, air-gapped, or cloud. You verify results on your own signals, in your own infrastructure.</div>
+  </div>
+</div>
+
+<!-- COMBINED SECTION (EMPTY) -->
+<div class="combined-section">
+  <div class="combined-inner"></div>
+</div>
 
 <!-- PILOT -->
 <section class="pilot-section" id="pilot">
-  <div class="shadow-badge">Shadow mode: runs parallel to your existing pipeline. Zero disruption. Zero risk.</div>
-  <div class="sec-header"><div class="sec-label reveal">The pilot</div><div><h2 class="sec-h2 reveal">Run it in your environment in under a day.</h2><p class="sec-sub reveal">No integration. No data sharing. No risk. No pipeline disruption. Runs in shadow mode alongside your existing workflow.</p><div class="pilot-meta reveal"><span class="pilot-badge">Runs on-premises or air-gapped</span><span class="pilot-badge">No data leaves your environment</span><span class="pilot-badge">Works from day one</span></div></div></div>
+  <div class="shadow-badge">Shadow mode — runs parallel to your existing pipeline. Zero disruption.</div>
+  <div class="sec-header">
+    <div class="sec-label reveal">The pilot</div>
+    <div>
+      <h2 class="sec-h2 reveal">Run it in your environment in under a day.</h2>
+      <p class="sec-sub reveal">No integration. No data sharing. No risk.</p>
+      <div class="pilot-meta reveal">
+        <span class="pilot-badge">On-premises · air-gapped · cloud</span>
+        <span class="pilot-badge">No data leaves your environment</span>
+        <span class="pilot-badge">Works from day one</span>
+      </div>
+    </div>
+  </div>
   <div class="pilot-steps">
-    <div class="p-step reveal"><p class="step-num">01 Receive</p><p class="step-title">Pilot package delivered</p><p class="step-body">Binary, setup wizard, representative test data, and deployment docs. Works on Linux and Windows. ARM-compatible for on-board use.</p></div>
-    <div class="p-step reveal"><p class="step-num">02 Deploy</p><p class="step-title">Answer four questions. Press start.</p><p class="step-body">Input folder, output folder, CPU limit, throughput cap. Config writes itself. No coding required.</p></div>
-    <div class="p-step reveal"><p class="step-num">03 Observe</p><p class="step-title">Results generate automatically</p><p class="step-body">Compression ratio, savings, and reconstruction verification generated automatically.</p></div>
-    <div class="p-step reveal"><p class="step-num">04 Review</p><p class="step-title">Translate results into impact</p><p class="step-body">Storage savings, bandwidth gains, and ROI. We translate your numbers into operational terms. You leave with a decision.</p></div>
+    <div class="p-step reveal"><p class="step-num">01 · Receive</p><p class="step-title">Pilot package delivered</p><p class="step-body">Binary, setup wizard, test data, and docs. Linux, Windows, and ARM.</p></div>
+    <div class="p-step reveal"><p class="step-num">02 · Deploy</p><p class="step-title">Answer four questions.</p><p class="step-body">Input, output, CPU limit, throughput cap. Config writes itself. No coding.</p></div>
+    <div class="p-step reveal"><p class="step-num">03 · Observe</p><p class="step-title">Results generate automatically</p><p class="step-body">Compression ratio, storage savings, and reconstruction verification on your own signal data.</p></div>
+    <div class="p-step reveal"><p class="step-num">04 · Review</p><p class="step-title">Translate results into impact</p><p class="step-body">Storage savings, bandwidth gains, ROI. You leave with a decision.</p></div>
   </div>
 </section>
 
-<!-- EARLY ACCESS -->
+<!-- DEPLOYMENT NAMES STRIP -->
+<div class="deploy-names">
+  <div class="deploy-names-label">Integrate as</div>
+  <div class="deploy-names-inner">
+    <span class="dn-item">Drop-in mode</span>
+    <span class="dn-item">SDK / API</span>
+    <span class="dn-item">Edge binary</span>
+    <span class="dn-item">Batch / Real-time</span>
+  </div>
+</div>
+
+<!-- ACCESS -->
 <section class="access" id="access">
-  <div class="reveal"><p class="acc-eyebrow">Early access</p><h2 class="acc-h2">Stop discarding data you will need later.</h2><div class="acc-poem"><span class="acc-poem-line">Keep capturing what you capture.</span><span class="acc-poem-line">Keep sending what you send.</span><span class="acc-poem-line">Keep building what you are building.</span><span class="acc-poem-line strong">Nothing changes in your pipeline.</span></div><div class="acc-poem" style="margin-top:1.25rem"><span class="acc-poem-line">The model you need to train.</span><span class="acc-poem-line">The signal you need to send.</span><span class="acc-poem-line">The insight you do not yet know you will need.</span><span class="acc-poem-line accent">It is already in your data. Stop losing it.</span></div></div>
-  <div class="reveal"><form class="acc-form" id="accessForm"><div class="form-row"><div class="f-group"><label class="f-label">First name</label><input class="fi" type="text" name="first" placeholder="First name" required></div><div class="f-group"><label class="f-label">Last name</label><input class="fi" type="text" name="last" placeholder="Last name" required></div></div><div class="f-group"><label class="f-label">Work email</label><input class="fi" type="email" name="email" placeholder="you@org.com" required></div><div class="f-group"><label class="f-label">Organisation</label><input class="fi" type="text" name="org" placeholder="Organisation name"></div><div class="f-group"><label class="f-label">Organisation type</label><select class="fs" name="type" required><option value="" disabled selected>Select type</option><option>Ground station operator</option><option>Telecom R&D lab</option><option>Defense / aerospace prime</option><option>Research institution</option><option>SAR / Radar program</option><option>Other</option></select></div><div class="f-group"><label class="f-label">Brief description of your use case</label><input class="fi" type="text" name="usecase" placeholder="e.g. SAR Level-0 archiving, I/Q replay for model training"></div><button type="submit" class="fsub">Request early access →</button><p class="fnote">Human response within 24 hours · No automated sequences</p></form><div class="fsuccess" id="formSuccess"><p>Request received.</p><small>We will be in touch within 24 hours.</small></div></div>
+  <div class="reveal">
+    <p class="acc-eyebrow">Early access</p>
+    <h2 class="acc-h2">Stop discarding data you will need later.</h2>
+    <div class="acc-poem">
+      <span class="acc-poem-line">Keep capturing what you capture.</span>
+      <span class="acc-poem-line">Keep sending what you send.</span>
+      <span class="acc-poem-line strong">Nothing changes in your pipeline.</span>
+    </div>
+    <div class="acc-poem" style="margin-top:1.25rem">
+      <span class="acc-poem-line">The insight you do not yet know you will need.</span>
+      <span class="acc-poem-line accent">It is already in your data. Stop losing it.</span>
+    </div>
+  </div>
+  <div class="reveal">
+    <form class="acc-form" id="accessForm">
+      <div class="form-row">
+        <div class="f-group"><label class="f-label">First name</label><input class="fi" type="text" name="first" placeholder="First name" required></div>
+        <div class="f-group"><label class="f-label">Last name</label><input class="fi" type="text" name="last" placeholder="Last name" required></div>
+      </div>
+      <div class="f-group"><label class="f-label">Work email</label><input class="fi" type="email" name="email" placeholder="you@org.com" required></div>
+      <div class="f-group"><label class="f-label">Organisation</label><input class="fi" type="text" name="org" placeholder="Organisation name"></div>
+      <div class="f-group">
+        <label class="f-label">Organisation type</label>
+        <select class="fs" name="type" required>
+          <option value="" disabled selected>Select type</option>
+          <option>Ground station operator</option>
+          <option>Telecom R&amp;D lab</option>
+          <option>Defense / aerospace prime</option>
+          <option>Research institution</option>
+          <option>SAR / Radar program</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="f-group"><label class="f-label">Use case</label><input class="fi" type="text" name="usecase" placeholder="e.g. SAR Level-0 archiving, I/Q replay for model training"></div>
+      <button type="submit" class="fsub">Request early access →</button>
+      <p class="fnote">Human response within 24 hours · No automated sequences</p>
+    </form>
+    <div class="fsuccess" id="formSuccess"><p>Request received.</p><small>We will be in touch within 24 hours.</small></div>
+  </div>
 </section>
 
-<footer><div class="fl">NOEMA Data Systems · A trading name of Winter Labs LLC</div><div class="fr"><a href="mailto:luca@noemasystems.com">luca@noemasystems.com</a></div></footer>
+<footer>
+  <div class="fl">NOEMA Data Systems · A trading name of Winter Labs LLC</div>
+  <div class="fr"><a href="mailto:luca@noemasystems.com">luca@noemasystems.com</a></div>
+</footer>
 
 <script>
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>80));
 
-(function tick(){
-  const d=new Date(),p=n=>String(n).padStart(2,'0');
-  const el=document.getElementById('live-time');
-  if(el)el.textContent=`${p(d.getUTCHours())}:${p(d.getUTCMinutes())}:${p(d.getUTCSeconds())}`;
-  setTimeout(tick,1000);
-})();
+// UTC clock
+(function tick(){const d=new Date(),p=n=>String(n).padStart(2,'0');const el=document.getElementById('live-time');if(el)el.textContent=`${p(d.getUTCHours())}:${p(d.getUTCMinutes())}:${p(d.getUTCSeconds())}`;setTimeout(tick,1000);})();
 
-(function(){
-  const el=document.getElementById('live-coords');
-  if(!el)return;
-  function fmt(deg,pos,neg){
-    const a=Math.abs(deg),d=Math.floor(a),m=Math.floor((a-d)*60);
-    return `${d}°${String(m).padStart(2,'0')}'${deg>=0?pos:neg}`;
-  }
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(
-      p=>{el.textContent=`${fmt(p.coords.latitude,'N','S')} ${fmt(p.coords.longitude,'E','W')}`;},
-      ()=>{el.textContent='America / Chicago';},
-      {timeout:6000}
-    );
-  } else {
-    el.textContent='America / Chicago';
-  }
-})();
+// Geolocation
+(function(){const el=document.getElementById('live-coords');if(!el)return;function fmt(deg,pos,neg){const a=Math.abs(deg),d=Math.floor(a),m=Math.floor((a-d)*60);return `${d}°${String(m).padStart(2,'0')}'${deg>=0?pos:neg}`;}if(navigator.geolocation){navigator.geolocation.getCurrentPosition(p=>{el.textContent=`${fmt(p.coords.latitude,'N','S')} ${fmt(p.coords.longitude,'E','W')}`;},()=>{el.textContent='—';},{timeout:6000});}})();
 
-const canvas=document.getElementById('signal-canvas');
-const ctx=canvas.getContext('2d');
-let W,H,t=0;
-const NLINES=14;
-const lines=Array.from({length:NLINES},(_,i)=>({
-  y:(i+1)/(NLINES+1),
-  freq:0.35+Math.random()*2.4,
-  amp:0.010+Math.random()*0.022,
-  phase:Math.random()*Math.PI*2,
-  spd:0.001+Math.random()*0.004,
-  noiseAmt:0.2+Math.random()*0.6,
-  noiseBurst:0.15+Math.random()*0.4,
-  alpha:0.07+Math.random()*0.11,
-  noisy:Math.random()>0.5
-}));
-function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight}
-resize();window.addEventListener('resize',resize);
-function drawLine(l){
-  ctx.beginPath();
-  ctx.strokeStyle=`rgba(234,234,234,${l.alpha})`;
-  ctx.lineWidth=l.noisy?0.9:0.55;
-  let first=true;
-  for(let x=0;x<=W;x+=1.4){
-    const px=x/W;
-    let y=l.y*H+Math.sin(px*l.freq*Math.PI*6+t*l.spd*55+l.phase)*l.amp*H+Math.sin(px*l.freq*Math.PI*13+t*l.spd*22)*l.amp*0.28*H+Math.sin(t*0.18+l.phase*0.5)*3.5;
-    if(l.noisy){const bv=(px*4.2+t*0.024)%1;if(bv>l.noiseBurst&&bv<l.noiseBurst+0.07)y+=(Math.random()-0.5)*l.noiseAmt*H*0.18;y+=(Math.random()-0.5)*l.amp*H*0.15;}
-    first?(ctx.moveTo(x,y),first=false):ctx.lineTo(x,y);
-  }
-  ctx.stroke();
-}
-function draw(){
-  ctx.clearRect(0,0,W,H);
-  t+=0.010;
-  lines.forEach(l=>drawLine(l));
-  for(let i=1;i<8;i++){const y=(i/8)*H;ctx.beginPath();ctx.strokeStyle='rgba(234,234,234,0.025)';ctx.lineWidth=0.5;ctx.setLineDash([1,22]);ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-  ctx.setLineDash([]);
-  requestAnimationFrame(draw);
-}
-draw();
+// Hero canvas
+const canvas=document.getElementById('signal-canvas');const ctx=canvas.getContext('2d');let W,H,t=0;
+const NLINES=14;const lines=Array.from({length:NLINES},(_,i)=>({y:(i+1)/(NLINES+1),freq:0.35+Math.random()*2.4,amp:0.010+Math.random()*0.022,phase:Math.random()*Math.PI*2,spd:0.001+Math.random()*0.004,noiseAmt:0.2+Math.random()*0.6,noiseBurst:0.15+Math.random()*0.4,alpha:0.07+Math.random()*0.11,noisy:Math.random()>0.5}));
+function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight}resize();window.addEventListener('resize',resize);
+function drawLine(l){ctx.beginPath();ctx.strokeStyle=`rgba(234,234,234,${l.alpha})`;ctx.lineWidth=l.noisy?0.9:0.55;let first=true;for(let x=0;x<=W;x+=1.4){const px=x/W;let y=l.y*H+Math.sin(px*l.freq*Math.PI*6+t*l.spd*55+l.phase)*l.amp*H+Math.sin(px*l.freq*Math.PI*13+t*l.spd*22)*l.amp*0.28*H+Math.sin(t*0.18+l.phase*0.5)*3.5;if(l.noisy){const bv=(px*4.2+t*0.024)%1;if(bv>l.noiseBurst&&bv<l.noiseBurst+0.07)y+=(Math.random()-0.5)*l.noiseAmt*H*0.18;y+=(Math.random()-0.5)*l.amp*H*0.15;}first?(ctx.moveTo(x,y),first=false):ctx.lineTo(x,y);}ctx.stroke();}
+function heroDraw(){ctx.clearRect(0,0,W,H);t+=0.010;lines.forEach(l=>drawLine(l));for(let i=1;i<8;i++){const y=(i/8)*H;ctx.beginPath();ctx.strokeStyle='rgba(234,234,234,0.025)';ctx.lineWidth=0.5;ctx.setLineDash([1,22]);ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}ctx.setLineDash([]);requestAnimationFrame(heroDraw);}heroDraw();
 
+// Live ratio
 let rv=7.5,rt=10.0;
-function updateRatio(){
-  rv+=(rt-rv)*0.015;
-  if(rt>9.9&&rv>9.75)rt=7.5;else if(rt<7.6&&rv<7.65)rt=10.0;
-  const d=rv.toFixed(1),pct=((rv-7.5)/2.5)*100;
-  const s=document.getElementById('live-ratio-small');
-  const b=document.getElementById('live-ratio-big');
-  const bar=document.getElementById('ratio-bar');
-  if(s)s.textContent=d+'x';
-  if(b)b.textContent=d;
-  if(bar)bar.style.width=pct+'%';
-  setTimeout(updateRatio,40);
-}
-updateRatio();
+function updateRatio(){rv+=(rt-rv)*0.015;if(rt>9.9&&rv>9.75)rt=7.5;else if(rt<7.6&&rv<7.65)rt=10.0;const d=rv.toFixed(1),pct=((rv-7.5)/2.5)*100;const s=document.getElementById('live-ratio-small');const b=document.getElementById('live-ratio-big');const bar=document.getElementById('ratio-bar');if(s)s.textContent=d+'x';if(b)b.textContent=d;if(bar)bar.style.width=pct+'%';setTimeout(updateRatio,40);}updateRatio();
 
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),i*70)});
-},{threshold:0.06,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+// Waveform strip
+(function(){const mc=document.getElementById('waveform-mini');if(!mc)return;const mctx=mc.getContext('2d');function mResize(){const dpr=window.devicePixelRatio||1;mc.width=mc.offsetWidth*dpr;mc.height=72*dpr;}mResize();window.addEventListener('resize',mResize);let mT=0;const mL=[{freq:1.2,amp:12,phase:0,spd:0.55,alpha:0.22,col:'#EAEAEA'},{freq:2.9,amp:7,phase:1.1,spd:0.85,alpha:0.12,col:'#888480'},{freq:0.65,amp:16,phase:2.3,spd:0.38,alpha:0.09,col:'#EAEAEA'}];function mDraw(){const dpr=window.devicePixelRatio||1;const mW=mc.width;const mH=mc.height;mctx.clearRect(0,0,mW,mH);mT+=0.016;const midY=mH/2;mL.forEach(l=>{mctx.beginPath();mctx.strokeStyle=l.col;mctx.globalAlpha=l.alpha;mctx.lineWidth=1.2*dpr;for(let x=0;x<=mW;x+=2){const px=x/mW;const y=midY+Math.sin(px*l.freq*Math.PI*8+mT*l.spd+l.phase)*l.amp*dpr;x===0?mctx.moveTo(x,y):mctx.lineTo(x,y);}mctx.stroke();});mctx.globalAlpha=1;requestAnimationFrame(mDraw);}mDraw();})();
 
-document.getElementById('accessForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  this.style.display='none';
-  document.getElementById('formSuccess').style.display='block';
-  fetch('https://formspree.io/f/YOUR_FORM_ID',{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}}).catch(()=>{});
-});
+// Raw vs NOEMA waveform
+function initRawNoema(id){const c=document.getElementById(id);if(!c)return;const cx=c.getContext('2d');function sz(){const dpr=window.devicePixelRatio||1;c.width=c.offsetWidth*dpr;c.height=c.offsetHeight*dpr;}sz();window.addEventListener('resize',sz);let t2=0;function d2(){const dpr=window.devicePixelRatio||1;const W2=c.width;const H2=c.height;cx.clearRect(0,0,W2,H2);t2+=0.020;cx.beginPath();cx.strokeStyle='#3a3a38';cx.lineWidth=1.1*dpr;for(let x=0;x<=W2;x+=2){const px=x/W2;let y=(H2*0.3)+Math.sin(px*8*Math.PI+t2*1.3)*H2*0.17+Math.sin(px*21*Math.PI+t2*2.1)*H2*0.06+(Math.random()-0.5)*H2*0.055;x===0?cx.moveTo(x,y):cx.lineTo(x,y);}cx.stroke();cx.beginPath();cx.strokeStyle='#EAEAEA';cx.lineWidth=1.4*dpr;cx.globalAlpha=0.65;for(let x=0;x<=W2;x+=2){const px=x/W2;const y=(H2*0.73)+Math.sin(px*3*Math.PI+t2*0.48)*H2*0.13;x===0?cx.moveTo(x,y):cx.lineTo(x,y);}cx.stroke();cx.globalAlpha=1;cx.beginPath();cx.setLineDash([3,8]);cx.strokeStyle='rgba(234,234,234,0.08)';cx.lineWidth=0.7*dpr;cx.moveTo(0,H2*0.52);cx.lineTo(W2,H2*0.52);cx.stroke();cx.setLineDash([]);requestAnimationFrame(d2);}d2();}
+initRawNoema('raw-noema-a');
+
+// Compression bar chart animation
+(function(){const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{const n=document.getElementById('cv-noema');const z=document.getElementById('cv-zip');if(n)n.style.width='13%';if(z)z.style.width='95%';},400);obs.disconnect();}});},{threshold:0.3});const cvEl=document.getElementById('compressionChart');if(cvEl)obs.observe(cvEl);})();
+
+// Reveal
+const revObs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('in'),i*70)});},{threshold:0.06,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// Form
+document.getElementById('accessForm').addEventListener('submit',function(e){e.preventDefault();this.style.display='none';document.getElementById('formSuccess').style.display='block';fetch('https://formspree.io/f/YOUR_FORM_ID',{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}}).catch(()=>{});});
 </script>
 </body>
 </html>
+```
