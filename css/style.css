@@ -60,11 +60,11 @@ nav {
 /* HERO */
 .hero {
   position: relative;
-  min-height: 90vh;
+  min-height: 100vh;          /* was 90vh */
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0 2.5rem;
+  padding: 2rem 2.5rem;       /* added top padding */
   overflow: hidden;
   background: radial-gradient(circle at 20% 30%, #0a0a1a, #000000);
 }
@@ -96,7 +96,8 @@ nav {
   display: inline-flex; align-items: center; gap: 10px;
   font-family: var(--mono); font-size: 11px; font-weight: 600;
   letter-spacing: 0.32em; text-transform: uppercase; color: var(--blue);
-  margin-bottom: 1rem;
+  margin-top: 1rem;          /* added */
+  margin-bottom: 1.5rem;     /* increased from 1rem */
 }
 .bdot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
   box-shadow: 0 0 12px 4px var(--blue-glow); animation: blink 2.4s ease-in-out infinite; }
@@ -104,16 +105,25 @@ nav {
 .hero h1 {
   font-family: var(--serif); font-size: clamp(3rem, 8vw, 6.5rem);
   font-weight: 300; line-height: 1.05; letter-spacing: -0.01em;
-  color: var(--white); margin-bottom: 1.2rem;
+  color: var(--white); margin-bottom: 1.5rem;   /* was 1.2rem */
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 .hero h1 em { font-style: italic; }
 .hero-sub {
   font-family: var(--sans); font-size: 1.2rem; font-weight: 400;
   color: var(--sub); max-width: 620px; line-height: 1.5;
-  margin-bottom: 1.8rem;
+  margin-bottom: 2rem;        /* was 1.8rem */
 }
-.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.hero-actions { 
+  display: flex; 
+  gap: 1rem; 
+  flex-wrap: wrap; 
+  align-items: center; 
+  margin-bottom: 2rem;        /* added */
+}
+.hero-content {
+  margin-bottom: 1rem;        /* extra space between content and bottom bar */
+}
 .btn-white, .btn-outline { padding: 12px 28px; font-size: 11px; }
 .btn-white {
   font-family: var(--mono); font-weight: 700; letter-spacing: 0.2em;
@@ -167,13 +177,14 @@ nav {
   border-top: 1px solid var(--border);
   display: grid; grid-template-columns: repeat(4,1fr);
   background: rgba(0,0,0,0.96); backdrop-filter: blur(20px);
+  padding: 0.5rem 0;          /* added vertical padding */
 }
 .bar-cell {
-  padding: 10px 1rem;
-  font-family: var(--mono); font-size: 10px; font-weight: 500;
+  padding: 12px 1rem;         /* was 10px */
+  font-family: var(--mono); font-size: 11px; font-weight: 500; /* was 10px */
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--dim); border-right: 1px solid var(--border);
-  display: flex; align-items: center; gap: 8px;
+  display: flex; align-items: center; gap: 10px;        /* was 8px */
 }
 .bar-cell:last-child { border-right: none; }
 .bar-cell.on { color: var(--bright); }
@@ -182,6 +193,11 @@ nav {
 
 /* TYPOGRAPHY & SPACING */
 .section-pad { padding: 5rem 2.5rem 2rem; border-top: 1px solid var(--border); }
+
+/* Extra space above the first section after hero */
+#how .section-pad {
+  padding-top: 4rem;          /* adds space specifically to the "How it works" section */
+}
 .kicker {
   font-family: var(--mono); font-size: 12px; font-weight: 700;
   letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue);
@@ -390,7 +406,17 @@ footer { border-top: 1px solid var(--border); padding: 2.5rem 2.5rem; display: f
   .cards-grid, .principles-grid, .tryit-steps { grid-template-columns: 1fr; }
   .deploy-row { flex-wrap: wrap; }
   .form-section { grid-template-columns: 1fr; gap: 3rem; }
-  .hero-stat { display: none; }
+  .hero-stat {
+  position: absolute;
+  right: 3rem;
+  bottom: 6rem;              /* was 5rem – raised to avoid overlap */
+  z-index: 2;
+  text-align: right;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
   .hero-bar { grid-template-columns: 1fr 1fr; }
   .hero { padding: 3rem 1.5rem; min-height: 85vh; }
   .hero h1 { font-size: clamp(2rem, 6vw, 4rem); }
