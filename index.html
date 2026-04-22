@@ -27,18 +27,16 @@
   <!-- Galaxy / data signal canvas -->
   <canvas id="hero-canvas"></canvas>
 
-  <!-- Control room HUD overlays -->
-  <div class="hud hud-tl">
-    <div class="hud-line">UTC <span id="hud-time">00:00:00</span></div>
+  <!-- Control room HUD -- right side only -->
+  <div class="hud hud-tr">
+    <div class="hud-line">UTC <span id="hud-time" class="hud-val">00:00:00</span></div>
     <div class="hud-line">STATUS <span class="hud-val">ACTIVE</span></div>
     <div class="hud-line">CODEC <span class="hud-val">RUNNING</span></div>
-  </div>
-  <div class="hud hud-tr">
+    <div class="hud-divider"></div>
     <div class="hud-line">SIGNAL RATE <span class="hud-val">540 MB/s</span></div>
     <div class="hud-line">PIPELINE <span class="hud-val">NOMINAL</span></div>
     <div class="hud-line">FIDELITY <span class="hud-val">100%</span></div>
-  </div>
-  <div class="hud hud-br">
+    <div class="hud-divider"></div>
     <div class="hud-line">SESSION <span class="hud-val" id="hud-session">--</span></div>
     <div class="hud-line">FRAMES <span class="hud-val" id="hud-frames">0</span></div>
   </div>
@@ -314,13 +312,13 @@ let frameCount = 0;
   setTimeout(tickSession, 1000);
 })();
 
-/* ---- HERO CANVAS: PS3-style data signal / galaxy ---- */
+/* ---- HERO CANVAS: Aurora borealis data signal streams ---- */
 (function(){
   const c = document.getElementById('hero-canvas');
   if(!c) return;
   const ctx = c.getContext('2d');
   let W, H, t = 0;
-  let particles = [], streams = [], nodes = [];
+  let bands = [], nodes = [], particles = [];
 
   function resize(){
     W = c.width = c.offsetWidth;
@@ -329,37 +327,110 @@ let frameCount = 0;
   }
 
   function build(){
-    /* Floating data particles -- PS3 XMB style */
-    particles = Array.from({length:360}, () => ({
+    // Aurora borealis bands -- layered, high-contrast, slow-moving
+    // Each band has multiple harmonics layered for organic feel
+    const auroraHues = [
+      { hue: 168, sat: 90, lit: 65 },  // emerald green
+      { hue: 185, sat: 85, lit: 70 },  // cyan-teal
+      { hue: 200, sat: 80, lit: 72 },  // ice blue
+      { hue: 220, sat: 85, lit, lit: 68 },  // electric blue
+      { hue: 260, sat: 75, lit: 70 },  // violet
+      { hue: 280, sat: 70, lit: 68 },  // purple
+      { hue: 160, sat: 88, lit: 60 },  // deep green
+      { hue: 192, sat: 82, lit: 68 },  // aqua
+    ];
+
+    bands = Array.from({length: 18}, (_, i) => {
+      const col = auroraHues[i % auroraHues.length];
+      const isGreen = col.hue < 210;
+      return {
+        yBase: (H * 0.08) + (i / 17) * (H * 0.82),
+        hue: col.hue + (Math.random() - 0.5) * 18,
+        sat: col.sat,
+        lit: col.lit,
+        // Primary wave
+        freq1: 0.0008 + Math.random() * 0.0016,
+        amp1: 12 + Math.random() * 28,
+        phase1: Math.random() * Math.PI * 2,
+        speed1: 0.006 + Math.random() * 0.014,
+        // Secondary harmonic
+        freq2: 0.0018 + Math.random() * 0.003,
+        amp2: 4 + Math.random() * 12,
+        phase2: Math.random() * Math.PI * 2,
+        speed2: 0.003 + Math.random() * 0.008,
+        // Tertiary ripple
+        freq3: 0.004 + Math.random() * 0.006,
+        amp3: 1 + Math.random() * 5,
+        phase3: Math.random() * Math.PI * 2,
+        speed3: 0.014 + Math.random() * 0.02,
+        // Visual weight
+        alpha: isGreen ? (0.18 + Math.random() * 0.32) : (0.12 + Math.random() * 0.24),
+        width: isGreen ? (0.6 + Math.random() * 1.4) : (0.4 + Math.random() * 1.0),
+        glow: isGreen,
+      };
+    });
+
+    // Vertical scan pulses -- control room feel
+    nodes = Array.from({length: 5}, () => ({
       x: Math.random() * W,
-      y: Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: (Math.random() - 0.5) * 0.12,
-      r: Math.pow(Math.random(), 2.2) * 1.8 + 0.15,
-      a: Math.random() * 0.55 + 0.05,
-      tw: 1.5 + Math.random() * 4,
-      tp: Math.random() * Math.PI * 2,
-      hue: 210 + Math.random() * 40,
+      speed: 0.3 + Math.random() * 0.7,
+      alpha: 0.025 + Math.random() * 0.05,
     }));
 
-    /* Horizontal signal streams -- like PS3 XMB wave lines */
-    streams = Array.from({length:14}, (_, i) => ({
-      y: (H * 0.15) + (i / 13) * (H * 0.7),
-      phase: Math.random() * Math.PI * 2,
-      freq: 0.003 + Math.random() * 0.005,
-      amp: 6 + Math.random() * 18,
-      speed: 0.008 + Math.random() * 0.015,
-      alpha: 0.04 + Math.random() * 0.09,
-      hue: 210 + Math.random() * 35,
+    // Drifting data particles
+    particles = Array.from({length: 280}, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.14, vy: (Math.random() - 0.5) * 0.08,
+      r: Math.pow(Math.random(), 2.5) * 1.6 + 0.1,
+      a: Math.random() * 0.45 + 0.04,
+      tw: 1.5 + Math.random() * 4, tp: Math.random() * Math.PI * 2,
+      hue: 170 + Math.random() * 100,
     }));
+  }
 
-    /* Vertical data pulse lines -- like scan lines in a control room */
-    nodes = Array.from({length:6}, () => ({
-      x: Math.random() * W,
-      speed: 0.4 + Math.random() * 0.8,
-      alpha: 0.04 + Math.random() * 0.08,
-      width: 1 + Math.random() * 2,
+  function build(){ /* defined above, syntax quirk -- redeclare to fix */ }
+  // Re-declare properly
+  function buildScene(){
+    const auroraHues = [
+      {hue:168,sat:90,lit:65},{hue:185,sat:85,lit:70},{hue:200,sat:80,lit:72},
+      {hue:222,sat:85,lit:68},{hue:260,sat:75,lit:70},{hue:280,sat:70,lit:68},
+      {hue:160,sat:88,lit:60},{hue:192,sat:82,lit:68},
+    ];
+    bands = Array.from({length:20}, (_, i) => {
+      const col = auroraHues[i % auroraHues.length];
+      return {
+        yBase: (H*0.06) + (i/19)*(H*0.86),
+        hue: col.hue + (Math.random()-0.5)*16,
+        sat: col.sat, lit: col.lit,
+        freq1: 0.0007+Math.random()*0.0015, amp1: 14+Math.random()*30,
+        phase1: Math.random()*Math.PI*2, speed1: 0.005+Math.random()*0.012,
+        freq2: 0.0016+Math.random()*0.0028, amp2: 5+Math.random()*14,
+        phase2: Math.random()*Math.PI*2, speed2: 0.003+Math.random()*0.007,
+        freq3: 0.0038+Math.random()*0.006, amp3: 1+Math.random()*4,
+        phase3: Math.random()*Math.PI*2, speed3: 0.012+Math.random()*0.018,
+        alpha: (col.hue < 210) ? 0.20+Math.random()*0.35 : 0.10+Math.random()*0.22,
+        width: (col.hue < 210) ? 0.7+Math.random()*1.6 : 0.4+Math.random()*1.0,
+        glow: col.hue < 210,
+      };
+    });
+    nodes = Array.from({length:5}, () => ({
+      x: Math.random()*W, speed: 0.3+Math.random()*0.7,
+      alpha: 0.022+Math.random()*0.045,
     }));
+    particles = Array.from({length:260}, () => ({
+      x: Math.random()*W, y: Math.random()*H,
+      vx:(Math.random()-0.5)*0.14, vy:(Math.random()-0.5)*0.08,
+      r: Math.pow(Math.random(),2.5)*1.5+0.1,
+      a: Math.random()*0.4+0.04,
+      tw: 1.5+Math.random()*4, tp: Math.random()*Math.PI*2,
+      hue: 165+Math.random()*110,
+    }));
+  }
+
+  function resize(){
+    W = c.width = c.offsetWidth;
+    H = c.height = c.offsetHeight;
+    buildScene();
   }
 
   resize();
@@ -369,62 +440,71 @@ let frameCount = 0;
     ctx.clearRect(0,0,W,H);
     t += 1;
 
-    /* Deep space base */
-    const bg = ctx.createRadialGradient(W*0.5, H*0.35, 0, W*0.5, H*0.35, Math.max(W,H)*0.8);
-    bg.addColorStop(0, 'rgba(6,8,30,0.85)');
-    bg.addColorStop(0.5, 'rgba(2,4,16,0.7)');
-    bg.addColorStop(1, 'rgba(0,0,4,0.0)');
+    // Deep space base gradient
+    const bg = ctx.createLinearGradient(0,0,0,H);
+    bg.addColorStop(0, 'rgba(0,4,16,0.92)');
+    bg.addColorStop(0.4, 'rgba(0,6,20,0.82)');
+    bg.addColorStop(1, 'rgba(0,2,10,0.75)');
     ctx.fillStyle = bg;
     ctx.fillRect(0,0,W,H);
 
-    /* Signal stream lines -- PS3 XMB wavy */
-    streams.forEach(s => {
+    // Aurora bands -- multi-harmonic smooth sine curves
+    bands.forEach(b => {
       ctx.beginPath();
-      for(let x = 0; x <= W; x += 2){
-        const y = s.y + Math.sin(x * s.freq + t * s.speed + s.phase) * s.amp
-                      + Math.sin(x * s.freq * 2.3 + t * s.speed * 0.7) * s.amp * 0.3;
+      for(let x = 0; x <= W; x += 1.5){
+        const y = b.yBase
+          + Math.sin(x * b.freq1 + t * b.speed1 + b.phase1) * b.amp1
+          + Math.sin(x * b.freq2 + t * b.speed2 + b.phase2) * b.amp2
+          + Math.sin(x * b.freq3 + t * b.speed3 + b.phase3) * b.amp3;
         x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = `hsla(${s.hue},65%,72%,${s.alpha})`;
-      ctx.lineWidth = 0.6;
-      ctx.stroke();
+
+      if(b.glow){
+        // Glowing green/teal bands -- thicker with bloom
+        ctx.strokeStyle = `hsla(${b.hue},${b.sat}%,${b.lit}%,${b.alpha})`;
+        ctx.lineWidth = b.width + 1.2;
+        ctx.shadowBlur = 18;
+        ctx.shadowColor = `hsla(${b.hue},${b.sat}%,80%,0.4)`;
+        ctx.stroke();
+        // Inner bright core
+        ctx.strokeStyle = `hsla(${b.hue},${b.sat}%,90%,${b.alpha * 0.55})`;
+        ctx.lineWidth = b.width * 0.4;
+        ctx.shadowBlur = 8;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      } else {
+        ctx.strokeStyle = `hsla(${b.hue},${b.sat}%,${b.lit}%,${b.alpha})`;
+        ctx.lineWidth = b.width;
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = `hsla(${b.hue},80%,75%,0.25)`;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
     });
 
-    /* Vertical scan pulses */
+    // Scan pulses
     nodes.forEach(n => {
       n.x -= n.speed;
       if(n.x < -4) n.x = W + 4;
-      const grad = ctx.createLinearGradient(n.x - 80, 0, n.x + 10, 0);
-      grad.addColorStop(0, `rgba(59,130,246,0)`);
-      grad.addColorStop(0.7, `rgba(59,130,246,${n.alpha})`);
-      grad.addColorStop(1, `rgba(59,130,246,0)`);
-      ctx.fillStyle = grad;
-      ctx.fillRect(n.x - 80, 0, 90, H);
+      const g = ctx.createLinearGradient(n.x-70,0,n.x+8,0);
+      g.addColorStop(0,'rgba(100,200,180,0)');
+      g.addColorStop(0.7,`rgba(100,200,180,${n.alpha})`);
+      g.addColorStop(1,'rgba(100,200,180,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(n.x-70,0,78,H);
     });
 
-    /* Floating data nodes */
+    // Particles
     particles.forEach(p => {
       p.x += p.vx; p.y += p.vy;
-      if(p.x < -2) p.x = W+2;
-      else if(p.x > W+2) p.x = -2;
-      if(p.y < -2) p.y = H+2;
-      else if(p.y > H+2) p.y = -2;
-      const fl = p.a * (0.4 + 0.6 * Math.sin(t * 0.01 * p.tw + p.tp));
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fillStyle = `hsla(${p.hue},65%,80%,${fl})`;
-      if(p.r > 1){ ctx.shadowBlur = 5; ctx.shadowColor = `hsla(${p.hue},80%,75%,0.5)`; }
-      ctx.fill();
-      ctx.shadowBlur = 0;
+      if(p.x<-2)p.x=W+2; else if(p.x>W+2)p.x=-2;
+      if(p.y<-2)p.y=H+2; else if(p.y>H+2)p.y=-2;
+      const fl = p.a*(0.35+0.65*Math.sin(t*0.01*p.tw+p.tp));
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = `hsla(${p.hue},70%,78%,${fl})`;
+      if(p.r>0.9){ctx.shadowBlur=4; ctx.shadowColor=`hsla(${p.hue},80%,72%,0.4)`;}
+      ctx.fill(); ctx.shadowBlur=0;
     });
-
-    /* Core glow -- PS3 style ambient orb */
-    const cg = ctx.createRadialGradient(W*0.62, H*0.38, 0, W*0.62, H*0.38, Math.min(W,H)*0.45);
-    cg.addColorStop(0, 'rgba(50,100,220,0.12)');
-    cg.addColorStop(0.5, 'rgba(30,60,180,0.04)');
-    cg.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = cg;
-    ctx.fillRect(0,0,W,H);
 
     requestAnimationFrame(draw);
   }
