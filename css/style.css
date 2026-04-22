@@ -253,11 +253,11 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .card-img-box { width: 100%; height: 240px; background: var(--card); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .card-img-box img { 
   width: 100%; height: 100%; object-fit: cover; 
-  opacity: 0.85;          /* was 0.6 – much lighter */
+  opacity: 1;          /* was 0.6 – much lighter */
   transition: opacity 0.4s, transform 0.5s; 
 }
 .who-card:hover .card-img-box img { 
-  opacity: 1;             /* was 0.8 – fully bright on hover */
+  opacity: 1.04;             /* was 0.8 – fully bright on hover */
   transform: scale(1.04); 
 }
 .card-img-box::after { content: ''; position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(106,169,255,0.6), transparent); animation: scan 5s linear infinite; animation-delay: var(--d, 0s); top: 0; }
