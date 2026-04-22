@@ -152,15 +152,20 @@ nav {
   border-radius: 20px;
 }
 .ratio-big {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family: var(--mono);   /* IBM Plex Mono */
+  font-style: normal;         /* remove italic */
+  font-weight: 700;           /* keep bold */
   font-size: clamp(4rem, 10vw, 8rem);
-  font-weight: 700;
   line-height: 1;
   color: var(--white);
   letter-spacing: -0.03em;
 }
-.ratio-x { font-size: clamp(2rem, 5vw, 4rem); font-weight: 600; }
+.ratio-x {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 600;
+}
 .ratio-label {
   font-family: var(--mono); font-size: 10px; font-weight: 600;
   letter-spacing: 0.26em; text-transform: uppercase; color: var(--dim);
