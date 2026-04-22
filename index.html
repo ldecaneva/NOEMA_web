@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>NOEMA — Lossless Signal Compression</title>
+<title>NOEMA -- Lossless Signal Compression</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,36 +15,63 @@
   <img src="images/noema_logo.png" alt="NOEMA" class="nav-logo-img" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <div class="nav-links">
     <a onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works</a>
-    <a onclick="document.getElementById('for').scrollIntoView({behavior:'smooth'})">FOR WHOM</a>
+    <a onclick="document.getElementById('for').scrollIntoView({behavior:'smooth'})">Who it's for</a>
     <a onclick="document.getElementById('pilot').scrollIntoView({behavior:'smooth'})">Try it</a>
     <a onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Contact</a>
   </div>
-  <button class="nav-cta" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Run on your data</button>
+  <button class="nav-cta" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Request access</button>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-image"></div>
+  <!-- Galaxy / data signal canvas -->
+  <canvas id="hero-canvas"></canvas>
+
+  <!-- Control room HUD overlays -->
+  <div class="hud hud-tl">
+    <div class="hud-line">UTC <span id="hud-time">00:00:00</span></div>
+    <div class="hud-line">STATUS <span class="hud-val">ACTIVE</span></div>
+    <div class="hud-line">CODEC <span class="hud-val">RUNNING</span></div>
+  </div>
+  <div class="hud hud-tr">
+    <div class="hud-line">SIGNAL RATE <span class="hud-val">540 MB/s</span></div>
+    <div class="hud-line">PIPELINE <span class="hud-val">NOMINAL</span></div>
+    <div class="hud-line">FIDELITY <span class="hud-val">100%</span></div>
+  </div>
+  <div class="hud hud-br">
+    <div class="hud-line">SESSION <span class="hud-val" id="hud-session">--</span></div>
+    <div class="hud-line">FRAMES <span class="hud-val" id="hud-frames">0</span></div>
+  </div>
+
+  <!-- Corner brackets -->
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
   <div class="hero-vignette"></div>
+
   <div class="hero-content">
     <div class="hero-badge"><span class="bdot"></span>Signal Compression</div>
     <h1>Lossless compression<br>for raw radar and<br><em>RF signal data.</em></h1>
-    <p class="hero-sub">Raw sensor data is often discarded due to storage and bandwidth limits.<br>NOEMA compresses it 7.5–10x, losslessly, so nothing is lost.</p>
+    <p class="hero-sub">Raw sensor captures are often discarded due to storage, bandwidth, and processing constraints. NOEMA compresses them losslessly by 7.5 to 10x so nothing is lost.</p>
     <div class="hero-actions">
-      <button class="btn-white" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Run on your data</button>
-      <button class="btn-outline" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works →</button>
+      <button class="btn-white" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Request access</button>
+      <button class="btn-outline" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works &rarr;</button>
     </div>
   </div>
+
   <div class="hero-stat">
     <div class="ratio-big"><span id="live-ratio">7.7</span><span class="ratio-x">x</span></div>
     <div class="ratio-label">COMPRESSION RATIO</div>
-    <div class="ratio-sub">ADAPTIVE · LOSSLESS · LIVE</div>
+    <div class="ratio-sub">ADAPTIVE &middot; LOSSLESS &middot; LIVE</div>
   </div>
+
   <div class="hero-bar">
     <div class="bar-cell on"><span class="dot-sm live"></span>Codec active</div>
     <div class="bar-cell"><span class="dot-sm"></span>Level-0 IQ preserved</div>
     <div class="bar-cell"><span class="dot-sm"></span>Bit-exact verified</div>
-    <div class="bar-cell"><span class="dot-sm"></span>On-premises · Air-gapped · Cloud</div>
+    <div class="bar-cell"><span class="dot-sm"></span>On-premises &middot; Air-gapped &middot; Cloud</div>
   </div>
 </section>
 
@@ -82,22 +109,30 @@
         <div class="op-specs"><span>Bit-exact verified</span><span>Confirmed fidelity on output</span><span>Any file, any time</span></div>
       </div>
     </div>
-    
+
     <!-- INTERACTIVE PIPELINE -->
     <div class="pipeline-wrap reveal">
       <div class="pipeline-flow">
         <div class="pipe-node"><div class="node-label">Signal source</div><div class="node-val">800 MB</div></div>
-        <div class="pipe-arrow">→</div>
+        <div class="pipe-arrow">&rarr;</div>
         <div class="pipe-node"><div class="node-label">Intake</div><div class="node-val">800 MB</div></div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-node hl" id="noema-node"><div class="node-label">NOEMA</div><div class="node-val" id="ratio-display">7.6x</div><div class="node-note">compression</div></div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-node" id="store-node"><div class="node-label">Transmit / Store</div><div class="node-val" id="compressed-size">105.3 MB</div><div class="node-note" id="saved-percent">86.8% saved</div></div>
-        <div class="pipe-arrow">→</div>
+        <div class="pipe-arrow">&rarr;</div>
+        <div class="pipe-node hl" id="noema-node">
+          <div class="node-label">NOEMA</div>
+          <div class="node-val" id="ratio-display">7.6x</div>
+          <div class="node-note">compression</div>
+        </div>
+        <div class="pipe-arrow">&rarr;</div>
+        <div class="pipe-node" id="store-node">
+          <div class="node-label">Transmit / Store</div>
+          <div class="node-val" id="compressed-size">105.3 MB</div>
+          <div class="node-note" id="saved-percent">86.8% saved</div>
+        </div>
+        <div class="pipe-arrow">&rarr;</div>
         <div class="pipe-node"><div class="node-label">Reconstruct</div><div class="node-val">800 MB</div><div class="node-note">bit-exact</div></div>
       </div>
       <div class="ratio-slider">
-        <label>Adjust compression ratio</label>
+        <label>Drag to adjust compression ratio</label>
         <input type="range" id="compress-slider" min="7.5" max="10.0" step="0.01" value="7.6">
         <span class="ratio-value" id="slider-value">7.6x</span>
       </div>
@@ -105,10 +140,10 @@
     </div>
   </div>
 
-  <!-- FOR WHOM (formerly WHO IT IS FOR) -->
+  <!-- WHO IT IS FOR -->
   <div id="for">
     <div class="section-pad">
-      <span class="kicker">FOR WHOM</span>
+      <span class="kicker">Who it's for</span>
       <h2 class="section-h2">Designed for the most demanding signal pipelines.</h2>
       <p class="section-preamble">Raw signal data is generated faster than it can be stored or transmitted. The data discarded under today's constraints is the data that cannot be recovered tomorrow.</p>
     </div>
@@ -160,39 +195,39 @@
     </div>
   </div>
 
-  <!-- TRY IT SECTION -->
+  <!-- TRY IT -->
   <div id="pilot">
     <div class="tryit-banner reveal">
       <div class="tryit-top">
         <div>
           <div class="shadow-badge">
             <span class="shadow-badge-dot"></span>
-            <span class="shadow-badge-text">SHADOW MODE — RUNS PARALLEL TO YOUR EXISTING PIPELINE. ZERO DISRUPTION.</span>
+            <span class="shadow-badge-text">SHADOW MODE -- RUNS PARALLEL TO YOUR EXISTING PIPELINE. ZERO DISRUPTION.</span>
           </div>
           <div class="tryit-heading">Live in your environment<br>the same day.</div>
           <p class="tryit-sub">No integration required. No data leaves your system. No risk. Runs in parallel with your existing pipeline from day one.</p>
           <div class="tryit-badge-section">
-            <div class="tryit-badge-line">ON-PREMISES · AIR-GAPPED · CLOUD</div>
+            <div class="tryit-badge-line">ON-PREMISES &middot; AIR-GAPPED &middot; CLOUD</div>
             <div class="tryit-badge-single">NO DATA LEAVES YOUR ENVIRONMENT</div>
             <div class="tryit-badge-single">WORKS FROM DAY ONE</div>
           </div>
         </div>
       </div>
       <div class="tryit-steps">
-        <div class="tryit-step"><div class="ts-num">01 RECEIVE</div><div class="ts-title">Delivered instantly</div><p class="ts-body">Binary, setup wizard, test data, and documentation. Linux, Windows, and ARM.</p></div>
-        <div class="tryit-step"><div class="ts-num">02 DEPLOY</div><div class="ts-title">Answer four questions</div><p class="ts-body">Input, output, CPU limit, throughput cap. Configuration is generated automatically. No coding.</p></div>
-        <div class="tryit-step"><div class="ts-num">03 OBSERVE</div><div class="ts-title">Results appear automatically</div><p class="ts-body">Compression ratio, storage savings, and reconstruction verification on your own I/Q data.</p></div>
-        <div class="tryit-step"><div class="ts-num">04 REVIEW</div><div class="ts-title">Clear impact</div><p class="ts-body">Storage savings, bandwidth gains, ROI. You leave with a decision, not a report.</p></div>
+        <div class="tryit-step"><div class="ts-num">01 Receive</div><div class="ts-title">Delivered instantly</div><p class="ts-body">Binary, setup wizard, test data, and documentation. Linux, Windows, and ARM.</p></div>
+        <div class="tryit-step"><div class="ts-num">02 Deploy</div><div class="ts-title">Answer four questions</div><p class="ts-body">Input, output, CPU limit, throughput cap. Configuration is generated automatically. No coding.</p></div>
+        <div class="tryit-step"><div class="ts-num">03 Observe</div><div class="ts-title">Results appear automatically</div><p class="ts-body">Compression ratio, storage savings, and reconstruction verification on your own I/Q data.</p></div>
+        <div class="tryit-step"><div class="ts-num">04 Review</div><div class="ts-title">Clear impact</div><p class="ts-body">Storage savings, bandwidth gains, ROI. You leave with a decision, not a report.</p></div>
       </div>
       <div class="deploy-row">
-        <span class="deploy-label">INTEGRATE AS</span>
-        <span class="deploy-item">DROP-IN MODE</span>
+        <span class="deploy-label">Integrate as</span>
+        <span class="deploy-item">Drop-in mode</span>
         <span class="deploy-item">SDK / API</span>
-        <span class="deploy-item">EDGE BINARY</span>
-        <span class="deploy-item">BATCH OR REAL-TIME</span>
+        <span class="deploy-item">Edge binary</span>
+        <span class="deploy-item">Batch or real-time</span>
       </div>
       <div class="tryit-cta-row">
-        <button class="btn-white" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">TEST IT NOW</button>
+        <button class="btn-white" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Contact to test it</button>
         <button class="tryit-arrow" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
@@ -221,8 +256,8 @@
               <option value="" disabled selected>Select sector</option>
               <option>Autonomous Vehicles</option>
               <option>Ground station operator</option>
-              <option>Satellite / SAR — commercial</option>
-              <option>Satellite / SAR — government</option>
+              <option>Satellite / SAR -- commercial</option>
+              <option>Satellite / SAR -- government</option>
               <option>Defense / SIGINT</option>
               <option>Telecom R&amp;D</option>
               <option>Research institution</option>
@@ -230,8 +265,8 @@
             </select>
           </div>
           <div class="f-group"><label class="f-label">Signal type or use case</label><input class="fi" type="text" placeholder="e.g. SAR Level-0, radar ADC, wideband I/Q"></div>
-          <button type="submit" class="fsub">Request access →</button>
-          <p class="fnote">Human response within 24 hours · No automated sequences</p>
+          <button type="submit" class="fsub">Request access &rarr;</button>
+          <p class="fnote">Human response within 24 hours &middot; No automated sequences</p>
         </form>
         <div id="formSuccess"><p>Request received.</p><small>We will be in touch within 24 hours.</small></div>
       </div>
@@ -243,16 +278,158 @@
   <img src="images/noema_logo.png" alt="NOEMA" class="footer-logo-img">
   <div class="footer-links">
     <a onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works</a>
-    <a onclick="document.getElementById('for').scrollIntoView({behavior:'smooth'})">For whom</a>
+    <a onclick="document.getElementById('for').scrollIntoView({behavior:'smooth'})">Who it's for</a>
     <a onclick="document.getElementById('pilot').scrollIntoView({behavior:'smooth'})">Try it</a>
     <a href="mailto:info@noemasystems.com">info@noemasystems.com</a>
   </div>
   <div class="footer-legal">
-    © 2026 NOEMA DATA SYSTEMS. All Rights Reserved. 
+    &copy; 2026 NOEMA DATA SYSTEMS. All Rights Reserved.
     <a href="#" class="privacy-link">Privacy Policy</a>
   </div>
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+/* ---- UTC CLOCK ---- */
+(function tick(){
+  const d = new Date();
+  const p = n => String(n).padStart(2,'0');
+  const el = document.getElementById('hud-time');
+  if(el) el.textContent = `${p(d.getUTCHours())}:${p(d.getUTCMinutes())}:${p(d.getUTCSeconds())}`;
+  setTimeout(tick, 1000);
+})();
+
+/* ---- SESSION TIMER ---- */
+const sessionStart = Date.now();
+let frameCount = 0;
+(function tickSession(){
+  const sec = Math.floor((Date.now() - sessionStart) / 1000);
+  const m = String(Math.floor(sec/60)).padStart(2,'0');
+  const s = String(sec%60).padStart(2,'0');
+  const el = document.getElementById('hud-session');
+  if(el) el.textContent = `${m}:${s}`;
+  frameCount++;
+  const fe = document.getElementById('hud-frames');
+  if(fe) fe.textContent = frameCount.toLocaleString();
+  setTimeout(tickSession, 1000);
+})();
+
+/* ---- HERO CANVAS: PS3-style data signal / galaxy ---- */
+(function(){
+  const c = document.getElementById('hero-canvas');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let W, H, t = 0;
+  let particles = [], streams = [], nodes = [];
+
+  function resize(){
+    W = c.width = c.offsetWidth;
+    H = c.height = c.offsetHeight;
+    build();
+  }
+
+  function build(){
+    /* Floating data particles -- PS3 XMB style */
+    particles = Array.from({length:360}, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.12,
+      r: Math.pow(Math.random(), 2.2) * 1.8 + 0.15,
+      a: Math.random() * 0.55 + 0.05,
+      tw: 1.5 + Math.random() * 4,
+      tp: Math.random() * Math.PI * 2,
+      hue: 210 + Math.random() * 40,
+    }));
+
+    /* Horizontal signal streams -- like PS3 XMB wave lines */
+    streams = Array.from({length:14}, (_, i) => ({
+      y: (H * 0.15) + (i / 13) * (H * 0.7),
+      phase: Math.random() * Math.PI * 2,
+      freq: 0.003 + Math.random() * 0.005,
+      amp: 6 + Math.random() * 18,
+      speed: 0.008 + Math.random() * 0.015,
+      alpha: 0.04 + Math.random() * 0.09,
+      hue: 210 + Math.random() * 35,
+    }));
+
+    /* Vertical data pulse lines -- like scan lines in a control room */
+    nodes = Array.from({length:6}, () => ({
+      x: Math.random() * W,
+      speed: 0.4 + Math.random() * 0.8,
+      alpha: 0.04 + Math.random() * 0.08,
+      width: 1 + Math.random() * 2,
+    }));
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    t += 1;
+
+    /* Deep space base */
+    const bg = ctx.createRadialGradient(W*0.5, H*0.35, 0, W*0.5, H*0.35, Math.max(W,H)*0.8);
+    bg.addColorStop(0, 'rgba(6,8,30,0.85)');
+    bg.addColorStop(0.5, 'rgba(2,4,16,0.7)');
+    bg.addColorStop(1, 'rgba(0,0,4,0.0)');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0,0,W,H);
+
+    /* Signal stream lines -- PS3 XMB wavy */
+    streams.forEach(s => {
+      ctx.beginPath();
+      for(let x = 0; x <= W; x += 2){
+        const y = s.y + Math.sin(x * s.freq + t * s.speed + s.phase) * s.amp
+                      + Math.sin(x * s.freq * 2.3 + t * s.speed * 0.7) * s.amp * 0.3;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = `hsla(${s.hue},65%,72%,${s.alpha})`;
+      ctx.lineWidth = 0.6;
+      ctx.stroke();
+    });
+
+    /* Vertical scan pulses */
+    nodes.forEach(n => {
+      n.x -= n.speed;
+      if(n.x < -4) n.x = W + 4;
+      const grad = ctx.createLinearGradient(n.x - 80, 0, n.x + 10, 0);
+      grad.addColorStop(0, `rgba(59,130,246,0)`);
+      grad.addColorStop(0.7, `rgba(59,130,246,${n.alpha})`);
+      grad.addColorStop(1, `rgba(59,130,246,0)`);
+      ctx.fillStyle = grad;
+      ctx.fillRect(n.x - 80, 0, 90, H);
+    });
+
+    /* Floating data nodes */
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if(p.x < -2) p.x = W+2;
+      else if(p.x > W+2) p.x = -2;
+      if(p.y < -2) p.y = H+2;
+      else if(p.y > H+2) p.y = -2;
+      const fl = p.a * (0.4 + 0.6 * Math.sin(t * 0.01 * p.tw + p.tp));
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `hsla(${p.hue},65%,80%,${fl})`;
+      if(p.r > 1){ ctx.shadowBlur = 5; ctx.shadowColor = `hsla(${p.hue},80%,75%,0.5)`; }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    /* Core glow -- PS3 style ambient orb */
+    const cg = ctx.createRadialGradient(W*0.62, H*0.38, 0, W*0.62, H*0.38, Math.min(W,H)*0.45);
+    cg.addColorStop(0, 'rgba(50,100,220,0.12)');
+    cg.addColorStop(0.5, 'rgba(30,60,180,0.04)');
+    cg.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = cg;
+    ctx.fillRect(0,0,W,H);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
 </body>
 </html>
