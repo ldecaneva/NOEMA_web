@@ -251,8 +251,15 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .who-card { background: var(--surface); overflow: hidden; transition: background 0.35s; }
 .who-card:hover { background: var(--card); }
 .card-img-box { width: 100%; height: 240px; background: var(--card); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-.card-img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: opacity 0.4s, transform 0.5s; }
-.who-card:hover .card-img-box img { opacity: 0.8; transform: scale(1.04); }
+.card-img-box img { 
+  width: 100%; height: 100%; object-fit: cover; 
+  opacity: 0.75;   /* was 0.6 – lighter */
+  transition: opacity 0.4s, transform 0.5s; 
+}
+.who-card:hover .card-img-box img { 
+  opacity: 0.95;   /* was 0.8 – lighter on hover */
+  transform: scale(1.04); 
+}
 .card-img-box::after { content: ''; position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(106,169,255,0.6), transparent); animation: scan 5s linear infinite; animation-delay: var(--d, 0s); top: 0; }
 @keyframes scan { 0%{top:0;opacity:0} 8%{opacity:0.6} 88%{opacity:0.6} 100%{top:100%;opacity:0} }
 .card-body { padding: 2rem 2rem 2.5rem; }
