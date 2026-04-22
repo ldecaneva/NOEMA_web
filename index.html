@@ -22,7 +22,7 @@
   <button class="nav-cta" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Request access</button>
 </nav>
 
-<!-- HERO -->
+<!-- HERO (full width, no border) -->
 <section class="hero">
   <video autoplay muted loop playsinline class="hero-video" poster="images/fallback.jpg">
     <source src="videos/hero_video.mp4" type="video/mp4">
@@ -50,10 +50,10 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS (wrapped in container) -->
-<div id="how">
-  <div class="container">
-    <div class="section-pad">
+<main class="container">
+  <!-- HOW IT WORKS (bordered card) -->
+  <div id="how" class="section-card">
+    <div class="section-pad" style="border-top: none; padding-top: 0;">
       <span class="kicker">How it works</span>
       <h2 class="section-h2">Four operations. No loss at any stage.</h2>
       <p class="section-preamble">NOEMA sits between your signal source and your storage or transmission layer. Nothing upstream changes. Nothing is approximated at any stage.</p>
@@ -105,12 +105,10 @@
       </div>
     </div>
   </div>
-</div>
 
-<!-- WHO IT IS FOR (wrapped in container) -->
-<div id="for">
-  <div class="container">
-    <div class="section-pad">
+  <!-- WHO IT IS FOR (bordered card) -->
+  <div id="for" class="section-card">
+    <div class="section-pad" style="border-top: none; padding-top: 0;">
       <span class="kicker">Who it's for</span>
       <h2 class="section-h2">Designed for the most demanding signal pipelines.</h2>
       <p class="section-preamble">Raw signal data is generated faster than it can be stored or transmitted. The data discarded under today's constraints is the data that cannot be recovered tomorrow.</p>
@@ -148,12 +146,10 @@
       </div>
     </div>
   </div>
-</div>
 
-<!-- FIRST PRINCIPLES (wrapped in container) -->
-<div>
-  <div class="container">
-    <div class="section-pad">
+  <!-- FIRST PRINCIPLES (bordered card) -->
+  <div class="section-card">
+    <div class="section-pad" style="border-top: none; padding-top: 0;">
       <span class="kicker">First principles</span>
       <h2 class="section-h2">Every signal you discard is information you cannot recover.</h2>
     </div>
@@ -164,12 +160,10 @@
       <div class="principle reveal"><h4>Built for teams that cannot afford to lose the past.</h4><p>The insight you do not yet know you will need is already in your data. NOEMA makes keeping it the same cost as keeping almost nothing.</p></div>
     </div>
   </div>
-</div>
 
-<!-- TRY IT SECTION (wrapped in container) -->
-<div id="pilot" style="border-top: 1px solid var(--border); padding: 2rem 0 0;">
-  <div class="container">
-    <div class="tryit-banner reveal" style="margin: 0;">
+  <!-- TRY IT SECTION (bordered card) -->
+  <div id="pilot" class="section-card" style="padding: 0;">
+    <div class="tryit-banner" style="margin: 0; border: none; background: transparent; padding: 3rem;">
       <div class="tryit-top">
         <div>
           <div class="shadow-badge">
@@ -185,30 +179,12 @@
           </div>
         </div>
       </div>
-
       <div class="tryit-steps">
-        <div class="tryit-step">
-          <div class="ts-num">01 RECEIVE</div>
-          <div class="ts-title">Delivered instantly</div>
-          <p class="ts-body">Binary, setup wizard, test data, and documentation. Linux, Windows, and ARM.</p>
-        </div>
-        <div class="tryit-step">
-          <div class="ts-num">02 DEPLOY</div>
-          <div class="ts-title">Answer four questions</div>
-          <p class="ts-body">Input, output, CPU limit, throughput cap. Configuration is generated automatically. No coding.</p>
-        </div>
-        <div class="tryit-step">
-          <div class="ts-num">03 OBSERVE</div>
-          <div class="ts-title">Results appear automatically</div>
-          <p class="ts-body">Compression ratio, storage savings, and reconstruction verification on your own I/Q data.</p>
-        </div>
-        <div class="tryit-step">
-          <div class="ts-num">04 REVIEW</div>
-          <div class="ts-title">Clear impact</div>
-          <p class="ts-body">Storage savings, bandwidth gains, ROI. You leave with a decision, not a report.</p>
-        </div>
+        <div class="tryit-step"><div class="ts-num">01 RECEIVE</div><div class="ts-title">Delivered instantly</div><p class="ts-body">Binary, setup wizard, test data, and documentation. Linux, Windows, and ARM.</p></div>
+        <div class="tryit-step"><div class="ts-num">02 DEPLOY</div><div class="ts-title">Answer four questions</div><p class="ts-body">Input, output, CPU limit, throughput cap. Configuration is generated automatically. No coding.</p></div>
+        <div class="tryit-step"><div class="ts-num">03 OBSERVE</div><div class="ts-title">Results appear automatically</div><p class="ts-body">Compression ratio, storage savings, and reconstruction verification on your own I/Q data.</p></div>
+        <div class="tryit-step"><div class="ts-num">04 REVIEW</div><div class="ts-title">Clear impact</div><p class="ts-body">Storage savings, bandwidth gains, ROI. You leave with a decision, not a report.</p></div>
       </div>
-
       <div class="deploy-row">
         <span class="deploy-label">INTEGRATE AS</span>
         <span class="deploy-item">DROP-IN MODE</span>
@@ -216,7 +192,6 @@
         <span class="deploy-item">EDGE BINARY</span>
         <span class="deploy-item">BATCH OR REAL-TIME</span>
       </div>
-
       <div class="tryit-cta-row">
         <button class="btn-white" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">TEST IT NOW</button>
         <button class="tryit-arrow" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">
@@ -225,12 +200,10 @@
       </div>
     </div>
   </div>
-</div>
 
-<!-- FORM (wrapped in container) -->
-<div id="signup">
-  <div class="container">
-    <div class="form-section" style="border-top: none; padding: 4rem 0;">
+  <!-- FORM SECTION (bordered card) -->
+  <div id="signup" class="section-card" style="padding: 0;">
+    <div class="form-section" style="border-top: none; padding: 3rem;">
       <div class="form-left reveal">
         <h2>Request access</h2>
         <p>Human response within 24 hours. No automated sequences. Priority given to AV infrastructure teams, satellite and ground station operators, and defense organizations.</p>
@@ -265,7 +238,7 @@
       </div>
     </div>
   </div>
-</div>
+</main>
 
 <footer>
   <img src="images/noema_logo.png" alt="NOEMA" class="footer-logo-img">

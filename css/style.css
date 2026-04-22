@@ -47,7 +47,7 @@ nav {
   border-bottom: 1px solid var(--border);
 }
 .nav-logo-img {
-  height: 40px;          /* increased from 32px */
+  height: 40px;
   width: auto;
   cursor: pointer;
   display: block;
@@ -55,7 +55,7 @@ nav {
 .nav-links { display: flex; position: absolute; left: 50%; transform: translateX(-50%); }
 .nav-links a {
   font-family: var(--mono);
-  font-size: 13px;       /* was 11px */
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -67,7 +67,7 @@ nav {
 .nav-links a:hover { color: var(--white); }
 .nav-cta {
   font-family: var(--mono);
-  font-size: 13px;       /* was 11px */
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -81,15 +81,16 @@ nav {
 }
 .nav-cta:hover { opacity: 0.85; }
 
-/* ── HERO (tightened to fit without scrolling) ── */
+/* ── HERO (improved vertical centering and spacing) ── */
 .hero {
   position: relative;
-  min-height: 90vh;            /* reduced from 100vh */
+  min-height: 90vh;
   display: flex;
-  align-items: flex-end;
-  padding: 4rem 2.5rem 1.5rem;  /* reduced top and bottom */
+  align-items: center;           /* vertically centered */
+  justify-content: flex-start;
+  padding: 0 2.5rem;            /* no extra top/bottom padding */
   overflow: hidden;
-  background: radial-gradient(circle at 20% 30%, #0a0a1a, #000000); /* fallback */
+  background: radial-gradient(circle at 20% 30%, #0a0a1a, #000000);
 }
 .hero-vignette {
   position: absolute; inset: 0; z-index: 1;
@@ -109,8 +110,9 @@ nav {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 820px;
-  padding-bottom: 0.5rem;       /* was 1.5rem */
+  max-width: 700px;
+  padding-bottom: 0;
+  margin-top: 0;
 }
 .hero-badge {
   display: inline-flex;
@@ -122,7 +124,7 @@ nav {
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--blue);
-  margin-bottom: 0.5rem;        /* was 1rem */
+  margin-bottom: 0.5rem;
 }
 .bdot {
   width: 7px;
@@ -140,29 +142,29 @@ nav {
   line-height: 1.0;
   letter-spacing: -0.01em;
   color: var(--white);
-  margin-bottom: 0.5rem;        /* was 1rem */
+  margin-bottom: 0.5rem;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 .hero h1 em { font-style: italic; }
 .hero-sub {
   font-family: var(--sans);
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 400;
   color: var(--sub);
   max-width: 620px;
-  line-height: 1.6;
-  margin-bottom: 0.75rem;       /* was 1rem */
+  line-height: 1.5;
+  margin-bottom: 1rem;
 }
 .hero-actions {
   display: flex;
   gap: 0.8rem;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 0;                /* was 0.5rem */
+  margin-top: 0;
 }
 .btn-white, .btn-outline {
-  padding: 10px 24px;           /* slightly smaller */
-  font-size: 10px;
+  padding: 12px 28px;
+  font-size: 11px;
 }
 .btn-white {
   font-family: var(--mono);
@@ -193,15 +195,20 @@ nav {
 
 .hero-stat {
   position: absolute;
-  right: 2.5rem;
-  bottom: 3rem;                 /* was 4rem – move up */
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 2;
   text-align: right;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
 }
 .ratio-big {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(3rem, 6vw, 7rem);  /* smaller */
+  font-size: clamp(3.5rem, 8vw, 8rem);
   font-weight: 300;
   line-height: 1;
   color: var(--white);
@@ -212,16 +219,16 @@ nav {
 .ratio-x { font-size: clamp(1.8rem, 3vw, 3rem); }
 .ratio-label {
   font-family: var(--mono);
-  font-size: 8px;               /* was 10px */
+  font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--dim);
-  margin-top: 0.1rem;
+  margin-top: 0.2rem;
 }
 .ratio-sub {
   font-family: var(--mono);
-  font-size: 7px;               /* was 9px */
+  font-size: 8px;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -243,9 +250,9 @@ nav {
   padding: 0;
 }
 .bar-cell {
-  padding: 8px 1rem;            /* was 10px 1.5rem */
+  padding: 8px 1rem;
   font-family: var(--mono);
-  font-size: 9px;               /* was 10px */
+  font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -634,4 +641,34 @@ footer { border-top: 1px solid var(--border); padding: 2.5rem 2.5rem; display: f
   footer { flex-direction: column; align-items: flex-start; }
   .tryit-banner { padding: 2rem; }
   .tryit-badge-line, .tryit-badge-single { font-size: 9px; padding: 6px 12px; }
+}
+
+/* Section cards with borders and background (Microsoft style) */
+.section-card {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 28px;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+.section-card:hover {
+  box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+}
+.section-card .section-pad {
+  border-top: none;
+}
+.section-card .ops-grid,
+.section-card .cards-grid,
+.section-card .principles-grid {
+  border-top: none;
+  border-bottom: none;
+}
+.section-card .pipeline-wrap {
+  margin: 0 2rem 2rem;
+  background: var(--elevated);
+}
+.section-card .form-section {
+  border-top: none;
+  padding: 0;
 }
