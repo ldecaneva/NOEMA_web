@@ -107,7 +107,7 @@ nav {
   display: flex; gap: 10px; align-items: center; justify-content: flex-end;
 }
 .hud-val {
-  color: rgba(140,210,190,0.85);
+  color: rgba(106,169,255,0.82);
   font-weight: 600;
 }
 .hud-divider {
@@ -239,7 +239,8 @@ nav {
 
 /* ---- TYPOGRAPHY & SECTION SPACING ---- */
 .section-pad { padding: 6rem 2.5rem 2.5rem; border-top: 1px solid var(--border); }
-#how .section-pad { padding-top: 7rem; }
+#how .section-pad { padding-top: 9rem; }
+#principles .section-pad { padding-top: 9rem; }
 .kicker {
   font-family: var(--mono); font-size: 12px; font-weight: 700;
   letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue);
