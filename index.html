@@ -24,9 +24,9 @@
 
 <!-- HERO -->
 <section class="hero">
-  <video autoplay muted loop playsinline class="hero-video">
-  <source src="videos/hero_video.mp4" type="video/mp4">
-</video>
+  <video autoplay muted loop playsinline class="hero-video" poster="images/fallback.jpg">
+    <source src="videos/hero_video.mp4" type="video/mp4">
+  </video>
   <div class="hero-vignette"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="bdot"></span>Signal Compression</div>
@@ -50,208 +50,220 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- HOW IT WORKS (wrapped in container) -->
 <div id="how">
-  <div class="section-pad">
-    <span class="kicker">How it works</span>
-    <h2 class="section-h2">Four operations. No loss at any stage.</h2>
-    <p class="section-preamble">NOEMA sits between your signal source and your storage or transmission layer. Nothing upstream changes. Nothing is approximated at any stage.</p>
-  </div>
-  <div class="ops-grid">
-    <div class="op-card reveal">
-      <div class="op-num">01 Intake</div>
-      <div class="op-title">Raw signal data enters NOEMA.</div>
-      <p class="op-desc">No preprocessing. No configuration. Automatically adapts to the statistical profile of incoming I/Q streams from the first run.</p>
-      <div class="op-specs"><span>Any signal type</span><span>Zero configuration</span><span>Works from first run</span></div>
+  <div class="container">
+    <div class="section-pad">
+      <span class="kicker">How it works</span>
+      <h2 class="section-h2">Four operations. No loss at any stage.</h2>
+      <p class="section-preamble">NOEMA sits between your signal source and your storage or transmission layer. Nothing upstream changes. Nothing is approximated at any stage.</p>
     </div>
-    <div class="op-card reveal">
-      <div class="op-num">02 Compress</div>
-      <div class="op-title">Adaptive lossless compression.</div>
-      <p class="op-desc">7.5 to 10 times smaller across I/Q, RF, and radar workloads. Self-tunes to your signal profile in real time or batch. Nothing is approximated.</p>
-      <div class="op-specs"><span>7.5x to 10x reduction</span><span>Self-adapting codec</span><span>Real-time or batch</span></div>
+    <div class="ops-grid">
+      <div class="op-card reveal">
+        <div class="op-num">01 Intake</div>
+        <div class="op-title">Raw signal data enters NOEMA.</div>
+        <p class="op-desc">No preprocessing. No configuration. Automatically adapts to the statistical profile of incoming I/Q streams from the first run.</p>
+        <div class="op-specs"><span>Any signal type</span><span>Zero configuration</span><span>Works from first run</span></div>
+      </div>
+      <div class="op-card reveal">
+        <div class="op-num">02 Compress</div>
+        <div class="op-title">Adaptive lossless compression.</div>
+        <p class="op-desc">7.5 to 10 times smaller across I/Q, RF, and radar workloads. Self-tunes to your signal profile in real time or batch. Nothing is approximated.</p>
+        <div class="op-specs"><span>7.5x to 10x reduction</span><span>Self-adapting codec</span><span>Real-time or batch</span></div>
+      </div>
+      <div class="op-card reveal">
+        <div class="op-num">03 Transmit / Store</div>
+        <div class="op-title">More through the same infrastructure.</div>
+        <p class="op-desc">Same bandwidth carries more. Same storage holds more. On-premises, air-gapped, or cloud. No hardware changes at any stage.</p>
+        <div class="op-specs"><span>Satellite to ground</span><span>Ground to cloud or archive</span><span>No hardware changes</span></div>
+      </div>
+      <div class="op-card reveal">
+        <div class="op-num">04 Reconstruct</div>
+        <div class="op-title">Recover the exact original signal.</div>
+        <p class="op-desc">Any time. Any file. Bit-exact reconstruction verified on output. Replay experiments. Retrain models. Nothing was lost.</p>
+        <div class="op-specs"><span>Bit-exact verified</span><span>Confirmed fidelity on output</span><span>Any file, any time</span></div>
+      </div>
     </div>
-    <div class="op-card reveal">
-      <div class="op-num">03 Transmit / Store</div>
-      <div class="op-title">More through the same infrastructure.</div>
-      <p class="op-desc">Same bandwidth carries more. Same storage holds more. On-premises, air-gapped, or cloud. No hardware changes at any stage.</p>
-      <div class="op-specs"><span>Satellite to ground</span><span>Ground to cloud or archive</span><span>No hardware changes</span></div>
-    </div>
-    <div class="op-card reveal">
-      <div class="op-num">04 Reconstruct</div>
-      <div class="op-title">Recover the exact original signal.</div>
-      <p class="op-desc">Any time. Any file. Bit-exact reconstruction verified on output. Replay experiments. Retrain models. Nothing was lost.</p>
-      <div class="op-specs"><span>Bit-exact verified</span><span>Confirmed fidelity on output</span><span>Any file, any time</span></div>
-    </div>
-  </div>
-  
-  <!-- INTERACTIVE PIPELINE -->
-  <div class="pipeline-wrap reveal">
-    <div class="pipeline-flow">
-      <div class="pipe-node"><div class="node-label">Signal source</div><div class="node-val">800 MB</div></div>
-      <div class="pipe-arrow">→</div>
-      <div class="pipe-node"><div class="node-label">Intake</div><div class="node-val">800 MB</div></div>
-      <div class="pipe-arrow">→</div>
-      <div class="pipe-node hl" id="noema-node"><div class="node-label">NOEMA</div><div class="node-val" id="ratio-display">7.6x</div><div class="node-note">compression</div></div>
-      <div class="pipe-arrow">→</div>
-      <div class="pipe-node" id="store-node"><div class="node-label">Transmit / Store</div><div class="node-val" id="compressed-size">105.3 MB</div><div class="node-note" id="saved-percent">86.8% saved</div></div>
-      <div class="pipe-arrow">→</div>
-      <div class="pipe-node"><div class="node-label">Reconstruct</div><div class="node-val">800 MB</div><div class="node-note">bit-exact</div></div>
-    </div>
-    <div class="ratio-slider">
-      <label>Adjust compression ratio</label>
-      <input type="range" id="compress-slider" min="7.5" max="10.0" step="0.01" value="7.6">
-      <span class="ratio-value" id="slider-value">7.6x</span>
+    
+    <!-- INTERACTIVE PIPELINE -->
+    <div class="pipeline-wrap reveal">
+      <div class="pipeline-flow">
+        <div class="pipe-node"><div class="node-label">Signal source</div><div class="node-val">800 MB</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node"><div class="node-label">Intake</div><div class="node-val">800 MB</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node hl" id="noema-node"><div class="node-label">NOEMA</div><div class="node-val" id="ratio-display">7.6x</div><div class="node-note">compression</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node" id="store-node"><div class="node-label">Transmit / Store</div><div class="node-val" id="compressed-size">105.3 MB</div><div class="node-note" id="saved-percent">86.8% saved</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node"><div class="node-label">Reconstruct</div><div class="node-val">800 MB</div><div class="node-note">bit-exact</div></div>
+      </div>
+      <div class="ratio-slider">
+        <label>Adjust compression ratio</label>
+        <input type="range" id="compress-slider" min="7.5" max="10.0" step="0.01" value="7.6">
+        <span class="ratio-value" id="slider-value">7.6x</span>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- WHO IT IS FOR -->
+<!-- WHO IT IS FOR (wrapped in container) -->
 <div id="for">
-  <div class="section-pad">
-    <span class="kicker">Who it's for</span>
-    <h2 class="section-h2">Designed for the most demanding signal pipelines.</h2>
-    <p class="section-preamble">Raw signal data is generated faster than it can be stored or transmitted. The data discarded under today's constraints is the data that cannot be recovered tomorrow.</p>
-  </div>
-  <div class="cards-grid">
-    <div class="who-card reveal">
-      <div class="card-img-box" style="--d:0s">
-        <img src="images/av1.png" alt="Autonomous vehicle testing" loading="lazy">
-      </div>
-      <div class="card-body">
-        <div class="card-cat">Autonomous Vehicles</div>
-        <div class="card-title">AV test fleets generate terabytes of raw radar data daily.</div>
-        <p class="card-text">Storing everything is expensive; discarding any means losing edge cases. NOEMA compresses raw sensor streams losslessly, preserving every bit while reducing the storage footprint.</p>
-      </div>
+  <div class="container">
+    <div class="section-pad">
+      <span class="kicker">Who it's for</span>
+      <h2 class="section-h2">Designed for the most demanding signal pipelines.</h2>
+      <p class="section-preamble">Raw signal data is generated faster than it can be stored or transmitted. The data discarded under today's constraints is the data that cannot be recovered tomorrow.</p>
     </div>
-    <div class="who-card reveal">
-      <div class="card-img-box" style="--d:1.8s">
-        <img src="images/sat1.png" alt="Satellite in orbit" loading="lazy">
+    <div class="cards-grid">
+      <div class="who-card reveal">
+        <div class="card-img-box" style="--d:0s">
+          <img src="images/av1.png" alt="Autonomous vehicle testing" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Autonomous Vehicles</div>
+          <div class="card-title">AV test fleets generate terabytes of raw radar data daily.</div>
+          <p class="card-text">Storing everything is expensive; discarding any means losing edge cases. NOEMA compresses raw sensor streams losslessly, preserving every bit while reducing the storage footprint.</p>
+        </div>
       </div>
-      <div class="card-body">
-        <div class="card-cat">Satellite and SAR</div>
-        <div class="card-title">Downlink windows are measured in minutes. What does not fit is gone.</div>
-        <p class="card-text">NOEMA compresses SAR and telemetry data at the source, on the ground, and between relay stations. More science through the same link.</p>
+      <div class="who-card reveal">
+        <div class="card-img-box" style="--d:1.8s">
+          <img src="images/sat1.png" alt="Satellite in orbit" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Satellite and SAR</div>
+          <div class="card-title">Downlink windows are measured in minutes. What does not fit is gone.</div>
+          <p class="card-text">NOEMA compresses SAR and telemetry data at the source, on the ground, and between relay stations. More science through the same link.</p>
+        </div>
       </div>
-    </div>
-    <div class="who-card reveal">
-      <div class="card-img-box" style="--d:3.6s">
-        <img src="images/sigint1.png" alt="Tactical operations" loading="lazy">
-      </div>
-      <div class="card-body">
-        <div class="card-cat">Defense and SIGINT</div>
-        <div class="card-title">At the tactical edge, storage is constrained and connectivity is intermittent.</div>
-        <p class="card-text">NOEMA compresses at the point of collection. Air-gappable, ARM-compatible, bit-exact. Keep every capture. Replay any signal later.</p>
+      <div class="who-card reveal">
+        <div class="card-img-box" style="--d:3.6s">
+          <img src="images/sigint1.png" alt="Tactical operations" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Defense and SIGINT</div>
+          <div class="card-title">At the tactical edge, storage is constrained and connectivity is intermittent.</div>
+          <p class="card-text">NOEMA compresses at the point of collection. Air-gappable, ARM-compatible, bit-exact. Keep every capture. Replay any signal later.</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FIRST PRINCIPLES -->
+<!-- FIRST PRINCIPLES (wrapped in container) -->
 <div>
-  <div class="section-pad">
-    <span class="kicker">First principles</span>
-    <h2 class="section-h2">Every signal you discard is information you cannot recover.</h2>
-  </div>
-  <div class="principles-grid">
-    <div class="principle reveal"><h4>You cannot retrain on data you did not keep.</h4><p>Once raw signal captures are deleted, they are gone. The models you run tomorrow depend on what you store today.</p></div>
-    <div class="principle reveal"><h4>You cannot reproduce experiments without the original signal.</h4><p>Bit-exact reconstruction means any experiment, any analysis, any algorithm can be run against the original capture at any future point.</p></div>
-    <div class="principle reveal"><h4>Lossless means nothing is approximated. Ever.</h4><p>NOEMA does not trade fidelity for compression ratio. Every bit of the original signal is preserved and verifiable on output.</p></div>
-    <div class="principle reveal"><h4>Built for teams that cannot afford to lose the past.</h4><p>The insight you do not yet know you will need is already in your data. NOEMA makes keeping it the same cost as keeping almost nothing.</p></div>
+  <div class="container">
+    <div class="section-pad">
+      <span class="kicker">First principles</span>
+      <h2 class="section-h2">Every signal you discard is information you cannot recover.</h2>
+    </div>
+    <div class="principles-grid">
+      <div class="principle reveal"><h4>You cannot retrain on data you did not keep.</h4><p>Once raw signal captures are deleted, they are gone. The models you run tomorrow depend on what you store today.</p></div>
+      <div class="principle reveal"><h4>You cannot reproduce experiments without the original signal.</h4><p>Bit-exact reconstruction means any experiment, any analysis, any algorithm can be run against the original capture at any future point.</p></div>
+      <div class="principle reveal"><h4>Lossless means nothing is approximated. Ever.</h4><p>NOEMA does not trade fidelity for compression ratio. Every bit of the original signal is preserved and verifiable on output.</p></div>
+      <div class="principle reveal"><h4>Built for teams that cannot afford to lose the past.</h4><p>The insight you do not yet know you will need is already in your data. NOEMA makes keeping it the same cost as keeping almost nothing.</p></div>
+    </div>
   </div>
 </div>
 
-<!-- TRY IT SECTION -->
+<!-- TRY IT SECTION (wrapped in container) -->
 <div id="pilot" style="border-top: 1px solid var(--border); padding: 2rem 0 0;">
-  <div class="tryit-banner reveal" style="margin: 0 2.5rem 2.5rem;">
-    <div class="tryit-top">
-      <div>
-        <div class="shadow-badge">
-          <span class="shadow-badge-dot"></span>
-          <span class="shadow-badge-text">SHADOW MODE — RUNS PARALLEL TO YOUR EXISTING PIPELINE. ZERO DISRUPTION.</span>
+  <div class="container">
+    <div class="tryit-banner reveal" style="margin: 0;">
+      <div class="tryit-top">
+        <div>
+          <div class="shadow-badge">
+            <span class="shadow-badge-dot"></span>
+            <span class="shadow-badge-text">SHADOW MODE — RUNS PARALLEL TO YOUR EXISTING PIPELINE. ZERO DISRUPTION.</span>
+          </div>
+          <div class="tryit-heading">Live in your environment<br>the same day.</div>
+          <p class="tryit-sub">No integration required. No data leaves your system. No risk. Runs in parallel with your existing pipeline from day one.</p>
+          <div class="tryit-badge-section">
+            <div class="tryit-badge-line">ON-PREMISES · AIR-GAPPED · CLOUD</div>
+            <div class="tryit-badge-single">NO DATA LEAVES YOUR ENVIRONMENT</div>
+            <div class="tryit-badge-single">WORKS FROM DAY ONE</div>
+          </div>
         </div>
-        <div class="tryit-heading">Live in your environment<br>the same day.</div>
-        <p class="tryit-sub">No integration required. No data leaves your system. No risk. Runs in parallel with your existing pipeline from day one.</p>
-        <div class="tryit-badge-section">
-          <div class="tryit-badge-line">ON-PREMISES · AIR-GAPPED · CLOUD</div>
-          <div class="tryit-badge-single">NO DATA LEAVES YOUR ENVIRONMENT</div>
-          <div class="tryit-badge-single">WORKS FROM DAY ONE</div>
+      </div>
+
+      <div class="tryit-steps">
+        <div class="tryit-step">
+          <div class="ts-num">01 RECEIVE</div>
+          <div class="ts-title">Delivered instantly</div>
+          <p class="ts-body">Binary, setup wizard, test data, and documentation. Linux, Windows, and ARM.</p>
+        </div>
+        <div class="tryit-step">
+          <div class="ts-num">02 DEPLOY</div>
+          <div class="ts-title">Answer four questions</div>
+          <p class="ts-body">Input, output, CPU limit, throughput cap. Configuration is generated automatically. No coding.</p>
+        </div>
+        <div class="tryit-step">
+          <div class="ts-num">03 OBSERVE</div>
+          <div class="ts-title">Results appear automatically</div>
+          <p class="ts-body">Compression ratio, storage savings, and reconstruction verification on your own I/Q data.</p>
+        </div>
+        <div class="tryit-step">
+          <div class="ts-num">04 REVIEW</div>
+          <div class="ts-title">Clear impact</div>
+          <p class="ts-body">Storage savings, bandwidth gains, ROI. You leave with a decision, not a report.</p>
         </div>
       </div>
-    </div>
 
-    <div class="tryit-steps">
-      <div class="tryit-step">
-        <div class="ts-num">01 RECEIVE</div>
-        <div class="ts-title">Delivered instantly</div>
-        <p class="ts-body">Binary, setup wizard, test data, and documentation. Linux, Windows, and ARM.</p>
+      <div class="deploy-row">
+        <span class="deploy-label">INTEGRATE AS</span>
+        <span class="deploy-item">DROP-IN MODE</span>
+        <span class="deploy-item">SDK / API</span>
+        <span class="deploy-item">EDGE BINARY</span>
+        <span class="deploy-item">BATCH OR REAL-TIME</span>
       </div>
-      <div class="tryit-step">
-        <div class="ts-num">02 DEPLOY</div>
-        <div class="ts-title">Answer four questions</div>
-        <p class="ts-body">Input, output, CPU limit, throughput cap. Configuration is generated automatically. No coding.</p>
-      </div>
-      <div class="tryit-step">
-        <div class="ts-num">03 OBSERVE</div>
-        <div class="ts-title">Results appear automatically</div>
-        <p class="ts-body">Compression ratio, storage savings, and reconstruction verification on your own I/Q data.</p>
-      </div>
-      <div class="tryit-step">
-        <div class="ts-num">04 REVIEW</div>
-        <div class="ts-title">Clear impact</div>
-        <p class="ts-body">Storage savings, bandwidth gains, ROI. You leave with a decision, not a report.</p>
-      </div>
-    </div>
 
-    <div class="deploy-row">
-      <span class="deploy-label">INTEGRATE AS</span>
-      <span class="deploy-item">DROP-IN MODE</span>
-      <span class="deploy-item">SDK / API</span>
-      <span class="deploy-item">EDGE BINARY</span>
-      <span class="deploy-item">BATCH OR REAL-TIME</span>
-    </div>
-
-    <div class="tryit-cta-row">
-      <button class="btn-white" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">TEST IT NOW</button>
-      <button class="tryit-arrow" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
+      <div class="tryit-cta-row">
+        <button class="btn-white" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">TEST IT NOW</button>
+        <button class="tryit-arrow" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- FORM -->
-<div id="signup" class="form-section">
-  <div class="form-left reveal">
-    <h2>Request access</h2>
-    <p>Human response within 24 hours. No automated sequences. Priority given to AV infrastructure teams, satellite and ground station operators, and defense organizations.</p>
-  </div>
-  <div class="reveal">
-    <form id="accessForm">
-      <div class="f-row">
-        <div class="f-group"><label class="f-label">First name</label><input class="fi" type="text" placeholder="First name" required></div>
-        <div class="f-group"><label class="f-label">Last name</label><input class="fi" type="text" placeholder="Last name" required></div>
+<!-- FORM (wrapped in container) -->
+<div id="signup">
+  <div class="container">
+    <div class="form-section" style="border-top: none; padding: 4rem 0;">
+      <div class="form-left reveal">
+        <h2>Request access</h2>
+        <p>Human response within 24 hours. No automated sequences. Priority given to AV infrastructure teams, satellite and ground station operators, and defense organizations.</p>
       </div>
-      <div class="f-group"><label class="f-label">Work email</label><input class="fi" type="email" placeholder="you@org.com" required></div>
-      <div class="f-group"><label class="f-label">Organisation</label><input class="fi" type="text" placeholder="Organization name"></div>
-      <div class="f-group">
-        <label class="f-label">Sector</label>
-        <select class="fs" required>
-          <option value="" disabled selected>Select sector</option>
-          <option>Autonomous Vehicles</option>
-          <option>Ground station operator</option>
-          <option>Satellite / SAR — commercial</option>
-          <option>Satellite / SAR — government</option>
-          <option>Defense / SIGINT</option>
-          <option>Telecom R&amp;D</option>
-          <option>Research institution</option>
-          <option>Other</option>
-        </select>
+      <div class="reveal">
+        <form id="accessForm">
+          <div class="f-row">
+            <div class="f-group"><label class="f-label">First name</label><input class="fi" type="text" placeholder="First name" required></div>
+            <div class="f-group"><label class="f-label">Last name</label><input class="fi" type="text" placeholder="Last name" required></div>
+          </div>
+          <div class="f-group"><label class="f-label">Work email</label><input class="fi" type="email" placeholder="you@org.com" required></div>
+          <div class="f-group"><label class="f-label">Organisation</label><input class="fi" type="text" placeholder="Organization name"></div>
+          <div class="f-group">
+            <label class="f-label">Sector</label>
+            <select class="fs" required>
+              <option value="" disabled selected>Select sector</option>
+              <option>Autonomous Vehicles</option>
+              <option>Ground station operator</option>
+              <option>Satellite / SAR — commercial</option>
+              <option>Satellite / SAR — government</option>
+              <option>Defense / SIGINT</option>
+              <option>Telecom R&amp;D</option>
+              <option>Research institution</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="f-group"><label class="f-label">Signal type or use case</label><input class="fi" type="text" placeholder="e.g. SAR Level-0, radar ADC, wideband I/Q"></div>
+          <button type="submit" class="fsub">Request access →</button>
+          <p class="fnote">Human response within 24 hours · No automated sequences</p>
+        </form>
+        <div id="formSuccess"><p>Request received.</p><small>We will be in touch within 24 hours.</small></div>
       </div>
-      <div class="f-group"><label class="f-label">Signal type or use case</label><input class="fi" type="text" placeholder="e.g. SAR Level-0, radar ADC, wideband I/Q"></div>
-      <button type="submit" class="fsub">Request access →</button>
-      <p class="fnote">Human response within 24 hours · No automated sequences</p>
-    </form>
-    <div id="formSuccess"><p>Request received.</p><small>We will be in touch within 24 hours.</small></div>
+    </div>
   </div>
 </div>
 
@@ -264,9 +276,10 @@
     <a href="mailto:info@noemasystems.com">info@noemasystems.com</a>
   </div>
   <div class="footer-legal">
-  © 2026 NOEMA DATA SYSTEMS. All Rights Reserved. 
-  <a href="#" class="privacy-link">Privacy Policy</a>
-</div>
+    © 2026 NOEMA DATA SYSTEMS. All Rights Reserved. 
+    <a href="#" class="privacy-link">Privacy Policy</a>
+  </div>
+</footer>
 
 <script src="js/main.js"></script>
 </body>
