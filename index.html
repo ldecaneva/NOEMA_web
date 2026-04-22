@@ -19,21 +19,19 @@
     <a onclick="document.getElementById('pilot').scrollIntoView({behavior:'smooth'})">Try it</a>
     <a onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Contact</a>
   </div>
-  <button class="nav-cta" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Request access</button>
+  <button class="nav-cta" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Run on your data</button>
 </nav>
 
 <!-- HERO (full width, no border) -->
 <section class="hero">
-  <video autoplay muted loop playsinline class="hero-video" poster="images/fallback.jpg">
-    <source src="videos/hero_video.mp4" type="video/mp4">
-  </video>
+  <div class="hero-image"></div>
   <div class="hero-vignette"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="bdot"></span>Signal Compression</div>
     <h1>Lossless compression<br>for raw radar and<br><em>RF signal data.</em></h1>
-    <p class="hero-sub">Raw sensor captures are often discarded due to storage, bandwidth, and processing constraints. NOEMA compresses them losslessly by 7.5 to 10x, enabling complete data retention without tradeoffs.</p>
+    <p class="hero-sub">Raw sensor data is often discarded due to storage and bandwidth limits.<br>NOEMA compresses it 7.5–10x, losslessly, so nothing is lost.</p>
     <div class="hero-actions">
-      <button class="btn-white" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Request access</button>
+      <button class="btn-white" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Run on your data</button>
       <button class="btn-outline" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works →</button>
     </div>
   </div>
@@ -51,8 +49,8 @@
 </section>
 
 <main class="container">
-  <!-- HOW IT WORKS (bordered card) -->
-  <div id="how" class="section-card">
+  <!-- HOW IT WORKS -->
+  <div id="how">
     <div class="section-pad" style="border-top: none; padding-top: 0;">
       <span class="kicker">How it works</span>
       <h2 class="section-h2">Four operations. No loss at any stage.</h2>
@@ -103,12 +101,13 @@
         <input type="range" id="compress-slider" min="7.5" max="10.0" step="0.01" value="7.6">
         <span class="ratio-value" id="slider-value">7.6x</span>
       </div>
+      <div class="validation-note">Validated on real-world SAR and RF captures</div>
     </div>
   </div>
 
-  <!-- WHO IT IS FOR (bordered card) -->
-  <div id="for" class="section-card">
-    <div class="section-pad" style="border-top: none; padding-top: 0;">
+  <!-- WHO IT IS FOR -->
+  <div id="for">
+    <div class="section-pad">
       <span class="kicker">Who it's for</span>
       <h2 class="section-h2">Designed for the most demanding signal pipelines.</h2>
       <p class="section-preamble">Raw signal data is generated faster than it can be stored or transmitted. The data discarded under today's constraints is the data that cannot be recovered tomorrow.</p>
@@ -147,9 +146,9 @@
     </div>
   </div>
 
-  <!-- FIRST PRINCIPLES (bordered card) -->
-  <div class="section-card">
-    <div class="section-pad" style="border-top: none; padding-top: 0;">
+  <!-- FIRST PRINCIPLES -->
+  <div>
+    <div class="section-pad">
       <span class="kicker">First principles</span>
       <h2 class="section-h2">Every signal you discard is information you cannot recover.</h2>
     </div>
@@ -161,9 +160,9 @@
     </div>
   </div>
 
-  <!-- TRY IT SECTION (bordered card) -->
-  <div id="pilot" class="section-card" style="padding: 0;">
-    <div class="tryit-banner" style="margin: 0; border: none; background: transparent; padding: 3rem;">
+  <!-- TRY IT SECTION -->
+  <div id="pilot">
+    <div class="tryit-banner reveal">
       <div class="tryit-top">
         <div>
           <div class="shadow-badge">
@@ -201,9 +200,9 @@
     </div>
   </div>
 
-  <!-- FORM SECTION (bordered card) -->
-  <div id="signup" class="section-card" style="padding: 0;">
-    <div class="form-section" style="border-top: none; padding: 3rem;">
+  <!-- FORM -->
+  <div id="signup">
+    <div class="form-section" style="border-top: none; padding: 4rem 0;">
       <div class="form-left reveal">
         <h2>Request access</h2>
         <p>Human response within 24 hours. No automated sequences. Priority given to AV infrastructure teams, satellite and ground station operators, and defense organizations.</p>
