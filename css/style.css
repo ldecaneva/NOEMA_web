@@ -2460,7 +2460,6 @@ footer {
     content: '';
     flex: 0 0 1rem;
   }
-}
 
 @media (max-width: 380px) {
   .hero h1 { font-size: 2rem; }
