@@ -12,6 +12,9 @@
 <body>
 
 <nav>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <img src="images/noema_logo.png" alt="NOEMA" class="nav-logo-img" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <div class="nav-links">
     <a onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works</a>
@@ -21,6 +24,15 @@
   </div>
   <button class="nav-cta" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Request access</button>
 </nav>
+
+<!-- Mobile dropdown menu -->
+<div class="nav-dropdown" id="navDropdown">
+  <a onclick="closeNav(); document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works</a>
+  <a onclick="closeNav(); document.getElementById('for').scrollIntoView({behavior:'smooth'})">Who it's for</a>
+  <a onclick="closeNav(); document.getElementById('pilot').scrollIntoView({behavior:'smooth'})">Try it</a>
+  <a onclick="closeNav(); document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Contact</a>
+  <button class="nav-dropdown-cta" onclick="closeNav(); document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Request access</button>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -281,6 +293,32 @@
 
 <script src="js/main.js"></script>
 <script>
+/* ---- MOBILE NAV TOGGLE ---- */
+function closeNav(){
+  document.getElementById('navDropdown').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+  document.getElementById('navHamburger').setAttribute('aria-expanded','false');
+  document.body.classList.remove('nav-open');
+}
+document.getElementById('navHamburger').addEventListener('click', function(){
+  const dd = document.getElementById('navDropdown');
+  const open = dd.classList.toggle('open');
+  this.classList.toggle('open', open);
+  this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.classList.toggle('nav-open', open);
+});
+/* Close on outside tap */
+document.addEventListener('click', function(e){
+  const dd = document.getElementById('navDropdown');
+  const hb = document.getElementById('navHamburger');
+  if(dd.classList.contains('open') && !dd.contains(e.target) && !hb.contains(e.target)){
+    closeNav();
+  }
+});
+/* Close on resize to desktop */
+window.addEventListener('resize', function(){
+  if(window.innerWidth > 700) closeNav();
+});
 /* ---- UTC CLOCK ---- */
 (function tick(){
   const d = new Date();
