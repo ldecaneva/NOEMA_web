@@ -278,9 +278,12 @@ body.nav-open { overflow: hidden; }
   position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border2);
-  display: grid; grid-template-columns: repeat(4,1fr);
   background: rgba(0,0,0,0.96); backdrop-filter: blur(20px);
   padding: 0.5rem 0;
+  overflow: hidden;
+}
+.hero-bar-track {
+  display: grid; grid-template-columns: repeat(4,1fr);
 }
 .bar-cell {
   padding: 14px 1.25rem;
@@ -528,6 +531,9 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
   border: 1px solid var(--border2); border-radius: 8px;
   overflow: hidden; margin: 2rem 0;
 }
+.deploy-track {
+  display: flex; flex: 1;
+}
 .deploy-label {
   font-family: var(--mono); font-size: 10px; font-weight: 700;
   letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
@@ -769,6 +775,181 @@ footer {
     padding: 2rem 1rem;
   }
   .footer-links { gap: 1.25rem 1.75rem; }
+
+  /* ==========================================================
+     MOBILE CAROUSELS & MARQUEES
+     ========================================================== */
+
+  /* ---- HERO BAR: auto-scrolling marquee ---- */
+  .hero-bar { padding: 0; }
+  .hero-bar-track {
+    display: flex;
+    grid-template-columns: none;
+    width: max-content;
+    animation: marquee-scroll 28s linear infinite;
+  }
+  .hero-bar-track .bar-cell {
+    flex-shrink: 0;
+    padding: 10px 1.5rem;
+    border-bottom: none;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  /* ---- TRY-IT BADGES: auto-scrolling marquee ---- */
+  .tryit-badge-section {
+    margin: 1rem -1.25rem; /* bleed to banner edges */
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .tryit-badge-track {
+    display: flex;
+    width: max-content;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    animation: marquee-scroll 22s linear infinite;
+  }
+  .tryit-badge-track > * {
+    flex-shrink: 0;
+    margin: 0 !important;
+    white-space: nowrap;
+  }
+
+  /* ---- DEPLOY ROW: auto-scrolling marquee (replaces earlier stack) ---- */
+  .deploy-row {
+    flex-direction: row;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .deploy-label {
+    border-right: 1px solid var(--border2);
+    border-bottom: none;
+    padding: 10px 14px;
+    flex-shrink: 0;
+    justify-content: center;
+  }
+  .deploy-track {
+    flex: 1;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    display: flex;
+  }
+  .deploy-track-inner,
+  .deploy-track {
+    width: auto;
+  }
+  .deploy-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 22s linear infinite;
+  }
+  .deploy-track .deploy-item {
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    border-bottom: none;
+    padding: 10px 18px;
+    white-space: nowrap;
+  }
+
+  .ops-grid {
+    grid-template-columns: none;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-top: none; border-bottom: none;
+    background: transparent;
+    gap: 0;
+    margin: 0 -1rem; /* bleed to screen edges */
+    padding: 0 1rem 0.5rem;
+  }
+  .ops-grid::-webkit-scrollbar { display: none; }
+  .op-card {
+    flex: 0 0 82%;
+    min-width: 82%;
+    scroll-snap-align: start;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-right: 0.75rem;
+  }
+  .op-card:last-child { margin-right: 0.5rem; }
+
+  /* ---- WHO IT'S FOR: horizontal swipe carousel ---- */
+  .cards-grid {
+    grid-template-columns: none;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-top: none; border-bottom: none;
+    background: transparent;
+    gap: 0;
+    margin: 1rem -1rem 0.5rem;
+    padding: 0 1rem 0.5rem;
+  }
+  .cards-grid::-webkit-scrollbar { display: none; }
+  .who-card {
+    flex: 0 0 82%;
+    min-width: 82%;
+    scroll-snap-align: start;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-right: 0.75rem;
+    overflow: hidden;
+  }
+  .who-card:last-child { margin-right: 0.5rem; }
+
+  /* ---- FIRST PRINCIPLES: simple 2x2 grid ---- */
+  .principles-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+  }
+  .principle { padding: 1.25rem 1rem; }
+  .principle h4 { font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.3; }
+  .principle p { font-size: 0.82rem; line-height: 1.55; }
+
+  /* ---- TRY-IT STEPS: horizontal swipe carousel ---- */
+  .tryit-steps {
+    grid-template-columns: none;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    background: transparent;
+    border-radius: 0;
+    gap: 0.75rem;
+    margin: 1.25rem -1.25rem; /* bleed to banner edges */
+    padding: 0 1.25rem 0.5rem;
+  }
+  .tryit-steps::-webkit-scrollbar { display: none; }
+  .tryit-step {
+    flex: 0 0 78%;
+    min-width: 78%;
+    scroll-snap-align: start;
+    border: 1px solid var(--border2);
+    border-radius: 14px;
+  }
+
+  /* ---- PIPELINE: cleaner mobile stack with smaller arrows ---- */
+  .pipeline-flow { gap: 0.35rem; }
+  .pipe-node { padding: 0.75rem 0.75rem; }
+  .node-label { font-size: 8.5px; }
+  .node-val { font-size: 1.2rem; margin: 0.15rem 0; }
+  .node-note { font-size: 8.5px; }
+  .pipe-arrow { font-size: 0.9rem; line-height: 0.5; }
+
+  /* ---- CAROUSEL SCROLL HINT DOTS (visual affordance) ---- */
+  .ops-grid::after,
+  .cards-grid::after,
+  .tryit-steps::after {
+    content: '';
+    flex: 0 0 1rem;
+  }
 }
 
 /* Very narrow screens (≤380px) — extra tightening */
@@ -779,4 +960,10 @@ footer {
   .hero-actions .btn-outline,
   .hero-actions .btn-white { width: 100%; justify-content: center; text-align: center; }
   .nav-logo-img { height: 30px; }
+}
+
+/* ---- Mobile marquee animation (outside media query for broad support) ---- */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }

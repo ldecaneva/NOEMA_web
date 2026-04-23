@@ -71,10 +71,12 @@
   </div>
 
   <div class="hero-bar">
-    <div class="bar-cell on"><span class="dot-sm live"></span>Codec active</div>
-    <div class="bar-cell"><span class="dot-sm"></span>Level-0 IQ preserved</div>
-    <div class="bar-cell"><span class="dot-sm"></span>Bit-exact verified</div>
-    <div class="bar-cell"><span class="dot-sm"></span>On-premises &middot; Air-gapped &middot; Cloud</div>
+    <div class="hero-bar-track">
+      <div class="bar-cell on"><span class="dot-sm live"></span>Codec active</div>
+      <div class="bar-cell"><span class="dot-sm"></span>Level-0 IQ preserved</div>
+      <div class="bar-cell"><span class="dot-sm"></span>Bit-exact verified</div>
+      <div class="bar-cell"><span class="dot-sm"></span>On-premises &middot; Air-gapped &middot; Cloud</div>
+    </div>
   </div>
 </section>
 
@@ -210,9 +212,11 @@
           <div class="tryit-heading">Live in your environment<br>the same day.</div>
           <p class="tryit-sub">No integration required. No data leaves your system. No risk. Runs in parallel with your existing pipeline from day one.</p>
           <div class="tryit-badge-section">
-            <div class="tryit-badge-line">ON-PREMISES &middot; AIR-GAPPED &middot; CLOUD</div>
-            <div class="tryit-badge-single">NO DATA LEAVES YOUR ENVIRONMENT</div>
-            <div class="tryit-badge-single">WORKS FROM DAY ONE</div>
+            <div class="tryit-badge-track">
+              <div class="tryit-badge-line">ON-PREMISES &middot; AIR-GAPPED &middot; CLOUD</div>
+              <div class="tryit-badge-single">NO DATA LEAVES YOUR ENVIRONMENT</div>
+              <div class="tryit-badge-single">WORKS FROM DAY ONE</div>
+            </div>
           </div>
         </div>
       </div>
@@ -224,10 +228,12 @@
       </div>
       <div class="deploy-row">
         <span class="deploy-label">Integrate as</span>
-        <span class="deploy-item">Drop-in mode</span>
-        <span class="deploy-item">SDK / API</span>
-        <span class="deploy-item">Edge binary</span>
-        <span class="deploy-item">Batch or real-time</span>
+        <div class="deploy-track">
+          <span class="deploy-item">Drop-in mode</span>
+          <span class="deploy-item">SDK / API</span>
+          <span class="deploy-item">Edge binary</span>
+          <span class="deploy-item">Batch or real-time</span>
+        </div>
       </div>
       <div class="tryit-cta-row">
         <button class="btn-white" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">Contact to test it</button>
@@ -319,6 +325,30 @@ document.addEventListener('click', function(e){
 window.addEventListener('resize', function(){
   if(window.innerWidth > 700) closeNav();
 });
+
+/* ---- MOBILE MARQUEES: duplicate track content once for seamless loop ---- */
+(function(){
+  function setupMarquees(){
+    const isMobile = window.innerWidth <= 700;
+    const tracks = document.querySelectorAll('.hero-bar-track, .tryit-badge-track, .deploy-track');
+    tracks.forEach(track => {
+      if(isMobile && !track.dataset.duplicated){
+        track.dataset.originalHTML = track.innerHTML;
+        track.innerHTML = track.innerHTML + track.innerHTML;
+        track.dataset.duplicated = 'true';
+      } else if(!isMobile && track.dataset.duplicated){
+        track.innerHTML = track.dataset.originalHTML;
+        track.dataset.duplicated = '';
+      }
+    });
+  }
+  setupMarquees();
+  let resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(setupMarquees, 150);
+  });
+})();
 /* ---- UTC CLOCK ---- */
 (function tick(){
   const d = new Date();
