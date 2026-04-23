@@ -174,7 +174,7 @@ nav {
 /* Hero content */
 .hero-content {
   position: relative; z-index: 2;
-  max-width: 700px; margin-bottom: 1rem;
+  max-width: 700px; margin-bottom: 4rem;
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 10px;
@@ -203,7 +203,7 @@ nav {
 .hero-sub {
   font-family: var(--sans); font-size: 1.15rem; font-weight: 400;
   color: var(--sub); max-width: 580px; line-height: 1.7;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .hero-actions {
   display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
@@ -494,7 +494,7 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
 .tryit-banner {
   background: var(--card); border: 1px solid var(--border2);
   border-radius: 28px; padding: 3.5rem;
-  margin: 1.25rem 0 2rem;
+  margin: 4rem 0 2rem;
   position: relative; overflow: hidden;
 }
 .tryit-banner::before {
@@ -680,7 +680,7 @@ footer {
   flex-wrap: wrap; gap: 1.5rem;
   margin-top: 3rem;
 }
-.footer-logo-img { height: 28px; width: auto; display: block; }
+.footer-logo-img { height: 44px; width: auto; display: block; }
 .footer-links { display: flex; gap: 2.5rem; flex-wrap: wrap; }
 .footer-links a {
   font-family: var(--sans); font-size: 14px; font-weight: 400;
@@ -896,24 +896,35 @@ footer {
   .shadow-badge-text { font-size: 9px; letter-spacing: 0.14em; }
   .tryit-cta-row  { flex-wrap: wrap; }
 
-  /* --- Try-it badges: auto-scrolling marquee --- */
+  /* --- Try-it badges: swipeable + auto-advancing carousel --- */
   .tryit-badge-section {
     margin: 1rem -1.25rem;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
             mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
+  .tryit-badge-section::-webkit-scrollbar { display: none; }
   .tryit-badge-track {
     display: flex;
     width: max-content;
     gap: 0.5rem;
-    padding: 0 0.5rem;
+    padding: 0 0.75rem;
     animation: marquee-scroll 22s linear infinite;
+  }
+  .tryit-badge-section:hover .tryit-badge-track,
+  .tryit-badge-section:active .tryit-badge-track,
+  .tryit-badge-section.paused .tryit-badge-track {
+    animation-play-state: paused;
   }
   .tryit-badge-track > * {
     flex-shrink: 0;
     margin: 0 !important;
     white-space: nowrap;
+    scroll-snap-align: start;
   }
 
   /* --- Try-it steps: horizontal swipe carousel --- */
@@ -941,7 +952,7 @@ footer {
   }
   .ts-title { font-size: 1.2rem; }
 
-  /* --- Deploy row: fixed label + marquee items --- */
+  /* --- Deploy row: fixed label + swipeable marquee items --- */
   .deploy-row {
     position: relative;
     flex-direction: row;
@@ -961,10 +972,24 @@ footer {
     justify-content: center;
     flex-shrink: 0;
   }
+  .deploy-scroller {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    flex: 1;
+  }
+  .deploy-scroller::-webkit-scrollbar { display: none; }
   .deploy-track {
     display: flex;
     width: max-content;
     animation: marquee-scroll 18s linear infinite;
+  }
+  .deploy-scroller:hover .deploy-track,
+  .deploy-scroller:active .deploy-track,
+  .deploy-scroller.paused .deploy-track {
+    animation-play-state: paused;
   }
   .deploy-item {
     flex-shrink: 0;
@@ -973,6 +998,7 @@ footer {
     padding: 10px 14px;
     white-space: nowrap;
     min-width: max-content;
+    scroll-snap-align: start;
   }
   .deploy-item:last-child { border-right: 1px solid var(--border); }
   .deploy-row::before {

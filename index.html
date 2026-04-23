@@ -228,11 +228,13 @@
       </div>
       <div class="deploy-row">
         <span class="deploy-label">Integrate as</span>
-        <div class="deploy-track">
-          <span class="deploy-item">Drop-in mode</span>
-          <span class="deploy-item">SDK / API</span>
-          <span class="deploy-item">Edge binary</span>
-          <span class="deploy-item">Batch or real-time</span>
+        <div class="deploy-scroller">
+          <div class="deploy-track">
+            <span class="deploy-item">Drop-in mode</span>
+            <span class="deploy-item">SDK / API</span>
+            <span class="deploy-item">Edge binary</span>
+            <span class="deploy-item">Batch or real-time</span>
+          </div>
         </div>
       </div>
       <div class="tryit-cta-row">
@@ -347,6 +349,22 @@ window.addEventListener('resize', function(){
   window.addEventListener('resize', function(){
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(setupMarquees, 150);
+  });
+
+  /* Pause the marquee while the user is touching/scrolling it */
+  const swipeContainers = document.querySelectorAll('.tryit-badge-section, .deploy-scroller');
+  swipeContainers.forEach(el => {
+    let scrollResetTimer;
+    el.addEventListener('touchstart', () => el.classList.add('paused'), {passive:true});
+    el.addEventListener('touchend',   () => {
+      clearTimeout(scrollResetTimer);
+      scrollResetTimer = setTimeout(() => el.classList.remove('paused'), 1200);
+    }, {passive:true});
+    el.addEventListener('scroll', () => {
+      el.classList.add('paused');
+      clearTimeout(scrollResetTimer);
+      scrollResetTimer = setTimeout(() => el.classList.remove('paused'), 1200);
+    }, {passive:true});
   });
 })();
 /* ---- UTC CLOCK ---- */
