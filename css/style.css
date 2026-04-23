@@ -590,8 +590,8 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
   padding: 10px 16px;
   border-right: 1px solid var(--border);
   display: flex; align-items: center; gap: 6px;
-  flex: 1; justify-content: center;
-  white-space: nowrap;
+  flex: 0 0 auto;                   /* ← prevents shrinking, sizes to content */
+  white-space: nowrap;              /* ← forces text to stay on one line */
 }
 .deploy-item:last-child { border-right: none; }
 .deploy-item::before {
