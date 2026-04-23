@@ -22,6 +22,14 @@
 
 .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
+/* Scroll targets land with the section title just below the fixed nav (68px).
+   Values account for each section's own top padding/margin so the title —
+   not the blank space above it — lands at the nav edge. */
+#how      { scroll-margin-top: 84px; } /* kicker sits at anchor top */
+#for      { scroll-margin-top: 36px; } /* section-pad adds 3rem before kicker */
+#principles { scroll-margin-top: 36px; }
+#pilot    { scroll-margin-top: 68px; } /* banner has 1.25rem top margin */
+#signup   { scroll-margin-top: 44px; } /* form has 2.5rem inline top padding */
 body {
   background: var(--black); color: var(--text);
   font-family: var(--sans); font-weight: 400; line-height: 1.6;
@@ -157,7 +165,7 @@ nav {
 .hero-sub {
   font-family: var(--sans); font-size: 1.15rem; font-weight: 400;
   color: var(--sub); max-width: 580px; line-height: 1.7;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .hero-actions {
   display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
