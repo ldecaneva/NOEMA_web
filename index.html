@@ -391,133 +391,127 @@ let frameCount = 0;
   setTimeout(tickSession, 1000);
 })();
 
-/* ---- HERO CANVAS: unified live particle field + faint signal lines + NOEMA ring
-   One canvas, one RAF loop. Mouse repels every particle (water-parting).
-   Ring particles have a strong spring home; field particles drift loosely. ---- */
+/* ---- HERO CANVAS: galaxy → NOEMA logo → disperse, looping
+   Single canvas, single RAF loop. Mouse repels all stars (water-parting).
+   ~1400 stars, sprite-based (cheap), auto-pauses when hero is off-screen. ---- */
 (function(){
   const c = document.getElementById('hero-canvas');
   if(!c) return;
   const ctx = c.getContext('2d');
   const heroEl = c.closest('.hero');
   let W, H, t = 0;
-  let bands = [];
   let particles = [];
   let mouse = { x: -9999, y: -9999, active: false };
   let running = true;
 
-  // --- Pre-rendered fuzzy blue sprite — drawn via drawImage (cheap) ---
-  const SPRITE_SIZE = 28;
+  // --- Looping timeline (seconds) ---
+  const PHASE_ORBIT    = 4.0;
+  const PHASE_CONVERGE = 5.5;
+  const PHASE_HOLD     = 5.0;
+  const PHASE_DISPERSE = 5.5;
+  const CYCLE_DURATION = PHASE_ORBIT + PHASE_CONVERGE + PHASE_HOLD + PHASE_DISPERSE;
+
+  // --- Star sprite: bright crisp core + soft halo ---
+  const SPRITE_SIZE = 32;
   const sprite = document.createElement('canvas');
   sprite.width = sprite.height = SPRITE_SIZE;
   (function(){
     const sctx = sprite.getContext('2d');
     const cx = SPRITE_SIZE / 2;
-    const g = sctx.createRadialGradient(cx, cx, 0, cx, cx, cx);
-    g.addColorStop(0,    'rgba(200,220,255,0.55)');
-    g.addColorStop(0.25, 'rgba(160,195,245,0.25)');
-    g.addColorStop(0.6,  'rgba(120,160,220,0.07)');
-    g.addColorStop(1,    'rgba(100,140,210,0)');
-    sctx.fillStyle = g;
+    const halo = sctx.createRadialGradient(cx, cx, 0, cx, cx, cx);
+    halo.addColorStop(0,    'rgba(180,210,255,0.55)');
+    halo.addColorStop(0.25, 'rgba(150,190,245,0.22)');
+    halo.addColorStop(0.6,  'rgba(120,160,220,0.05)');
+    halo.addColorStop(1,    'rgba(100,140,210,0)');
+    sctx.fillStyle = halo;
+    sctx.fillRect(0, 0, SPRITE_SIZE, SPRITE_SIZE);
+    const core = sctx.createRadialGradient(cx, cx, 0, cx, cx, cx * 0.22);
+    core.addColorStop(0,   'rgba(255,255,255,1)');
+    core.addColorStop(0.4, 'rgba(230,240,255,0.7)');
+    core.addColorStop(1,   'rgba(200,220,255,0)');
+    sctx.fillStyle = core;
     sctx.fillRect(0, 0, SPRITE_SIZE, SPRITE_SIZE);
   })();
 
-  // --- Ring geometry (8 arc segments, top-right) ---
-  const RING_SEGMENTS = 8;
-  const RING_GAP_DEG = 8;
-  const RING_PARTICLES_PER_SEG = 22;
-  const RING_LAYERS = 2;
-  const RING_THICK_FRAC = 0.18;
+  // --- Ring geometry (NOEMA logo as a random star cluster in 8 arcs) ---
+  const RING_SEGMENTS   = 8;
+  const RING_GAP_DEG    = 8;
+  const RING_THICK_FRAC = 0.22;
+  const STAR_COUNT      = 1400;
 
   function ringCenter(){
+    // Top-right, where the compression ratio stat used to sit
     return { cx: W * 0.78, cy: H * 0.34, r: Math.min(W, H) * 0.15 };
   }
 
-  function buildField(){
+  function buildParticles(){
     particles = [];
-
-    // 1) Scattered field particles — whole hero area
-    //    Count scales with area so small viewports don't get flooded
-    const area = W * H;
-    const FIELD_COUNT = Math.min(260, Math.max(100, Math.round(area / 6500)));
-    for(let i = 0; i < FIELD_COUNT; i++){
-      const hx = Math.random() * W;
-      const hy = Math.random() * H;
-      particles.push({
-        type: 'field',
-        hx, hy, x: hx, y: hy, vx: 0, vy: 0,
-        size: 8 + Math.random() * 10,
-        alpha: 0.06 + Math.random() * 0.08,
-        spring: 0.005 + Math.random() * 0.004,   // loose, wandering
-        damping: 0.94,
-        jitterPhase: Math.random() * Math.PI * 2,
-        jitterSpeed: 0.01 + Math.random() * 0.02,
-        jitterAmp: 0.6 + Math.random() * 0.8,
-      });
-    }
-
-    // 2) Ring particles — organized in top-right
     const { cx, cy, r } = ringCenter();
     const thickness = r * RING_THICK_FRAC;
+    const innerR = r - thickness / 2;
+    const outerR = r + thickness / 2;
     const segDeg = (360 / RING_SEGMENTS) - RING_GAP_DEG;
-    for(let s = 0; s < RING_SEGMENTS; s++){
-      const startDeg = s * (360 / RING_SEGMENTS) + RING_GAP_DEG / 2;
-      for(let layer = 0; layer < RING_LAYERS; layer++){
-        const layerFrac = RING_LAYERS === 1 ? 0.5 : layer / (RING_LAYERS - 1);
-        const pr = r + (layerFrac - 0.5) * thickness;
-        for(let i = 0; i < RING_PARTICLES_PER_SEG; i++){
-          const tFrac = i / (RING_PARTICLES_PER_SEG - 1);
-          const deg = startDeg + tFrac * segDeg;
-          const rad = deg * Math.PI / 180;
-          const hx = cx + Math.cos(rad) * pr;
-          const hy = cy + Math.sin(rad) * pr;
-          particles.push({
-            type: 'ring',
-            hx, hy, x: hx, y: hy, vx: 0, vy: 0,
-            size: 14 + Math.random() * 12,
-            alpha: 0.1 + Math.random() * 0.10,
-            spring: 0.035,          // snappy return to home
-            damping: 0.88,
-            jitterPhase: Math.random() * Math.PI * 2,
-            jitterSpeed: 0.018 + Math.random() * 0.025,
-            jitterAmp: 0.25 + Math.random() * 0.35,
-          });
-        }
-      }
-    }
-  }
 
-  function buildSignalLines(){
-    const blueHues = [210,215,220,225,230,200,208,218,222,228];
-    bands = Array.from({length: 14}, (_, i) => {   // was 22 — lightened
-      const hue = blueHues[i % blueHues.length] + (Math.random() - 0.5) * 8;
-      const tier = Math.random();
-      const alpha = tier > 0.85 ? 0.06 + Math.random() * 0.06     // quieter
-                  : tier > 0.5  ? 0.025+ Math.random() * 0.03
-                                : 0.01 + Math.random() * 0.02;
-      return {
-        yBase: (H * 0.05) + (i / 13) * (H * 0.9),
-        hue, sat: 70 + Math.random() * 22,
-        freq1: 0.0006 + Math.random() * 0.0012, amp1: 5 + Math.random() * 14,
-        phase1: Math.random() * Math.PI * 2,    speed1: 0.003 + Math.random() * 0.008,
-        freq2: 0.002  + Math.random() * 0.004,  amp2: 1 + Math.random() * 4,
-        phase2: Math.random() * Math.PI * 2,    speed2: 0.008 + Math.random() * 0.016,
-        noise: 0.3 + Math.random() * 0.9,
-        alpha,
-        width: 0.35 + Math.random() * 0.55,
-      };
-    });
+    const maxOrbitR = Math.max(
+      Math.hypot(cx, cy),
+      Math.hypot(W - cx, cy),
+      Math.hypot(cx, H - cy),
+      Math.hypot(W - cx, H - cy)
+    );
+
+    const segStarts = [];
+    for(let s = 0; s < RING_SEGMENTS; s++){
+      segStarts.push(s * (360 / RING_SEGMENTS) + RING_GAP_DEG / 2);
+    }
+
+    for(let i = 0; i < STAR_COUNT; i++){
+      // Random point inside a random arc segment — cluster fill, no visible bands
+      const segIdx = Math.floor(Math.random() * RING_SEGMENTS);
+      const startDeg = segStarts[segIdx];
+      const deg = startDeg + Math.random() * segDeg;
+      const rad = deg * Math.PI / 180;
+      // Triangular distribution inside the ring thickness — soft feathered edges
+      const softR = (Math.random() + Math.random()) / 2;
+      const particleR = innerR + softR * (outerR - innerR);
+      const ringX = cx + Math.cos(rad) * particleR;
+      const ringY = cy + Math.sin(rad) * particleR;
+
+      // Galactic orbit properties — Keplerian-ish (inner orbits faster)
+      const rFrac = Math.sqrt(Math.random());
+      const orbitR = 30 + rFrac * (maxOrbitR * 0.95);
+      const orbitAngle0 = Math.random() * Math.PI * 2;
+      const angularVel = 0.002 + 0.003 * (1 - rFrac);
+
+      const isFeature = Math.random() < 0.12;
+      const size = isFeature ? 11 + Math.random() * 7 : 4 + Math.random() * 4;
+
+      particles.push({
+        orbitR, orbitAngle0, angularVel,
+        _angle: orbitAngle0,
+        ringX, ringY,
+        x: cx + Math.cos(orbitAngle0) * orbitR,
+        y: cy + Math.sin(orbitAngle0) * orbitR,
+        vx: 0, vy: 0,
+        size,
+        alpha: isFeature ? 0.55 + Math.random() * 0.35 : 0.35 + Math.random() * 0.35,
+        jitterPhase: Math.random() * Math.PI * 2,
+        jitterSpeed: 0.02 + Math.random() * 0.02,
+        jitterAmp: 0.25 + Math.random() * 0.5,
+        twinklePhase: Math.random() * Math.PI * 2,
+        twinkleSpeed: 0.025 + Math.random() * 0.05,
+      });
+    }
   }
 
   function resize(){
     W = c.width  = c.offsetWidth;
     H = c.height = c.offsetHeight;
-    buildSignalLines();
-    buildField();
+    buildParticles();
   }
   resize();
   window.addEventListener('resize', resize);
 
-  // --- Mouse scoped to hero element ---
+  // Mouse scoped to hero element
   heroEl.addEventListener('mousemove', e => {
     const rect = c.getBoundingClientRect();
     mouse.x = e.clientX - rect.left;
@@ -526,57 +520,76 @@ let frameCount = 0;
   });
   heroEl.addEventListener('mouseleave', () => { mouse.active = false; });
 
-  // --- Pause when hero is off-screen ---
+  // Pause when hero is off-screen
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { running = e.isIntersecting; if(running) draw(); });
   }, { threshold: 0 });
   io.observe(heroEl);
 
-  // --- Physics constants ---
-  const REPEL_RADIUS = 120;
-  const REPEL_STRENGTH = 5.5;
-  const REPEL_R2 = REPEL_RADIUS * REPEL_RADIUS;
+  // Physics
+  const SPRING_BASE    = 0.018;
+  const DAMPING        = 0.91;
+  const REPEL_RADIUS   = 110;
+  const REPEL_STRENGTH = 5;
+  const REPEL_R2       = REPEL_RADIUS * REPEL_RADIUS;
+
+  function easeInOutSine(x){
+    return -(Math.cos(Math.PI * x) - 1) / 2;
+  }
+
+  function getState(elapsedSec){
+    const ct = elapsedSec % CYCLE_DURATION;
+    if(ct < PHASE_ORBIT){
+      return { formation: 0, orbitSpeed: 1 };
+    }
+    const t1 = ct - PHASE_ORBIT;
+    if(t1 < PHASE_CONVERGE){
+      const p = t1 / PHASE_CONVERGE;
+      const eased = easeInOutSine(p);
+      return { formation: eased, orbitSpeed: 1 - eased };
+    }
+    const t2 = t1 - PHASE_CONVERGE;
+    if(t2 < PHASE_HOLD){
+      return { formation: 1, orbitSpeed: 0 };
+    }
+    const t3 = t2 - PHASE_HOLD;
+    const p = t3 / PHASE_DISPERSE;
+    const eased = easeInOutSine(p);
+    return { formation: 1 - eased, orbitSpeed: eased };
+  }
+
+  const startTime = performance.now();
+  let lastTime = startTime;
 
   function draw(){
     if(!running) return;
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'lighter';
     t += 1;
 
-    // Base background wash — fades previous frame for light motion trail
-    ctx.globalCompositeOperation = 'source-over';
-    const bg = ctx.createLinearGradient(0, 0, 0, H);
-    bg.addColorStop(0,   'rgba(0,4,16,0.95)');
-    bg.addColorStop(0.5, 'rgba(0,6,20,0.9)');
-    bg.addColorStop(1,   'rgba(0,2,10,0.85)');
-    ctx.fillStyle = bg;
-    ctx.fillRect(0, 0, W, H);
+    const now = performance.now();
+    const dt = Math.min(32, now - lastTime);
+    lastTime = now;
 
-    // Faint signal lines
-    for(let i = 0; i < bands.length; i++){
-      const b = bands[i];
-      ctx.beginPath();
-      for(let x = 0; x <= W; x += 3){
-        const noise = (Math.random() - 0.5) * b.noise;
-        const y = b.yBase
-          + Math.sin(x * b.freq1 + t * b.speed1 + b.phase1) * b.amp1
-          + Math.sin(x * b.freq2 + t * b.speed2 + b.phase2) * b.amp2
-          + noise;
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = `hsla(${b.hue},${b.sat}%,72%,${b.alpha})`;
-      ctx.lineWidth = b.width;
-      ctx.stroke();
-    }
+    const elapsed = (now - startTime) / 1000;
+    const state = getState(elapsed);
+    const { cx: galaxyCx, cy: galaxyCy } = ringCenter();
 
-    // Particles — additive blending, single drawImage each
-    ctx.globalCompositeOperation = 'lighter';
     for(let i = 0; i < particles.length; i++){
       const p = particles[i];
 
-      // Spring to home
-      p.vx += (p.hx - p.x) * p.spring;
-      p.vy += (p.hy - p.y) * p.spring;
+      p._angle += p.angularVel * state.orbitSpeed * dt * 0.06;
+      const orbitX = galaxyCx + Math.cos(p._angle) * p.orbitR;
+      const orbitY = galaxyCy + Math.sin(p._angle) * p.orbitR;
 
-      // Mouse repulsion
+      const f = state.formation;
+      const hx = orbitX * (1 - f) + p.ringX * f;
+      const hy = orbitY * (1 - f) + p.ringY * f;
+
+      const springStrength = SPRING_BASE * (1 + f * 0.4);
+      p.vx += (hx - p.x) * springStrength;
+      p.vy += (hy - p.y) * springStrength;
+
       if(mouse.active){
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
@@ -590,24 +603,26 @@ let frameCount = 0;
         }
       }
 
-      p.vx *= p.damping;
-      p.vy *= p.damping;
+      p.vx *= DAMPING;
+      p.vy *= DAMPING;
       p.x += p.vx;
       p.y += p.vy;
 
-      // Organic jitter on top
       const jx = Math.cos(t * p.jitterSpeed + p.jitterPhase) * p.jitterAmp;
       const jy = Math.sin(t * p.jitterSpeed * 1.3 + p.jitterPhase) * p.jitterAmp;
 
-      ctx.globalAlpha = p.alpha;
+      const twinkle = 0.55 + 0.45 * Math.sin(t * p.twinkleSpeed + p.twinklePhase);
+      const alphaMul = (1 + f * 0.3) * twinkle;
+
+      ctx.globalAlpha = Math.min(1, p.alpha * alphaMul);
       ctx.drawImage(sprite,
         p.x + jx - p.size / 2,
         p.y + jy - p.size / 2,
         p.size, p.size);
     }
+
     ctx.globalAlpha = 1;
     ctx.globalCompositeOperation = 'source-over';
-
     requestAnimationFrame(draw);
   }
   draw();
