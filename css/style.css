@@ -1052,3 +1052,154 @@ footer {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+/* ---- LANDSCAPE PHONE
+   Targets: phone held sideways — wide but short viewport.
+   Width > 480px catches landscape; max-height < 500px excludes tablets.
+   We keep the mobile nav/hamburger but give the hero more breathing room
+   and loosen up the content so it doesn't feel cramped vertically.
+   -------------------------------------------------------------------- */
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+
+  /* Nav stays compact */
+  nav { height: 52px; }
+  .nav-logo-img { height: 28px; }
+  .nav-hamburger { width: 36px; height: 36px; }
+
+  /* Hero: shorter min-height, less top padding, content side by side */
+  .hero {
+    min-height: 100svh;
+    padding: 3.5rem 2rem 0;
+    align-items: center;
+  }
+  .hero-content {
+    max-width: 55%;
+    margin-bottom: 3rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+  }
+  .hero-sub {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.55;
+  }
+  .hero-actions {
+    flex-direction: row;
+    gap: 0.75rem;
+    margin-bottom: 0;
+  }
+  .hero-actions .btn-white,
+  .hero-actions .btn-outline {
+    width: auto;
+    padding: 9px 18px;
+    font-size: 10px;
+  }
+  .hero-badge { margin-top: 0; margin-bottom: 1rem; }
+
+  /* Show the HUD in landscape — there's horizontal room */
+  .hud-tr {
+    display: flex;
+    top: 60px; right: 1.5rem;
+    padding: 8px 12px;
+  }
+  .hud-line { font-size: 8.5px; }
+
+  /* Hero stat — show it, position it */
+  .hero-stat {
+    display: block;
+    right: 2rem; bottom: 5rem;
+  }
+  .ratio-big { font-size: clamp(2.5rem, 8vw, 4rem); }
+  .ratio-x   { font-size: clamp(1.2rem, 4vw, 2rem); }
+
+  /* Hero bar stays at the bottom */
+  .hero-bar { display: block; }
+  .hero-bar-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    animation: none;
+    width: auto;
+  }
+  .hero-bar-track .bar-cell {
+    padding: 8px 1rem;
+    font-size: 9px;
+  }
+
+  /* Main content sections — give them more horizontal breathing room */
+  main.container { padding-top: 3.5rem; }
+  .section-pad   { padding: 1.5rem 1.5rem 1rem; }
+
+  /* Ops grid — 2 columns in landscape is fine */
+  .ops-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-x: unset;
+    scroll-snap-type: unset;
+    margin: 0;
+    padding: 0;
+  }
+  .op-card {
+    flex: unset; min-width: unset;
+    scroll-snap-align: unset;
+    padding: 1.5rem 1.25rem;
+    border-radius: 0;
+    margin-right: 0;
+    border: none;
+  }
+
+  /* Cards grid — 2 columns */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-x: unset;
+    scroll-snap-type: unset;
+    margin: 1rem 0 0.5rem;
+    padding: 0;
+    gap: 1px;
+    background: var(--border);
+  }
+  .who-card {
+    flex: unset; min-width: unset;
+    scroll-snap-align: unset;
+    border: none; border-radius: 0;
+    margin-right: 0;
+  }
+  .card-img-box { height: 140px; }
+  .card-body    { padding: 1.25rem; }
+
+  /* Principles — 2x2 already works, just tighten padding */
+  .principle { padding: 1rem 0.85rem; }
+  .principle h4 { font-size: 1rem; }
+
+  /* Try-it banner */
+  .tryit-banner { padding: 1.5rem; border-radius: 16px; margin: 2rem 0 1rem; }
+  .tryit-steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-x: unset;
+    scroll-snap-type: unset;
+    margin: 1rem 0;
+    padding: 0;
+    gap: 1px;
+    border-radius: 8px;
+  }
+  .tryit-step {
+    flex: unset; min-width: unset;
+    scroll-snap-align: unset;
+    padding: 1.25rem 1rem;
+    border-radius: 0; border: none;
+  }
+
+  /* Form — side by side */
+  .form-section { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  /* Pipeline */
+  .pipeline-wrap { margin: 1rem 0; padding: 1.25rem; }
+  .pipeline-flow { flex-direction: row; }
+  .pipe-node { padding: 0.6rem 0.5rem; }
+  .pipe-arrow { transform: none; font-size: 1rem; }
+  .node-val   { font-size: 1.1rem; }
+}
