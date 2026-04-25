@@ -254,31 +254,55 @@
         <p>Human response within 24 hours. No automated sequences. Priority given to AV infrastructure teams, satellite and ground station operators, and defense organizations.</p>
       </div>
       <div class="reveal">
-        <form id="accessForm">
-          <div class="f-row">
-            <div class="f-group"><label class="f-label">First name</label><input class="fi" type="text" placeholder="First name" required></div>
-            <div class="f-group"><label class="f-label">Last name</label><input class="fi" type="text" placeholder="Last name" required></div>
-          </div>
-          <div class="f-group"><label class="f-label">Work email</label><input class="fi" type="email" placeholder="you@org.com" required></div>
-          <div class="f-group"><label class="f-label">Organisation</label><input class="fi" type="text" placeholder="Organization name"></div>
-          <div class="f-group">
-            <label class="f-label">Sector</label>
-            <select class="fs" required>
-              <option value="" disabled selected>Select sector</option>
-              <option>Autonomous Vehicles</option>
-              <option>Ground station operator</option>
-              <option>Satellite / SAR -- commercial</option>
-              <option>Satellite / SAR -- government</option>
-              <option>Defense / SIGINT</option>
-              <option>Telecom R&amp;D</option>
-              <option>Research institution</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="f-group"><label class="f-label">Signal type or use case</label><input class="fi" type="text" placeholder="e.g. SAR Level-0, radar ADC, wideband I/Q"></div>
-          <button type="submit" class="fsub">Request access &rarr;</button>
-          <p class="fnote">Human response within 24 hours &middot; No automated sequences</p>
-        </form>
+        <form id="accessForm" action="https://formspree.io/f/myklvjqy" method="POST">
+  <div class="f-row">
+    <div class="f-group">
+      <label class="f-label">First name</label>
+      <input class="fi" type="text" name="first_name" placeholder="First name" required>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">Last name</label>
+      <input class="fi" type="text" name="last_name" placeholder="Last name" required>
+    </div>
+  </div>
+
+  <div class="f-group">
+    <label class="f-label">Work email</label>
+    <input class="fi" type="email" name="email" placeholder="you@org.com" required>
+  </div>
+
+  <div class="f-group">
+    <label class="f-label">Organisation</label>
+    <input class="fi" type="text" name="organization" placeholder="Organization name">
+  </div>
+
+  <div class="f-group">
+    <label class="f-label">Sector</label>
+    <select class="fs" name="sector" required>
+      <option value="" disabled selected>Select sector</option>
+      <option value="Autonomous Vehicles">Autonomous Vehicles</option>
+      <option value="Ground station operator">Ground station operator</option>
+      <option value="Satellite / SAR - commercial">Satellite / SAR - commercial</option>
+      <option value="Satellite / SAR - government">Satellite / SAR - government</option>
+      <option value="Defense / SIGINT">Defense / SIGINT</option>
+      <option value="Telecom R&D">Telecom R&amp;D</option>
+      <option value="Research institution">Research institution</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div class="f-group">
+    <label class="f-label">Signal type or use case</label>
+    <input class="fi" type="text" name="use_case" placeholder="e.g. SAR Level-0, radar ADC, wideband I/Q">
+  </div>
+
+  <input type="hidden" name="_subject" value="New NOEMA Access Request">
+  <input type="text" name="_gotcha" style="display:none">
+
+  <button type="submit" class="fsub">Request access &rarr;</button>
+  <p class="fnote">Human response within 24 hours &middot; No automated sequences</p>
+</form>
         <div id="formSuccess"><p>Request received.</p><small>We will be in touch within 24 hours.</small></div>
       </div>
     </div>
