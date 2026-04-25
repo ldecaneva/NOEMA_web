@@ -1067,6 +1067,8 @@ footer {
   .nav-hamburger { display: flex; }
   .nav-cta { display: none; }
   .nav-links { display: none; }
+  /* Dropdown must sit below the 52px landscape nav */
+  .nav-dropdown { top: 52px; }
 
   /* --- Hero: shorter, content fits in one screen --- */
   .hero {
@@ -1110,18 +1112,18 @@ footer {
   .hud { display: none; }
   .corner { display: none; }
 
-  /* Hero bar: keep as marquee — sits at bottom, above the fold line */
+  /* Hero bar: static 4-column grid in landscape — enough width for it */
   .hero-bar { display: block; padding: 0; }
   .hero-bar-track {
-    display: flex;
-    grid-template-columns: none;
-    width: max-content;
-    animation: marquee-scroll 28s linear infinite;
-    will-change: transform;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: auto;
+    animation: none;
+    will-change: auto;
   }
   .hero-bar-track .bar-cell {
-    flex-shrink: 0;
-    padding: 8px 1.25rem;
+    flex-shrink: unset;
+    padding: 8px 1rem;
     font-size: 9px;
     border-right: 1px solid var(--border);
     white-space: nowrap;
