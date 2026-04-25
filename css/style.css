@@ -956,6 +956,7 @@ footer {
 
   /* --- Deploy row: fixed label + swipeable marquee items --- */
   .deploy-row {
+    display: flex;           /* full width on mobile — label is absolute positioned */
     position: relative;
     flex-direction: row;
     align-items: stretch;
