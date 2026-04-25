@@ -571,12 +571,12 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
 }
 
 .deploy-row {
-  display: flex; align-items: stretch;
+  display: inline-flex; align-items: stretch;
   border: 1px solid var(--border2); border-radius: 8px;
   overflow: hidden; margin: 2rem 0;
 }
-.deploy-scroller { display: flex; flex: 1; }
-.deploy-track { display: flex; flex: 1; }
+.deploy-scroller { display: flex; }
+.deploy-track { display: flex; }
 .deploy-label {
   font-family: var(--mono); font-size: 10px; font-weight: 700;
   letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
@@ -590,8 +590,8 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
   padding: 10px 16px;
   border-right: 1px solid var(--border);
   display: flex; align-items: center; gap: 6px;
-  flex: 0 0 auto;                   /* ← prevents shrinking, sizes to content */
-  white-space: nowrap;              /* ← forces text to stay on one line */
+  justify-content: center;
+  white-space: nowrap;
 }
 .deploy-item:last-child { border-right: none; }
 .deploy-item::before {
@@ -795,6 +795,7 @@ footer {
     grid-template-columns: none;
     width: max-content;
     animation: marquee-scroll 28s linear infinite;
+    will-change: transform;
   }
   .hero-bar-track .bar-cell {
     flex-shrink: 0;
@@ -905,7 +906,7 @@ footer {
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    scroll-snap-type: x proximity;
+    /* No scroll-snap here — conflicts with the translateX animation below */
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
             mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
@@ -913,20 +914,19 @@ footer {
   .tryit-badge-track {
     display: flex;
     width: max-content;
-    gap: 0.5rem;
-    padding: 0 0.75rem;
+    gap: 0;
+    padding: 0 0.375rem;
     animation: marquee-scroll 22s linear infinite;
-  }
-  .tryit-badge-section:hover .tryit-badge-track,
-  .tryit-badge-section:active .tryit-badge-track,
-  .tryit-badge-section.paused .tryit-badge-track {
-    animation-play-state: paused;
+    will-change: transform;
   }
   .tryit-badge-track > * {
     flex-shrink: 0;
-    margin: 0 !important;
+    margin: 0 0.375rem;
     white-space: nowrap;
-    scroll-snap-align: start;
+  }
+  .tryit-badge-section:hover .tryit-badge-track,
+  .tryit-badge-section.paused .tryit-badge-track {
+    animation-play-state: paused;
   }
 
   /* --- Try-it steps: horizontal swipe carousel --- */
@@ -979,7 +979,7 @@ footer {
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    scroll-snap-type: x proximity;
+    /* No scroll-snap — conflicts with marquee animation and causes half-cut items */
     flex: 1;
   }
   .deploy-scroller::-webkit-scrollbar { display: none; }
@@ -987,9 +987,9 @@ footer {
     display: flex;
     width: max-content;
     animation: marquee-scroll 18s linear infinite;
+    will-change: transform;
   }
   .deploy-scroller:hover .deploy-track,
-  .deploy-scroller:active .deploy-track,
   .deploy-scroller.paused .deploy-track {
     animation-play-state: paused;
   }
@@ -1000,7 +1000,6 @@ footer {
     padding: 10px 14px;
     white-space: nowrap;
     min-width: max-content;
-    scroll-snap-align: start;
   }
   .deploy-item:last-child { border-right: 1px solid var(--border); }
   .deploy-row::before {
