@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Privacy Policy — NOEMA Data Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+
+  .privacy-wrap {
+    max-width: 630px;
+    margin: 0 auto;
+    padding: 9rem 2rem 7rem;
+  }
+
+  /* Header */
+  .privacy-title {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.35em; text-transform: uppercase; color: var(--sub);
+    display: block; margin-bottom: 1.25rem;
+  }
+  .privacy-intro {
+    font-family: var(--sans); font-size: 0.95rem;
+    color: var(--dim); line-height: 1.8;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+
+  /* Sections */
+  .ps {
+    padding: 2.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .ps:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .ps-heading {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--sub);
+    display: block; margin-bottom: 1rem;
+  }
+  .ps-text {
+    font-family: var(--sans); font-size: 0.95rem; font-weight: 400;
+    color: var(--dim); line-height: 1.85;
+  }
+  .ps-text p + p { margin-top: 0.75rem; }
+  .ps-text a {
+    color: var(--sub); text-decoration: none;
+    border-bottom: 1px solid var(--border2);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .ps-text a:hover { color: var(--white); border-color: var(--mid); }
+
+  @media (max-width: 700px) {
+    .privacy-wrap { padding: 7rem 1.25rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <img src="images/noema_logo.png" alt="NOEMA" class="nav-logo-img"
+       onclick="window.location.href='index.html'">
+  <div class="nav-links">
+    <a href="index.html#how">How it works</a>
+    <a href="index.html#for">Who it's for</a>
+    <a href="index.html#pilot">Try it</a>
+  </div>
+</nav>
+
+<div class="nav-dropdown" id="navDropdown">
+  <a href="index.html#how"   onclick="closeNav()">How it works</a>
+  <a href="index.html#for"   onclick="closeNav()">Who it's for</a>
+  <a href="index.html#pilot" onclick="closeNav()">Try it</a>
+</div>
+
+<div class="privacy-wrap">
+
+  <span class="privacy-title">Privacy Policy</span>
+  <p class="privacy-intro">This policy applies to information collected through this website only.</p>
+
+  <div class="ps">
+    <span class="ps-heading">Information Collected</span>
+    <div class="ps-text">
+      <p>We collect only information you voluntarily provide, such as name, email, organization, and use case details submitted through forms.</p>
+      <p>Basic technical data, including IP address, browser type, and access logs, may be collected automatically for site operation and security.</p>
+    </div>
+  </div>
+
+  <div class="ps">
+    <span class="ps-heading">Use of Information</span>
+    <div class="ps-text">
+      <p>Information is used solely to respond to inquiries and provide access to NOEMA.</p>
+      <p>We do not sell, trade, or share personal information.</p>
+    </div>
+  </div>
+
+  <div class="ps">
+    <span class="ps-heading">Scope</span>
+    <div class="ps-text">
+      <p>NOEMA operates within customer-controlled environments (on-premises, air-gapped, or private cloud). Signal data processed by NOEMA does not pass through this website.</p>
+    </div>
+  </div>
+
+  <div class="ps">
+    <span class="ps-heading">Security</span>
+    <div class="ps-text">
+      <p>We take reasonable measures to protect information collected through this site. However, no system can guarantee complete security.</p>
+    </div>
+  </div>
+
+  <div class="ps">
+    <span class="ps-heading">Contact</span>
+    <div class="ps-text">
+      <p><a href="mailto:info@noemasystems.com">info@noemasystems.com</a></p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <img src="images/noema_bottom.png" alt="NOEMA" class="footer-logo-img">
+  <div class="footer-links">
+    <a href="index.html#how">How it works</a>
+    <a href="index.html#for">Who it's for</a>
+    <a href="index.html#pilot">Try it</a>
+    <a href="about.html">About</a>
+    <a href="mailto:info@noemasystems.com">info@noemasystems.com</a>
+  </div>
+  <div class="footer-legal">
+    &copy; 2026 NOEMA DATA SYSTEMS. ALL RIGHTS RESERVED.
+    <a href="privacy.html" class="privacy-link">Privacy Policy</a>
+  </div>
+</footer>
+
+<script>
+function closeNav(){
+  document.getElementById('navDropdown').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+  document.getElementById('navHamburger').setAttribute('aria-expanded','false');
+  document.body.classList.remove('nav-open');
+}
+document.getElementById('navHamburger').addEventListener('click', function(){
+  const dd = document.getElementById('navDropdown');
+  const open = dd.classList.toggle('open');
+  this.classList.toggle('open', open);
+  this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.classList.toggle('nav-open', open);
+});
+document.addEventListener('click', function(e){
+  const dd = document.getElementById('navDropdown');
+  const hb = document.getElementById('navHamburger');
+  if(dd.classList.contains('open') && !dd.contains(e.target) && !hb.contains(e.target)) closeNav();
+});
+window.addEventListener('resize', function(){
+  if(window.innerWidth > 700) closeNav();
+});
+</script>
+</body>
+</html>

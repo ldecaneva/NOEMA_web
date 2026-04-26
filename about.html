@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>About — NOEMA Data Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+
+  .about-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 9rem 2rem 7rem;
+  }
+
+  /* ---- Header ---- */
+  .about-label {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.35em; text-transform: uppercase; color: var(--blue);
+    display: block; margin-bottom: 3.5rem;
+    text-align: center;
+  }
+
+  /* ---- Core text block ---- */
+  .about-core {
+    text-align: center;
+    margin-bottom: 7rem;
+  }
+  .about-core p {
+    font-family: var(--sans); font-size: 1.05rem; font-weight: 400;
+    color: var(--mid); line-height: 1.9;
+  }
+  .about-core p + p { margin-top: 1.1rem; }
+  .about-core p:first-child {
+    font-family: var(--serif); font-size: clamp(1.3rem, 3vw, 1.75rem);
+    font-weight: 300; color: var(--white); line-height: 1.4;
+    margin-bottom: 2rem;
+  }
+
+  /* ---- 2x2 Cards ---- */
+  .about-cards-label {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue);
+    display: block; margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .about-cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 7rem;
+  }
+  .about-card {
+    background: var(--surface);
+    padding: 2.25rem 2rem;
+    transition: background 0.3s;
+  }
+  .about-card:hover { background: var(--card); }
+  .about-card-title {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--bright);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .about-card-title::before {
+    content: ''; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--blue); flex-shrink: 0;
+  }
+  .about-card-body {
+    font-family: var(--sans); font-size: 0.9rem; font-weight: 400;
+    color: var(--mid); line-height: 1.8;
+  }
+
+  /* ---- Context block ---- */
+  .about-context {
+    text-align: center;
+    padding-top: 4rem;
+    border-top: 1px solid var(--border);
+  }
+  .about-context-label {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--dim);
+    display: block; margin-bottom: 2rem;
+  }
+  .about-context p {
+    font-family: var(--sans); font-size: 0.95rem; font-weight: 400;
+    color: var(--dim); line-height: 1.9;
+  }
+  .about-context p + p { margin-top: 1rem; }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 700px) {
+    .about-wrap   { padding: 7rem 1.25rem 4rem; }
+    .about-cards  { grid-template-columns: 1fr; }
+    .about-card   { padding: 1.75rem 1.25rem; }
+    .about-core p:first-child { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <img src="images/noema_logo.png" alt="NOEMA" class="nav-logo-img"
+       onclick="window.location.href='index.html'">
+  <div class="nav-links">
+    <a href="index.html#how">How it works</a>
+    <a href="index.html#for">Who it's for</a>
+    <a href="index.html#pilot">Try it</a>
+  </div>
+</nav>
+
+<div class="nav-dropdown" id="navDropdown">
+  <a href="index.html#how"   onclick="closeNav()">How it works</a>
+  <a href="index.html#for"   onclick="closeNav()">Who it's for</a>
+  <a href="index.html#pilot" onclick="closeNav()">Try it</a>
+</div>
+
+<div class="about-wrap">
+
+  <span class="about-label">About</span>
+
+  <!-- Core text block -->
+  <div class="about-core">
+    <p>NOEMA was developed to address a fundamental constraint in signal systems: raw data is generated faster than it can be stored or transmitted.</p>
+    <p>In radar, RF, and sensor pipelines, this leads to irreversible data loss. Once discarded, raw signal captures cannot be reconstructed or reanalyzed.</p>
+    <p>NOEMA enables full data retention without changing infrastructure, through adaptive, lossless compression with bit-exact reconstruction.</p>
+    <p>The system operates directly on raw signal samples, adapting to their statistical structure regardless of encoding or representation.</p>
+  </div>
+
+  <!-- Design principles -->
+  <span class="about-cards-label">Design Principles</span>
+  <div class="about-cards">
+    <div class="about-card">
+      <div class="about-card-title">No Approximation</div>
+      <p class="about-card-body">No lossy stages. No reconstruction from models. Every bit is preserved.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-title">Bit-Exact Reconstruction</div>
+      <p class="about-card-body">Decoded output matches the original signal exactly. Verified deterministically.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-title">No Pipeline Changes</div>
+      <p class="about-card-body">Integrates without modifying formats, workflows, or downstream systems.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-title">Deployment Flexibility</div>
+      <p class="about-card-body">Runs on-premises, air-gapped, or in private cloud environments.</p>
+    </div>
+  </div>
+
+  <!-- Context -->
+  <div class="about-context">
+    <span class="about-context-label">Context</span>
+    <p>NOEMA was developed in environments where storage, ingest, and bandwidth constraints directly limit what can be preserved.</p>
+    <p>The system is designed for pipelines where fidelity, reproducibility, and long-term access to raw signal data are non-negotiable.</p>
+  </div>
+
+</div>
+
+<footer>
+  <img src="images/noema_bottom.png" alt="NOEMA" class="footer-logo-img">
+  <div class="footer-links">
+    <a href="index.html#how">How it works</a>
+    <a href="index.html#for">Who it's for</a>
+    <a href="index.html#pilot">Try it</a>
+    <a href="about.html">About</a>
+    <a href="mailto:info@noemasystems.com">info@noemasystems.com</a>
+  </div>
+  <div class="footer-legal">
+    &copy; 2026 NOEMA DATA SYSTEMS. ALL RIGHTS RESERVED.
+    <a href="privacy.html" class="privacy-link">Privacy Policy</a>
+  </div>
+</footer>
+
+<script>
+function closeNav(){
+  document.getElementById('navDropdown').classList.remove('open');
+  document.getElementById('navHamburger').classList.remove('open');
+  document.getElementById('navHamburger').setAttribute('aria-expanded','false');
+  document.body.classList.remove('nav-open');
+}
+document.getElementById('navHamburger').addEventListener('click', function(){
+  const dd = document.getElementById('navDropdown');
+  const open = dd.classList.toggle('open');
+  this.classList.toggle('open', open);
+  this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.classList.toggle('nav-open', open);
+});
+document.addEventListener('click', function(e){
+  const dd = document.getElementById('navDropdown');
+  const hb = document.getElementById('navHamburger');
+  if(dd.classList.contains('open') && !dd.contains(e.target) && !hb.contains(e.target)) closeNav();
+});
+window.addEventListener('resize', function(){
+  if(window.innerWidth > 700) closeNav();
+});
+</script>
+</body>
+</html>
