@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>NOEMA - Lossless Compression for Raw Signal Data</title>
+<title>NOEMA -- Lossless Signal Compression</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -72,7 +72,7 @@
   <div class="hero-bar">
     <div class="hero-bar-track">
       <div class="bar-cell on"><span class="dot-sm live"></span>Codec active</div>
-      <div class="bar-cell"><span class="dot-sm"></span>Level-0 Signal preserved</div>
+      <div class="bar-cell"><span class="dot-sm"></span>Level-0 IQ preserved</div>
       <div class="bar-cell"><span class="dot-sm"></span>Bit-exact verified</div>
       <div class="bar-cell"><span class="dot-sm"></span>On-premises &middot; Air-gapped &middot; Cloud</div>
     </div>
@@ -91,13 +91,13 @@
       <div class="op-card reveal">
         <div class="op-num">01 Intake</div>
         <div class="op-title">Raw signal data enters NOEMA.</div>
-        <p class="op-desc">No preprocessing. No configuration. Automatically adapts to the statistical profile of incoming raw signal data from the first run.</p>
+        <p class="op-desc">No preprocessing. No configuration. Automatically adapts to the statistical profile of incoming I/Q streams from the first run.</p>
         <div class="op-specs"><span>Any signal type</span><span>Zero configuration</span><span>Works from first run</span></div>
       </div>
       <div class="op-card reveal">
         <div class="op-num">02 Compress</div>
         <div class="op-title">Adaptive lossless compression.</div>
-        <p class="op-desc">7.5 to 10 times smaller across radar, RF, and raw sensor signal workloads. Self-tunes to your signal profile in real time or batch. Nothing is approximated.</p>
+        <p class="op-desc">7.5 to 10 times smaller across I/Q, RF, and radar workloads. Self-tunes to your signal profile in real time or batch. Nothing is approximated.</p>
         <div class="op-specs"><span>7.5x to 10x reduction</span><span>Self-adapting codec</span><span>Real-time or batch</span></div>
       </div>
       <div class="op-card reveal">
@@ -159,7 +159,7 @@
         <div class="card-body">
           <div class="card-cat">Autonomous Vehicles</div>
           <div class="card-title">AV test fleets generate terabytes of raw radar data daily.</div>
-          <p class="card-text">Storing everything is expensive; discarding any means losing edge cases. NOEMA compresses raw radar and sensor streams at the signal level, preserving every bit while reducing the storage footprint.</p>
+          <p class="card-text">Storing everything is expensive; discarding any means losing edge cases. NOEMA compresses raw sensor streams losslessly, preserving every bit while reducing the storage footprint.</p>
         </div>
       </div>
       <div class="who-card reveal">
@@ -169,7 +169,7 @@
         <div class="card-body">
           <div class="card-cat">Satellite and SAR</div>
           <div class="card-title">Downlink windows are measured in minutes. What does not fit is gone.</div>
-          <p class="card-text">NOEMA compresses SAR and telemetry data at the signal level, at the source, on the ground, and between relay stations. More science through the same link.</p>
+          <p class="card-text">NOEMA compresses SAR and telemetry data at the source, on the ground, and between relay stations. More science through the same link.</p>
         </div>
       </div>
       <div class="who-card reveal">
@@ -179,7 +179,7 @@
         <div class="card-body">
           <div class="card-cat">Defense and SIGINT</div>
           <div class="card-title">At the tactical edge, storage is constrained and connectivity is intermittent.</div>
-          <p class="card-text">NOEMA compresses at the point of collection, at the signal level. Air-gappable, ARM-compatible, bit-exact. Keep every capture. Replay any signal later.</p>
+          <p class="card-text">NOEMA compresses at the point of collection. Air-gappable, ARM-compatible, bit-exact. Keep every capture. Replay any signal later.</p>
         </div>
       </div>
     </div>
@@ -222,7 +222,7 @@
       <div class="tryit-steps">
         <div class="tryit-step"><div class="ts-num">01 Receive</div><div class="ts-title">Delivered instantly</div><p class="ts-body">Binary, setup wizard, test data, and documentation. Linux, Windows, and ARM.</p></div>
         <div class="tryit-step"><div class="ts-num">02 Deploy</div><div class="ts-title">Answer four questions</div><p class="ts-body">Input, output, CPU limit, throughput cap. Configuration is generated automatically. No coding.</p></div>
-        <div class="tryit-step"><div class="ts-num">03 Observe</div><div class="ts-title">Results appear automatically</div><p class="ts-body">Compression ratio, storage savings, and reconstruction verification on your own raw signal data.</p></div>
+        <div class="tryit-step"><div class="ts-num">03 Observe</div><div class="ts-title">Results appear automatically</div><p class="ts-body">Compression ratio, storage savings, and reconstruction verification on your own I/Q data.</p></div>
         <div class="tryit-step"><div class="ts-num">04 Review</div><div class="ts-title">Clear impact</div><p class="ts-body">Storage savings, bandwidth gains, ROI. You leave with a decision, not a report.</p></div>
       </div>
       <div class="deploy-row">
@@ -294,7 +294,7 @@
     <a href="mailto:info@noemasystems.com">info@noemasystems.com</a>
   </div>
   <div class="footer-legal">
-    &copy; 2026 NOEMA DATA SYSTEMS. ALL RIGHTS RESERVED.
+    &copy; 2026 NOEMA Data Systems. A product of Winter Labs LLC.
     <a href="privacy.html" class="privacy-link">Privacy Policy</a>
   </div>
 </footer>

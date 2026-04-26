@@ -755,7 +755,7 @@ footer {
 
   /* --- Scroll anchors: shorter nav (60px) --- */
   #how        { scroll-margin-top: 72px; }
-  #for        { scroll-margin-top: 72px; }
+  #for        { scroll-margin-top: 48px; }
   #principles { scroll-margin-top: 12px; }
   #pilot      { scroll-margin-top: 72px; }
   #signup     { scroll-margin-top: 20px; }
