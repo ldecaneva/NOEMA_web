@@ -18,13 +18,14 @@
 
   /* Header */
   .privacy-title {
-    font-family: var(--mono); font-size: 11px; font-weight: 700;
-    letter-spacing: 0.35em; text-transform: uppercase; color: var(--sub);
-    display: block; margin-bottom: 1.25rem;
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue);
+    display: block; margin-bottom: 1rem;
   }
   .privacy-intro {
-    font-family: var(--sans); font-size: 0.95rem;
-    color: var(--dim); line-height: 1.8;
+    font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400; color: var(--white); line-height: 1.2;
+    letter-spacing: 0.01em;
     padding-bottom: 2.5rem;
     border-bottom: 1px solid var(--border);
     margin-bottom: 0;
@@ -32,24 +33,26 @@
 
   /* Sections */
   .ps {
-    padding: 2.25rem 0;
+    padding: 2.75rem 0;
     border-bottom: 1px solid var(--border);
   }
   .ps:last-child { border-bottom: none; padding-bottom: 0; }
 
   .ps-heading {
-    font-family: var(--mono); font-size: 10px; font-weight: 700;
-    letter-spacing: 0.28em; text-transform: uppercase; color: var(--sub);
-    display: block; margin-bottom: 1rem;
+    font-family: var(--mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.26em; text-transform: uppercase; color: var(--blue);
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 1.25rem;
   }
+  .ps-heading::after { content: ''; flex: 1; height: 1px; background: var(--border2); }
   .ps-text {
-    font-family: var(--sans); font-size: 0.95rem; font-weight: 400;
-    color: var(--dim); line-height: 1.85;
+    font-family: var(--sans); font-size: 1.1rem; font-weight: 400;
+    color: var(--mid); line-height: 1.85;
   }
   .ps-text p + p { margin-top: 0.75rem; }
   .ps-text a {
-    color: var(--sub); text-decoration: none;
-    border-bottom: 1px solid var(--border2);
+    color: var(--blue); text-decoration: none;
+    border-bottom: 1px solid rgba(106,169,255,0.3);
     transition: color 0.2s, border-color 0.2s;
   }
   .ps-text a:hover { color: var(--white); border-color: var(--mid); }
@@ -71,13 +74,17 @@
     <a href="index.html#how">How it works</a>
     <a href="index.html#for">Who it's for</a>
     <a href="index.html#pilot">Try it</a>
+    <a href="index.html#signup">Contact</a>
   </div>
+  <button class="nav-cta" onclick="window.location.href='index.html#signup'">Request access</button>
 </nav>
 
 <div class="nav-dropdown" id="navDropdown">
-  <a href="index.html#how"   onclick="closeNav()">How it works</a>
-  <a href="index.html#for"   onclick="closeNav()">Who it's for</a>
-  <a href="index.html#pilot" onclick="closeNav()">Try it</a>
+  <a href="index.html#how"    onclick="closeNav()">How it works</a>
+  <a href="index.html#for"    onclick="closeNav()">Who it's for</a>
+  <a href="index.html#pilot"  onclick="closeNav()">Try it</a>
+  <a href="index.html#signup" onclick="closeNav()">Contact</a>
+  <button class="nav-dropdown-cta" onclick="closeNav(); window.location.href='index.html#signup'">Request access</button>
 </div>
 
 <div class="privacy-wrap">
